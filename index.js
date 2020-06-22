@@ -2,11 +2,14 @@ const express = require('express');
 const app = express();
 const pool = require('./db.js');
 const PORT = (process.env.PORT || 5000);
-require('dotenv/config');
+const cors = require('cors');
+
+//MiddleWare
+app.use(cors());
 app.use(express.json())
 
 // INDEX
-app.get('/sites', async (req,res) => {
+app.get('/api/sites', async (req,res) => {
     try{
     const response = await pool.query("SELECT * FROM site;");
     res.send(response.rows);
@@ -16,7 +19,7 @@ app.get('/sites', async (req,res) => {
 })
 
 //POST
-app.post('/sites', async (req,res) => {
+app.post('/api/sites', async (req,res) => {
     try{
     console.log(req.body);
     const {siteName, siteDesc} = req.body;
@@ -28,7 +31,7 @@ app.post('/sites', async (req,res) => {
 })
 
 //SPECIFIC
-app.get('/sites/:site', async (req,res) => {
+app.get('/api/sites/:site', async (req,res) => {
     try {
         const {site} = req.params;
         const response = await pool.query("SELECT * FROM site WHERE site_id = $1",[site]);
@@ -39,7 +42,7 @@ app.get('/sites/:site', async (req,res) => {
 })
 
 //UPDATE
-app.put('/sites/:site', async (req,res) => {
+app.put('/api/sites/:site', async (req,res) => {
     try {
         const {site} = req.params;
         const {siteName, siteDesc} = req.body;
@@ -51,7 +54,7 @@ app.put('/sites/:site', async (req,res) => {
 })
 
 //DELETE
-app.delete('/sites/:site', async (req,res) => {
+app.delete('/api/sites/:site', async (req,res) => {
     try {
         const {site} = req.params;
         const response = await pool.query ("DELETE FROM site WHERE site_id = $1", [site]);
@@ -64,5 +67,4 @@ app.delete('/sites/:site', async (req,res) => {
 
 app.listen(PORT, function(){
     console.log('listening at ' + PORT);
-    
 });
