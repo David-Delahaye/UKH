@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const pool = require('./db.js');
+const path = require('path');
 const PORT = (process.env.PORT || 5000);
 const cors = require('cors');
 
