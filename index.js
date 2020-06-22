@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const pool = require('./db.js');
+const PORT = (process.env.PORT || 5000);
 require('dotenv/config');
 app.use(express.json())
 
@@ -61,7 +62,7 @@ app.delete('/sites/:site', async (req,res) => {
 })
 
 
-app.listen(5000, function(){
-    console.log('listening at 5000');
+app.listen(PORT, function(){
+    console.log('listening at ' + PORT);
     
 });
