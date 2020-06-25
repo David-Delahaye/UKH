@@ -52,26 +52,34 @@ class NewSite extends Component {
   constructor(){
     super();
     this.state = {
-
+      inputs:{
+        title:'',
+        description:''
+      },
     }    
   }
 
   formSubmit = async (e) => {
     e.preventDefault()
-    console.log('all connected nice');
-    console.log(e);
-    console.log(e.title);
-  }
-
-  inputChange = async (e) => {
-    console.log(e.target.value);
-    
+    try {
+        const title = e.target.title.value;
+        const desc = e.target.desc.value;
+        const body = {"siteName":title, "siteDesc":desc}
+        const response = await fetch("/api/sites",{
+        method: "POST",
+        headers: { "Content-Type" : "application/json"},
+        body: JSON.stringify(body)
+      });
+    } catch (err) {
+      console.error(err.message);
+      
+    }
   }
 
   render(){
     return(
       <form onSubmit = {(e) =>{this.formSubmit(e)}}>
-        <input onChange = {(e) =>{this.inputChange(e)}}type='text' name ='title' placeholder='add a site'/>
+        <input type='text' name ='title' placeholder='add a site'/>
         <input type='text' name ='desc' placeholder='description'/>
         <button>Add</button>
       </form>
