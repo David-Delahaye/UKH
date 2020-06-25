@@ -56,9 +56,25 @@ class NewSite extends Component {
     }    
   }
 
+  formSubmit = async (e) => {
+    e.preventDefault()
+    console.log('all connected nice');
+    console.log(e);
+    console.log(e.title);
+  }
+
+  inputChange = async (e) => {
+    console.log(e.target.value);
+    
+  }
+
   render(){
     return(
-      <input type='text' placeholder='add a site'/>
+      <form onSubmit = {(e) =>{this.formSubmit(e)}}>
+        <input onChange = {(e) =>{this.inputChange(e)}}type='text' name ='title' placeholder='add a site'/>
+        <input type='text' name ='desc' placeholder='description'/>
+        <button>Add</button>
+      </form>
     )
   }
 }
