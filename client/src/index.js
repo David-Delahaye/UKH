@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './App.js';
+const {Sites, NewSite} = App;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Sites />
+    <NewSite/>
   </React.StrictMode>,
   document.getElementById('root')
 );

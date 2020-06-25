@@ -48,4 +48,19 @@ class Sites extends Component {
   }
 }
 
-export default Sites;
+class NewSite extends Component {
+  constructor(){
+    super();
+    this.state = {
+
+    }    
+  }
+
+  render(){
+    return(
+      <input type='text' placeholder='add a site'/>
+    )
+  }
+}
+
+export default {Sites, NewSite};
