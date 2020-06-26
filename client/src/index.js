@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import App from './App.js';
-const {Sites, NewSite} = App;
+const {Site, Sites, NewSite} = App;
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +19,8 @@ ReactDOM.render(
         <Route path="/index">
           <Sites />
         </Route>
+        <Route path="/sites/:site" component={Site}/>
+
       </Switch>
     </Router>
   </React.StrictMode>,

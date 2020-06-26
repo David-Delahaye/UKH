@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Redirect } from 'react-router-dom';
+import { render } from 'react-dom';
 
 class Sites extends Component {
   constructor(){
@@ -113,4 +114,46 @@ class NewSite extends Component {
   }
 }
 
-export default {Sites, NewSite};
+class Site extends Component {
+  constructor(){
+    super()
+    this.state = {
+      id: '',
+      info:{}
+    };
+  }
+
+  componentDidMount(){
+    this.setState({id:this.props.match.params.site})
+    this.getSite();
+  }
+
+  getSite = async () => {
+    try {
+      const response = await fetch(`/api/sites/${this.state.id}`, {
+        headers:{
+            "accepts":"application/json"
+        }
+    });
+      const jsonData = await response.json();
+      this.setState({info:jsonData[0]});
+      console.log(this.state);
+      
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+  render(){
+    
+    return(
+      <div>
+        <h4>id: {this.state.info.site_id}</h4>
+        <h1>{this.state.info.site_name}</h1>
+        <p>{this.state.info.description}</p>
+      </div>
+    )
+  }
+}
+
+
+export default {Site, Sites, NewSite};
