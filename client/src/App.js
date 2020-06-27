@@ -160,5 +160,13 @@ class Site extends Component {
   }
 }
 
+class Nav extends Component {
+render(){
+  return(
+    <h1>UKC</h1>
+  )
+}
+}
 
-export default {Site, Sites, NewSite};
+
+export default {Site, Sites, NewSite, Nav};

@@ -7,10 +7,11 @@ import {
   Link
 } from "react-router-dom";
 import App from './App.js';
-const {Site, Sites, NewSite} = App;
+const {Site, Sites, NewSite, Nav} = App;
 
 ReactDOM.render(
   <React.StrictMode>
+    <Nav/>
     <Router>
       <Switch>
         <Route path="/new">
@@ -20,7 +21,6 @@ ReactDOM.render(
           <Sites />
         </Route>
         <Route path="/sites/:site" component={Site}/>
-
       </Switch>
     </Router>
   </React.StrictMode>,
