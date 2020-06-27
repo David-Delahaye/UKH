@@ -32,31 +32,22 @@ class Sites extends Component {
     }
   }
 
-  deleteSite = async (e,i) => {
-    const newSites = this.state.sites.slice();
-    newSites.splice(i,1);
-    console.log(newSites);
-    this.setState({sites:newSites});
-    console.log(this.state.sites);  
-    try {
-      const id = e.site_id;
-      console.log(id);
-      const response = await fetch(`/api/sites/${id}`,{
-        method: "DELETE",
-        headers: { "Content-Type" : "application/json"},
-      });
-    } catch (err) {
-      console.error(err.message);
-    }
+  gotoSite = async (e,i) => {
+    this.setState({redirect:e.site_id})
   }
 
   render(){
+    if (this.state.redirect){
+      const id = this.state.redirect;
+      return<Redirect to = {'/sites/'+ id}/>
+    }
+
     let siteFormat = this.state.sites.map ((e,i) => {
       return(
         <div key={i}>
         <h3>{e.site_name}</h3>
         <p>{e.description}</p>
-        <button onClick = {() => this.deleteSite(e,i)}>Delete</button>
+        <button onClick = {() => this.gotoSite(e,i)}>See more</button>
         </div>
       )
     })
@@ -130,6 +121,7 @@ class Site extends Component {
 
   getSite = async () => {
     try {
+      await this.setState({id:this.props.match.params.site})
       const response = await fetch(`/api/sites/${this.state.id}`, {
         headers:{
             "accepts":"application/json"
@@ -137,12 +129,24 @@ class Site extends Component {
     });
       const jsonData = await response.json();
       this.setState({info:jsonData[0]});
-      console.log(this.state);
-      
     } catch (err) {
       console.error(err.message);
     }
   }
+
+  deleteSite = async (e,i) => {
+    try {
+      const id = this.state.id;
+      console.log(id);
+      const response = await fetch(`/api/sites/${id}`,{
+        method: "DELETE",
+        headers: { "Content-Type" : "application/json"},
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
   render(){
     
     return(
@@ -150,6 +154,7 @@ class Site extends Component {
         <h4>id: {this.state.info.site_id}</h4>
         <h1>{this.state.info.site_name}</h1>
         <p>{this.state.info.description}</p>
+        <button onClick = {() => this.deleteSite()}>Delete</button>
       </div>
     )
   }
