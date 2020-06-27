@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { render } from 'react-dom';
 
 class Sites extends Component {
@@ -110,7 +110,8 @@ class Site extends Component {
     super()
     this.state = {
       id: '',
-      info:{}
+      info:{},
+      redirect:false
     };
   }
 
@@ -141,14 +142,17 @@ class Site extends Component {
       const response = await fetch(`/api/sites/${id}`,{
         method: "DELETE",
         headers: { "Content-Type" : "application/json"},
-      });
+      })
+      .then(this.setState({redirect:'/index'}))
     } catch (err) {
       console.error(err.message);
     }
   }
 
   render(){
-    
+    if (this.state.redirect){
+      return(<Redirect to ={this.state.redirect}/>)
+    }
     return(
       <div>
         <h4>id: {this.state.info.site_id}</h4>
@@ -163,7 +167,11 @@ class Site extends Component {
 class Nav extends Component {
 render(){
   return(
-    <h1>UKC</h1>
+    <nav>
+      <h1>UKC</h1>
+      <Link to="/index">All sites</Link>
+      <Link to="/new">Add site</Link>
+    </nav>
   )
 }
 }

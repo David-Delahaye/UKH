@@ -11,8 +11,8 @@ const {Site, Sites, NewSite, Nav} = App;
 
 ReactDOM.render(
   <React.StrictMode>
-    <Nav/>
     <Router>
+      <Nav/>
       <Switch>
         <Route path="/new">
           <NewSite />
