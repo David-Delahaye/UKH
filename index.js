@@ -4,23 +4,18 @@ const pool = require('./config/db.js');
 const path = require('path');
 const PORT = (process.env.PORT || 5000);
 const cors = require('cors');
-
-const sites = require('./routes/sites');
-const auth = require('./routes/auth');
-
+const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 require('dotenv/config');
 
-
-
 //MiddleWare --------------------------------------------------------------
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(cors());
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(session({
     store: new pgSession({
@@ -33,9 +28,10 @@ app.use(session({
   }));
 
 // PASSPORT INIT -------------------------------------------------------
+require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport');
+
 
 // app.use((req, res, next) => {
 //     console.log(req.session);
@@ -45,10 +41,10 @@ require('./config/passport');
 
  //Routes ----------------------------------------------------------
 
+ const sites = require('./routes/sites');
+ const auth = require('./routes/auth');
  app.use(sites)
  app.use(auth)
-
-
 
 
 app.listen(PORT, function(){

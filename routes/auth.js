@@ -24,11 +24,12 @@ router.get('/api/register', (req, res, next) => {
 });
 
 router.get('/api/success', (req,res) => {
-    res.send('you did it')
+    console.log('well done');
+    
 })
 
 router.get('/api/fail', (req,res) => {
-    res.send('soz no bad boi')
+    console.log('no no');
 })
 //----------------POSTS
 

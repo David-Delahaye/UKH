@@ -6,8 +6,12 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import App from './App.js';
-const {Site, Sites, NewSite, Nav} = App;
+
+import Nav from './components/Nav';
+import NewSite from './components/NewSite';
+import Sites from './components/Sites';
+import Site from './components/Site';
+import Login from './components/Login';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +23,9 @@ ReactDOM.render(
         </Route>
         <Route path="/index">
           <Sites />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
         <Route path="/sites/:site" component={Site}/>
       </Switch>
