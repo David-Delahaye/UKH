@@ -4,9 +4,8 @@ import { render } from 'react-dom';
 
 
 class Nav extends Component {
-  constructor(){
-    super()
-    this.state = {}
+  constructor(props){
+    super(props)
   }
 
     logout = async ()=>{
@@ -17,22 +16,36 @@ class Nav extends Component {
           }
       });
         console.log(response);
+        this.handleChange('guest');
       } catch (err) {
         console.error(err.message);
       }
     }
 
+    handleChange = (e) => {
+      this.props.onUserChange(e)
+    }
+
 render(){
+  if (this.props.username !== 'guest'){
+    return(
+      <nav>
+        <h1>UKC</h1>
+        <Link to="/index">All sites</Link>
+        <Link to="/new">Add site</Link>
+        <p>{this.props.username}</p>
+        <a onClick={() =>{this.logout()}}>Logout</a>
+      </nav>
+    )
+  }else{
   return(
     <nav>
       <h1>UKC</h1>
       <Link to="/index">All sites</Link>
-      <Link to="/new">Add site</Link>
       <Link to="/login">Login</Link>
-      <a onClick={() =>{this.logout()}}>Logout</a>
       <Link to="/register">Register</Link>
     </nav>
-  )
+  )}
 }
 }
 

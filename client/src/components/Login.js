@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { render } from "react-dom";
+import Nav from "./Nav";
+import { json } from "body-parser";
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
       redirect:false,
     };
   }
 
-  getCookies = async () => {
-
+  handleChange = (e) => {
+    this.props.onUserChange(e)
   }
 
   formSubmit = async (e) => {
@@ -25,8 +28,11 @@ class Login extends Component {
           headers: { "Content-Type" : "application/json"},
           body: JSON.stringify(body)
         });
+        const jsonData = await response.json();
+        console.log(jsonData);
         if (response.status === 200){
           this.setState({redirect:'/index'});
+          this.handleChange(jsonData.username);
           
         }else if (response.status === 401){
           console.log('youre out');
@@ -44,7 +50,6 @@ class Login extends Component {
       <form
         onSubmit={(e) => {
           this.formSubmit(e);
-          this.getCookies();
         }}
       >
         <input type="text" name="username" placeholder="username" />

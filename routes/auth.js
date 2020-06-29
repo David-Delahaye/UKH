@@ -27,7 +27,11 @@ router.get('/api/logout', (req,res) => {
     req.logout();
     res.send('logged out')
 })
+
 //----------------POSTS
+router.get('/api/user', (req,res) => {
+    res.status(200).json({ username: req.user.username});
+})
 
 router.post('/api/register', (req, res, next) => {
     const saltHash = genPassword(req.body.password);
@@ -37,9 +41,9 @@ router.post('/api/register', (req, res, next) => {
     const hash = saltHash.hash;
 
     pool.query("INSERT INTO users (username, hash, salt) VALUES($1,$2,$3)", [username, hash, salt])
-    .then(res.send('Created'));
+        res.status(200).json({ msg: 'Registered'});
  });
 
-router.post('/api/login', passport.authenticate('local'), (req,res) => res.send('Authorized'));
+router.post('/api/login', passport.authenticate('local'), (req,res) => res.status(200).json({ username: req.user.username}));
 
 module.exports= router;

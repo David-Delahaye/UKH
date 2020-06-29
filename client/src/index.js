@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -14,28 +14,68 @@ import Site from './components/Site';
 import Login from './components/Login';
 import Register from './components/Register';
 
+class App extends Component{
+  constructor(props){
+    super(props);
+    this.handleUser = this.handleUser.bind(this);
+    this.state = {
+      user:'guest'
+    }
+  }
+
+  handleUser = (username) => {
+    this.setState({user:username});
+  }
+
+  getUser = async () => {
+    try {
+      const response = await fetch('/api/user', {
+        headers:{
+            "accepts":"application/json"
+        }
+        });
+    const jsonData = await response.json();
+    console.log(jsonData);
+    this.handleUser(jsonData.username);
+    } catch (err) {
+      console.error(err.message);
+      
+    }
+  }
+
+  componentDidMount(){
+    this.getUser();
+  }
+
+  render(){
+    return(
+      <React.StrictMode>
+        <Router>
+          <Nav username = {this.state.user} onUserChange = {this.handleUser}/>
+          <Switch>
+            <Route path="/new">
+              <NewSite />
+            </Route>
+            <Route path="/index">
+              <Sites />
+            </Route>
+            <Route path="/login">
+              <Login onUserChange = {this.handleUser}/>
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/sites/:site" component={Site}/>
+          </Switch>
+        </Router>
+      </React.StrictMode>
+    )
+  }
+}
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <Nav/>
-      <Switch>
-        <Route path="/new">
-          <NewSite />
-        </Route>
-        <Route path="/index">
-          <Sites />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/sites/:site" component={Site}/>
-      </Switch>
-    </Router>
-  </React.StrictMode>,
+  <App/>,
   document.getElementById('root')
 );
 

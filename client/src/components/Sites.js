@@ -23,10 +23,14 @@ class Sites extends Component {
               "accepts":"application/json"
           }
       });
-        console.log(response);
-        const jsonData = await response.json();
-        await console.log(jsonData);
+      const jsonData = await response.json();
+      if (response.status === 200) {
         this.setState({sites:jsonData});
+      }else{
+        console.error(jsonData);
+      }
+
+
       } catch (err) {
         console.error(err.message);
       }

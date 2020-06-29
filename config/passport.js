@@ -33,15 +33,13 @@ passport.use(new LocalStrategy(
 
 
 passport.serializeUser((user, done) => { 
-    console.log(user.username);
-    done(null, user.username);
+    done(null, user.user_id);
 });
 
-passport.deserializeUser((username, done) => {
-    pool.query("SELECT * FROM users WHERE username = $1",[username])
+passport.deserializeUser((userId, done) => {
+    pool.query("SELECT * FROM users WHERE user_id = $1",[userId])
         .then((response) => {return response.rows[0]})
         .then((user) => {
-            console.log(user);
             done(null, user);
         })
         .catch(err => done(err))

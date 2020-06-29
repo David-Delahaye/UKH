@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const pool = require('../config/db');
+const {isAuth} = require('../lib/authUtils');
 
 // INDEX SITES
 router.get('/', async (req,res) => {
@@ -20,7 +21,9 @@ router.get('/api/sites', async (req,res) => {
 router.post('/api/sites', async (req,res) => {
     try{
     const {siteName, siteDesc} = req.body;
-    const response = await pool.query("INSERT INTO site (site_name, description, created_on) VALUES($1,$2,current_timestamp) RETURNING*;", [siteName, siteDesc]);
+    const owner_id = req.user.user_id;
+    console.log(owner_id);
+    const response = await pool.query("INSERT INTO site (site_name, description, owner_id, created_on) VALUES($1,$2,$3,current_timestamp) RETURNING*;", [siteName, siteDesc, owner_id]);
     res.send(response.rows);
     }catch(err){
         console.error(err.message);
