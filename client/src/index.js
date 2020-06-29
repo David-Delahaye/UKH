@@ -12,6 +12,8 @@ import NewSite from './components/NewSite';
 import Sites from './components/Sites';
 import Site from './components/Site';
 import Login from './components/Login';
+import Register from './components/Register';
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -26,6 +28,9 @@ ReactDOM.render(
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
         </Route>
         <Route path="/sites/:site" component={Site}/>
       </Switch>

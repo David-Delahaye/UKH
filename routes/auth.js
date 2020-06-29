@@ -23,18 +23,13 @@ router.get('/api/register', (req, res, next) => {
     res.send(form);
 });
 
-router.get('/api/success', (req,res) => {
-    console.log('well done');
-    
-})
-
-router.get('/api/fail', (req,res) => {
-    console.log('no no');
+router.get('/api/logout', (req,res) => {
+    req.logout();
+    res.send('logged out')
 })
 //----------------POSTS
 
 router.post('/api/register', (req, res, next) => {
-    console.log(req.body);
     const saltHash = genPassword(req.body.password);
     
     const username = req.body.username;
@@ -42,9 +37,9 @@ router.post('/api/register', (req, res, next) => {
     const hash = saltHash.hash;
 
     pool.query("INSERT INTO users (username, hash, salt) VALUES($1,$2,$3)", [username, hash, salt])
-    .then(res.redirect('/api/login'));
+    .then(res.send('Created'));
  });
 
-router.post('/api/login', passport.authenticate('local',{ failureRedirect: '/api/fail', successRedirect: '/api/success' }));
+router.post('/api/login', passport.authenticate('local'), (req,res) => res.send('Authorized'));
 
 module.exports= router;

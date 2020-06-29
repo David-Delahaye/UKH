@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { render } from "react-dom";
 
-class Login extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,20 +16,21 @@ class Login extends Component {
 
   formSubmit = async (e) => {
     e.preventDefault()
+    console.log(e);
     try {
         const username = e.target.username.value;
         const password = e.target.password.value;
         const body = {"username":username, "password":password}
-        const response = await fetch("/api/login",{
+        const response = await fetch("/api/register",{
           method: "POST",
           headers: { "Content-Type" : "application/json"},
           body: JSON.stringify(body)
         });
         if (response.status === 200){
-          this.setState({redirect:'/index'});
+          this.setState({redirect:'/login'});
           
-        }else if (response.status === 401){
-          console.log('youre out');
+        }else{
+          console.log('nope');
         }
     } catch (err) {
       console.error(err.message);
@@ -40,6 +41,7 @@ class Login extends Component {
     if (this.state.redirect){
       return<Redirect to ={this.state.redirect}/>
     }
+    
     return (
       <form
         onSubmit={(e) => {
@@ -47,6 +49,7 @@ class Login extends Component {
           this.getCookies();
         }}
       >
+        <h1>Register</h1>
         <input type="text" name="username" placeholder="username" />
         <input type="text" name="password" placeholder="password" />
         <button>Add</button>
@@ -55,4 +58,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;
