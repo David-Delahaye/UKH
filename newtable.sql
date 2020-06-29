@@ -4,3 +4,9 @@ CREATE TABLE site(
     description VARCHAR (1000) NOT NULL,
     created_on TIMESTAMP NOT NULL
 );
+
+CREATE TABLE users(
+    username VARCHAR (50) NOT NULL,
+    hash VARCHAR (150) NOT NULL,
+    salt VARCHAR (150) NOT NULL
+);
