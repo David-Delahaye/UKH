@@ -7,6 +7,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
+const flash = require('connect-flash');
 const pgSession = require('connect-pg-simple')(session);
 require('dotenv/config');
 
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(flash())
 
 app.use(session({
     store: new pgSession({

@@ -37,6 +37,8 @@ router.post('/api/register', (req, res, next) => {
         res.status(200).json({ msg: 'Registered'});
  });
 
-router.post('/api/login', passport.authenticate('local'), (req,res) => res.status(200).json({ username: req.user.username}));
+router.post('/api/login', passport.authenticate('local'), (req,res) => {
+    res.status(200).json({ username: req.user.username})
+});
 
 module.exports= router;

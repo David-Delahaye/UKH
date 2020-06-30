@@ -7,13 +7,13 @@ import { json } from "body-parser";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleUser = this.handleUser.bind(this);
     this.state = {
       redirect:false,
     };
   }
 
-  handleChange = (e) => {
+  handleUser = (e) => {
     this.props.onUserChange(e)
   }
 
@@ -32,7 +32,7 @@ class Login extends Component {
         console.log(jsonData);
         if (response.status === 200){
           this.setState({redirect:'/index'});
-          this.handleChange(jsonData.username);
+          this.handleUser(jsonData.username);
           
         }else if (response.status === 401){
           console.log('youre out');

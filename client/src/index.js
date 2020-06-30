@@ -19,7 +19,9 @@ class App extends Component{
     super(props);
     this.handleUser = this.handleUser.bind(this);
     this.state = {
-      user:'guest'
+      user:'guest',
+      message:{},
+      messageOn:false
     }
   }
 
@@ -35,7 +37,6 @@ class App extends Component{
         }
         });
     const jsonData = await response.json();
-    console.log(jsonData);
     this.handleUser(jsonData.username);
     } catch (err) {
       console.error(err.message);
@@ -52,6 +53,7 @@ class App extends Component{
       <React.StrictMode>
         <Router>
           <Nav username = {this.state.user} onUserChange = {this.handleUser}/>
+          <div>{this.state.message.content}</div>
           <Switch>
             <Route path="/new">
               <NewSite />

@@ -10,7 +10,8 @@ const validPassword = require('../lib/passwordUtils').validPassword;
 // };
 
 passport.use(new LocalStrategy(
-    function(username, password, done) {
+    {passReqToCallback : true },
+    function(req, username, password, done) {
         pool.query("SELECT * FROM users WHERE username = $1",[username])
         .then((cb) => {
             const user = (cb.rows[0]);
@@ -19,7 +20,7 @@ passport.use(new LocalStrategy(
             const isValid = validPassword(password, user.hash, user.salt);
             if (isValid){
                 console.log('valid user')
-                return done(null, user); 
+                return done(null, user, req.flash('signupMessage', 'Incorrect username.')); 
             }else{
                 console.log('invalid user')
                 return done(null, false);
@@ -29,7 +30,7 @@ passport.use(new LocalStrategy(
             done(err);
         });
     }
-  ));
+));
 
 
 passport.serializeUser((user, done) => { 
