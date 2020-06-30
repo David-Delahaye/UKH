@@ -3,16 +3,17 @@ import { Redirect, Link } from "react-router-dom";
 import { render } from "react-dom";
 
 class Register extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       redirect:false,
     };
   }
 
-  getCookies = async () => {
-
+  handleMessage = (message) => {
+    this.props.onMessageChange(message)
   }
+
 
   formSubmit = async (e) => {
     e.preventDefault()
@@ -26,11 +27,14 @@ class Register extends Component {
           headers: { "Content-Type" : "application/json"},
           body: JSON.stringify(body)
         });
+
+        const jsonData = await response.json();
         if (response.status === 200){
           this.setState({redirect:'/login'});
+          this.props.onMessageChange(jsonData.message);
           
         }else{
-          console.log('nope');
+           console.log('nope');
         }
     } catch (err) {
       console.error(err.message);
@@ -46,7 +50,6 @@ class Register extends Component {
       <form
         onSubmit={(e) => {
           this.formSubmit(e);
-          this.getCookies();
         }}
       >
         <h1>Register</h1>

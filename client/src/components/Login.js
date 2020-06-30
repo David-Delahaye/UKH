@@ -7,14 +7,9 @@ import { json } from "body-parser";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.handleUser = this.handleUser.bind(this);
     this.state = {
       redirect:false,
     };
-  }
-
-  handleUser = (e) => {
-    this.props.onUserChange(e)
   }
 
   formSubmit = async (e) => {
@@ -28,14 +23,15 @@ class Login extends Component {
           headers: { "Content-Type" : "application/json"},
           body: JSON.stringify(body)
         });
+
         const jsonData = await response.json();
-        console.log(jsonData);
         if (response.status === 200){
           this.setState({redirect:'/index'});
-          this.handleUser(jsonData.username);
-          
+          this.props.onMessageChange(jsonData.message);
+          this.props.onUserChange(jsonData.username);
+
         }else if (response.status === 401){
-          console.log('youre out');
+          this.props.onMessageChange(jsonData.message);
         }
     } catch (err) {
       console.error(err.message);

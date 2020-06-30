@@ -18,6 +18,7 @@ class App extends Component{
   constructor(props){
     super(props);
     this.handleUser = this.handleUser.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
     this.state = {
       user:'guest',
       message:{},
@@ -25,8 +26,12 @@ class App extends Component{
     }
   }
 
-  handleUser = (username) => {
-    this.setState({user:username});
+  handleUser = (user) => {
+    this.setState({user});
+  }
+
+  handleMessage = (message) => {
+    this.setState({message})
   }
 
   getUser = async () => {
@@ -48,11 +53,12 @@ class App extends Component{
     this.getUser();
   }
 
+
   render(){
     return(
       <React.StrictMode>
         <Router>
-          <Nav username = {this.state.user} onUserChange = {this.handleUser}/>
+          <Nav username = {this.state.user} onUserChange = {this.handleUser} onMessageChange = {this.handleMessage}/>
           <div>{this.state.message.content}</div>
           <Switch>
             <Route path="/new">
@@ -62,10 +68,10 @@ class App extends Component{
               <Sites />
             </Route>
             <Route path="/login">
-              <Login onUserChange = {this.handleUser}/>
+              <Login onUserChange = {this.handleUser} onMessageChange = {this.handleMessage}/>
             </Route>
             <Route path="/register">
-              <Register />
+              <Register onMessageChange = {this.handleChange}/>
             </Route>
             <Route path="/sites/:site" component={Site}/>
           </Switch>

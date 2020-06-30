@@ -15,16 +15,16 @@ class Nav extends Component {
               "accepts":"application/json"
           }
       });
-        console.log(response);
-        this.handleChange('guest');
+        const jsonData = await response.json();
+        console.log(jsonData);
+        this.props.onMessageChange(jsonData.message);
+        this.props.onUserChange('guest');
       } catch (err) {
         console.error(err.message);
       }
     }
 
-    handleChange = (e) => {
-      this.props.onUserChange(e)
-    }
+
 
 render(){
   if (this.props.username !== 'guest'){

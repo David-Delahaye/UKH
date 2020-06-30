@@ -15,15 +15,19 @@ passport.use(new LocalStrategy(
         pool.query("SELECT * FROM users WHERE username = $1",[username])
         .then((cb) => {
             const user = (cb.rows[0]);
-            if (!user) { console.log('no user');
-             return done(null, false); }
+            if (!user) { 
+                console.log('no user');
+                req.message = {type: 'fail', content:'Incorrect Username'}
+                return done(null, false, req.message); }
             const isValid = validPassword(password, user.hash, user.salt);
             if (isValid){
                 console.log('valid user')
-                return done(null, user, req.flash('signupMessage', 'Incorrect username.')); 
+                req.message = {type: 'success', content:'successfully logged in'}
+                return done(null, user, req.message); 
             }else{
                 console.log('invalid user')
-                return done(null, false);
+                req.message = {type: 'fail', content:'Incorrect password'}
+                return done(null, false, req.message);
             }
         })
         .catch((err) => {   
