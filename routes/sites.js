@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const pool = require('../config/db');
-const {isAuth} = require('../lib/authUtils');
+const {isAuth, isSiteOwner} = require('../lib/authUtils');
 
 // INDEX SITES
 router.get('/', async (req,res) => {
@@ -30,7 +30,7 @@ router.post('/api/sites', async (req,res) => {
 })
 
 //GET SITE
-router.get('/api/sites/:site', async (req,res) => {
+router.get('/api/sites/:site', isSiteOwner, async (req,res) => {
     try {
         const {site} = req.params;
         const response = await pool.query("SELECT * FROM site WHERE site_id = $1",[site]);
@@ -38,6 +38,7 @@ router.get('/api/sites/:site', async (req,res) => {
         const owner = await pool.query("SELECT * FROM users WHERE user_id = $1",[owner_id]);
         console.log(owner.rows[0].username);
         response.rows[0].owner = owner.rows[0].username;
+        response.rows[0].isOwner = req.isOwner;
         res.send(response.rows[0]);
     } catch (err) {
         console.error(err.message);
