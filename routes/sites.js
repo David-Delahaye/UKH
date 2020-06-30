@@ -22,7 +22,6 @@ router.post('/api/sites', async (req,res) => {
     try{
     const {siteName, siteDesc} = req.body;
     const owner_id = req.user.user_id;
-    console.log(owner_id);
     const response = await pool.query("INSERT INTO site (site_name, description, owner_id, created_on) VALUES($1,$2,$3,current_timestamp) RETURNING*;", [siteName, siteDesc, owner_id]);
     res.send(response.rows);
     }catch(err){
@@ -35,7 +34,11 @@ router.get('/api/sites/:site', async (req,res) => {
     try {
         const {site} = req.params;
         const response = await pool.query("SELECT * FROM site WHERE site_id = $1",[site]);
-        res.send(response.rows);
+        const {owner_id} = (response.rows[0]);
+        const owner = await pool.query("SELECT * FROM users WHERE user_id = $1",[owner_id]);
+        console.log(owner.rows[0].username);
+        response.rows[0].owner = owner.rows[0].username;
+        res.send(response.rows[0]);
     } catch (err) {
         console.error(err.message);
     }

@@ -27,7 +27,7 @@ class Site extends Component {
           }
       });
         const jsonData = await response.json();
-        this.setState({info:jsonData[0]});
+        this.setState({info:jsonData});
       } catch (err) {
         console.error(err.message);
       }
@@ -36,7 +36,6 @@ class Site extends Component {
     deleteSite = async (e,i) => {
       try {
         const id = this.state.id;
-        console.log(id);
         const response = await fetch(`/api/sites/${id}`,{
           method: "DELETE",
           headers: { "Content-Type" : "application/json"},
@@ -51,9 +50,11 @@ class Site extends Component {
       if (this.state.redirect){
         return(<Redirect to ={this.state.redirect}/>)
       }
+      
       return(
         <div>
           <h4>id: {this.state.info.site_id}</h4>
+          <h4>owner: {this.state.info.owner}</h4>
           <h1>{this.state.info.site_name}</h1>
           <p>{this.state.info.description}</p>
           <button onClick = {() => this.deleteSite()}>Delete</button>

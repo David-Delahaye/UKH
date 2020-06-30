@@ -4,33 +4,20 @@ const genPassword = require('../lib/passwordUtils').genPassword;
 const pool = require('../config/db');
 
 
-
-router.get('/api/login', (req, res, next) => {
-    const form = '<h1>Login Page</h1><form method="POST" action="/api/login">\
-    Enter Username:<br><input type="text" name="uname">\
-    <br>Enter Password:<br><input type="password" name="pw">\
-    <br><br><input type="submit" value="Submit"></form>';
-    res.send(form);
-});
-
-router.get('/api/register', (req, res, next) => {
-
-    const form = '<h1>Register Page</h1><form method="post" action="/api/register">\
-                    Enter Username:<br><input type="text" name="username">\
-                    <br>Enter Password:<br><input type="password" name="password">\
-                    <br><br><input type="submit" value="Submit"></form>';
-
-    res.send(form);
-});
-
-router.get('/api/logout', (req,res) => {
-    req.logout();
-    res.send('logged out')
-})
-
 //----------------POSTS
 router.get('/api/user', (req,res) => {
     res.status(200).json({ username: req.user.username});
+})
+
+router.get('/api/user/:user', async (req,res) => {
+    const {user} = req.params
+    try {
+    const response = await pool.query("SELECT * FROM users WHERE user_id = $1",[user]);
+    console.log(response.rows[0]);
+    res.json({username: response.rows[0].username})
+    } catch (err) {
+        console.error(err.message);
+    }
 })
 
 router.post('/api/register', (req, res, next) => {
