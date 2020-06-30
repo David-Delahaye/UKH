@@ -5,8 +5,14 @@ const pool = require('../config/db');
 
 
 //----------------POSTS
+router.get('/api/logout', (req,res) => {
+    req.logout();
+    res.send('logged out')
+})
+
 router.get('/api/user', (req,res) => {
-    res.status(200).json({ username: req.user.username});
+    const username = req.user ? req.user.username : 'guest';
+    res.status(200).json({ username: username});
 })
 
 router.get('/api/user/:user', async (req,res) => {

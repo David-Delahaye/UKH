@@ -18,7 +18,7 @@ router.get('/api/sites', async (req,res) => {
 })
 
 //POST SITE
-router.post('/api/sites', async (req,res) => {
+router.post('/api/sites', isAuth, async (req,res) => {
     try{
     const {siteName, siteDesc} = req.body;
     const owner_id = req.user.user_id;
