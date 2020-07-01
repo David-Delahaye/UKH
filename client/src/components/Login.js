@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
-import { render } from "react-dom";
-import Nav from "./Nav";
-import { json } from "body-parser";
+import { Redirect} from "react-router-dom";
+
 
 class Login extends Component {
   constructor(props) {

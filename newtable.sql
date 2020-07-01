@@ -12,3 +12,14 @@ CREATE TABLE users(
     hash VARCHAR (150) NOT NULL,
     salt VARCHAR (150) NOT NULL
 );
+
+CREATE TABLE comments(
+    comment_id uuid DEFAULT uuid_generate_v4(),
+    comment_title VARCHAR (50) NOT NULL,
+    comment_description VARCHAR (1000) NOT NULL,
+    created_on TIMESTAMP NOT NULL,
+    owner_id VARCHAR(50) NOT NULL,
+    site_id VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE 

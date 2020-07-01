@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 import Nav from './components/Nav';
@@ -56,7 +55,6 @@ class App extends Component{
 
   render(){
     return(
-      <React.StrictMode>
         <Router>
           <Nav username = {this.state.user} onUserChange = {this.handleUser} onMessageChange = {this.handleMessage}/>
           <div>{this.state.message.content}</div>
@@ -76,7 +74,6 @@ class App extends Component{
             <Route path="/sites/:site" component={Site}/>
           </Switch>
         </Router>
-      </React.StrictMode>
     )
   }
 }

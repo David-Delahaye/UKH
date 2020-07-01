@@ -1,32 +1,23 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import { render } from 'react-dom';
-
+import Logout from './Logout';
 
 class Nav extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      redirect:false
+    }
   }
 
-    logout = async ()=>{
-      try {
-        const response = await fetch('/api/logout', {
-          headers:{
-              "accepts":"application/json"
-          }
-      });
-        const jsonData = await response.json();
-        console.log(jsonData);
-        this.props.onMessageChange(jsonData.message);
-        this.props.onUserChange('guest');
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
+    
 
 
 
 render(){
+  if (this.state.redirect){
+    return <Redirect to ={this.state.redirect}/>
+  }
   if (this.props.username !== 'guest'){
     return(
       <nav>
@@ -34,7 +25,7 @@ render(){
         <Link to="/index">All sites</Link>
         <Link to="/new">Add site</Link>
         <p>{this.props.username}</p>
-        <a onClick={() =>{this.logout()}}>Logout</a>
+        <Logout onUserChange = {this.props.onUserChange} onMessageChange = {this.props.onMessageChange}/>
       </nav>
     )
   }else{

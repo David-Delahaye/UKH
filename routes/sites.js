@@ -36,7 +36,6 @@ router.get('/api/sites/:site', isSiteOwner, async (req,res) => {
         const response = await pool.query("SELECT * FROM site WHERE site_id = $1",[site]);
         const {owner_id} = (response.rows[0]);
         const owner = await pool.query("SELECT * FROM users WHERE user_id = $1",[owner_id]);
-        console.log(owner.rows[0].username);
         response.rows[0].owner = owner.rows[0].username;
         response.rows[0].isOwner = req.isOwner;
         res.send(response.rows[0]);

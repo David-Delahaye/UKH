@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import { render } from 'react-dom';
+import { Redirect} from 'react-router-dom';
 
 class NewSite extends Component {
     constructor(){
@@ -25,6 +24,8 @@ class NewSite extends Component {
             headers: { "Content-Type" : "application/json"},
             body: JSON.stringify(body)
           });
+          console.log(response);
+          
           this.setState({redirect:true})
       } catch (err) {
         console.error(err.message);

@@ -4,16 +4,19 @@ const genPassword = require("../lib/passwordUtils").genPassword;
 const pool = require("../config/db");
 
 //----------------POSTS
+//Logout current user
 router.get("/api/logout", (req, res) => {
   req.logout();
   res.status(200).json({ message: {type: 'success', content:'Successfully Logged Out'} });
 });
 
+//get current user
 router.get("/api/user", (req, res) => {
   const username = req.user ? req.user.username : "guest";
   res.status(200).json({ username: username });
 });
 
+//get specific user by id
 router.get("/api/user/:user", async (req, res) => {
   const { user } = req.params;
   try {
@@ -21,13 +24,13 @@ router.get("/api/user/:user", async (req, res) => {
       "SELECT * FROM users WHERE user_id = $1",
       [user]
     );
-    console.log(response.rows[0]);
     res.json({ username: response.rows[0].username });
   } catch (err) {
     console.error(err.message);
   }
 });
 
+//register new user
 router.post("/api/register", (req, res, next) => {
   const saltHash = genPassword(req.body.password);
 
@@ -43,6 +46,7 @@ router.post("/api/register", (req, res, next) => {
   res.status(200).json({ message: {type: 'success', content:'Successfully registered'} });
 });
 
+// loginto user
 router.post("/api/login", (req, res, next) => {
   passport.authenticate("local", function (err, user, info) {
     if (err) {
