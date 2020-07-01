@@ -23,10 +23,15 @@ router.post("/api/sites/:site/comments", async (req, res) => {
     const userID = req.user.user_id;
     console.log(commentTitle);
     console.log(commentDesc);
+    const owner = await pool.query(
+      "SELECT username FROM users WHERE user_id = $1",
+      [userID]
+    )
+    const username = owner.rows[0].username;
 
     const response = await pool.query(
-      "INSERT INTO comments (comment_title, comment_description, owner_id, site_id, created_on) VALUES($1,$2,$3,$4,current_timestamp) RETURNING*;",
-      [commentTitle, commentDesc, userID, siteID]
+      "INSERT INTO comments (comment_title, comment_description, owner_id, owner_name, site_id, created_on) VALUES($1,$2,$3,$4,$5,current_timestamp) RETURNING*;",
+      [commentTitle, commentDesc, userID, username, siteID]
     );
     res.status(200)
   } catch (err) {

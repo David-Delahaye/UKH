@@ -18,7 +18,7 @@ router.get("/api/user", (req, res) => {
 
 //get specific user by id
 router.get("/api/user/:user", async (req, res) => {
-  const { user } = req.params;
+  const {user} = req.params;
   try {
     const response = await pool.query(
       "SELECT * FROM users WHERE user_id = $1",

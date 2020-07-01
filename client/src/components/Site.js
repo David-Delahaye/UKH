@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect} from "react-router-dom";
-import { json } from "body-parser";
+import Comments from "./Comments"
 
 class Site extends Component {
   constructor() {
@@ -69,18 +69,34 @@ getComments = async (e) => {
     const response = await fetch(`/api/sites/${id}/comments/`,{
       headers: { "Content-Type" : "application/json"},
     })
-    console.log(response);
     const jsonData = await response.json();
     this.setState({comments:jsonData})
+    console.log(this.state.comments);
+    
   } catch (error) {
     console.log(error);
   }
 }
 
+
+
+
+
   render() {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }
+
+    let commentFormat = this.state.comments.map ((e,i) => {
+      console.log(e);
+      return(
+        <div key={i}>
+        <h3>{e.comment_title}</h3>
+        <p>{e.comment_description}</p>
+        <p> by - {e.owner_name}</p>
+        </div>
+      )
+    })
 
       return (
         <div>
@@ -98,6 +114,7 @@ getComments = async (e) => {
             <input type='text' name ='commentDesc' placeholder='description'/>
             <button>Add</button>
           </form>
+          {commentFormat}
         </div>
       );
     }
