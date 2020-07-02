@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Redirect} from "react-router-dom";
-import Comments from "./Comments"
+import Comment from "./Comment"
 
 class Site extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       id: "",
       info: {},
@@ -14,30 +14,28 @@ class Site extends Component {
   }
 
   async componentDidMount() {
-    await this.getSite();
-    await this.setState({ id: this.props.match.params.site });
-    await this.getComments();
+    await this.setState({ id: window.location.pathname.substring(7)});
+    await this.getSite(this.state.id);
+    await this.getComments(this.state.id);
 
   }
 
-  getSite = async () => {
+  getSite = async (id) => {
     try {
-      await this.setState({ id: this.props.match.params.site });
-      const response = await fetch(`/api/sites/${this.state.id}`, {
+      const response = await fetch(`/api/sites/${id}`, {
         headers: {
           accepts: "application/json",
         },
       });
       const jsonData = await response.json();
-      this.setState({ info: jsonData });
+      this.setState({ info: jsonData});
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  deleteSite = async (e, i) => {
+  deleteSite = async (id) => {
     try {
-      const id = this.state.id;
       const response = await fetch(`/api/sites/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -48,39 +46,36 @@ class Site extends Component {
   };
 
   postComment = async (e) => {
+    e.preventDefault()
     try {
       const commentTitle = e.target.commentTitle.value;
       const commentDesc = e.target.commentDesc.value;
-      const body = {commentDesc, commentTitle}
+      const commentScore = e.target.commentScore.value;
+      const body = {commentDesc, commentTitle, commentScore}
       const id = this.state.id;
       const response = await fetch(`/api/sites/${id}/comments/`,{
         method: "POST",
         headers: { "Content-Type" : "application/json"},
         body: JSON.stringify(body)
       })
+      const jsonData = await response.json();
+      this.props.onMessageChange(jsonData.message);
     } catch (error) {
       console.log(error);
     }
 }
 
-getComments = async (e) => {
+getComments = async (id) => {
   try {
-    const id = this.state.id;
     const response = await fetch(`/api/sites/${id}/comments/`,{
       headers: { "Content-Type" : "application/json"},
     })
     const jsonData = await response.json();
     this.setState({comments:jsonData})
-    console.log(this.state.comments);
-    
   } catch (error) {
     console.log(error);
   }
 }
-
-
-
-
 
   render() {
     if (this.state.redirect) {
@@ -88,13 +83,8 @@ getComments = async (e) => {
     }
 
     let commentFormat = this.state.comments.map ((e,i) => {
-      console.log(e);
       return(
-        <div key={i}>
-        <h3>{e.comment_title}</h3>
-        <p>{e.comment_description}</p>
-        <p> by - {e.owner_name}</p>
-        </div>
+        <Comment key={i} comment={e}/>
       )
     })
 
@@ -102,16 +92,17 @@ getComments = async (e) => {
         <div>
           <h4>id: {this.state.info.site_id}</h4>
           <h4>owner: {this.state.info.owner}</h4>
-          <h1>{this.state.info.site_name}</h1>
+          <h1>{this.state.info.site_name} - {this.state.info.average_score}</h1>
           <p>{this.state.info.description}</p>
           {this.state.info.isOwner
-          ? <button onClick={() => this.deleteSite()}>Delete</button>
+          ? <button onClick={() => this.deleteSite(this.state.id)}>Delete</button>
           : <div/>
           }
         
           <form onSubmit = {(e) =>{this.postComment(e)}}>
             <input type='text' name ='commentTitle' placeholder='add a comment'/>
             <input type='text' name ='commentDesc' placeholder='description'/>
+            <input type='number' name = 'commentScore' placeholder='rating'/>
             <button>Add</button>
           </form>
           {commentFormat}

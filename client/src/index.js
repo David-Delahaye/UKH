@@ -50,8 +50,8 @@ class App extends Component{
 
   componentDidMount(){
     this.getUser();
+    console.log(this);
   }
-
 
   render(){
     return(
@@ -69,9 +69,11 @@ class App extends Component{
               <Login onUserChange = {this.handleUser} onMessageChange = {this.handleMessage}/>
             </Route>
             <Route path="/register">
-              <Register onMessageChange = {this.handleChange}/>
+              <Register onMessageChange = {this.handleMessage}/>
             </Route>
-            <Route path="/sites/:site" component={Site}/>
+            <Route path="/sites/:site">
+              <Site  onMessageChange = {this.handleMessage}/>
+            </Route>
           </Switch>
         </Router>
     )
