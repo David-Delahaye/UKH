@@ -14,7 +14,12 @@ class Comments extends Component{
                 <p>{e.comment_score}</p>
                 <p>{e.comment_description}</p>
                 <p> by - {e.owner_name}</p>
+                {(this.props.userID === e.owner_id
+                ? <div>OWNER</div>
+                : <div>NON-OWNER</div>
+                )}
             </div>
+            
         )
     }
 }

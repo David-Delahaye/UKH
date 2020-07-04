@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const pool = require("../config/db");
-const { isAuth, isSiteOwner } = require("../lib/authUtils");
+const {isAuth} = require("../lib/authUtils");
 
 //get comments by site
 router.get("/api/sites/:site/comments", async (req,res) => {
@@ -16,7 +16,7 @@ router.get("/api/sites/:site/comments", async (req,res) => {
 })
 
 //post a comment
-router.post("/api/sites/:site/comments", async (req, res) => {
+router.post("/api/sites/:site/comments", isAuth, async (req, res) => {
   try {
     //get username
     const {commentTitle, commentDesc, commentScore} = req.body;
@@ -43,12 +43,39 @@ router.post("/api/sites/:site/comments", async (req, res) => {
 
     await updateScore(siteID);
     res.status(200).json({ message: {type: 'success', content:'Comment Added'} });
-    // .json({ message: {type: 'success', content:'Comment Added'}});
   }catch(err){
+    res.json({ message: {type: 'success', content:err.message} });
     console.error(err.message);
   }
 });
 
+//Update a Comment
+router.put("/api/sites/:site/:comment", async (req, res) => {
+  try {
+    //get username
+    const {commentTitle, commentDesc, commentScore} = req.body;
+    const commentID = req.params.comment;
+    const response = await pool.query("UPDATE comments SET comment_title =$2 ,comment_description =$3, comment_score =$4 WHERE comment_id = $1 RETURNING*",
+    [commentID,commentTitle,commentDesc,commentScore]);
+
+    await updateScore(siteID);
+    res.status(200).json({ message: {type: 'success', content:'Comment edited'} });
+    }catch(err){
+    res.json({ message: {type: 'success', content:err.message} });
+    console.error(err.message);
+  }
+});
+
+//Delete a comment
+router.delete('/api/sites/:site/:comment', async (req,res) => {
+  try {
+      const {commentID} = req.params;
+      const response = await pool.query ("DELETE FROM comments WHERE comment_id = $1", [commentID]);
+  } catch (err) {
+      console.error(err.message);
+      
+  }
+})
 
 
 const updateScore = async (siteID) => {

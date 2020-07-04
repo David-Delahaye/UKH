@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect} from "react-router-dom";
 import Comment from "./Comment"
+import NewComment from "./NewComment"
 
 class Site extends Component {
   constructor(props) {
@@ -45,26 +46,6 @@ class Site extends Component {
     }
   };
 
-  postComment = async (e) => {
-    e.preventDefault()
-    try {
-      const commentTitle = e.target.commentTitle.value;
-      const commentDesc = e.target.commentDesc.value;
-      const commentScore = e.target.commentScore.value;
-      const body = {commentDesc, commentTitle, commentScore}
-      const id = this.state.id;
-      const response = await fetch(`/api/sites/${id}/comments/`,{
-        method: "POST",
-        headers: { "Content-Type" : "application/json"},
-        body: JSON.stringify(body)
-      })
-      const jsonData = await response.json();
-      this.props.onMessageChange(jsonData.message);
-    } catch (error) {
-      console.log(error);
-    }
-}
-
 getComments = async (id) => {
   try {
     const response = await fetch(`/api/sites/${id}/comments/`,{
@@ -84,7 +65,7 @@ getComments = async (id) => {
 
     let commentFormat = this.state.comments.map ((e,i) => {
       return(
-        <Comment key={i} comment={e}/>
+        <Comment key={i} comment={e} userID={this.props.userID}/>
       )
     })
 
@@ -98,13 +79,7 @@ getComments = async (id) => {
           ? <button onClick={() => this.deleteSite(this.state.id)}>Delete</button>
           : <div/>
           }
-        
-          <form onSubmit = {(e) =>{this.postComment(e)}}>
-            <input type='text' name ='commentTitle' placeholder='add a comment'/>
-            <input type='text' name ='commentDesc' placeholder='description'/>
-            <input type='number' name = 'commentScore' placeholder='rating'/>
-            <button>Add</button>
-          </form>
+          <NewComment id = {this.state.id} onMessageChange = {this.props.onMessageChange}/>
           {commentFormat}
         </div>
       );

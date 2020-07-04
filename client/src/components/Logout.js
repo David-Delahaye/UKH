@@ -22,7 +22,7 @@ logout = async ()=>{
       const jsonData = await response.json();
       this.setState({redirect:'/index'})
       this.props.onMessageChange(jsonData.message);
-      this.props.onUserChange('guest');
+      this.props.onUserChange('guest', '');
 
     } catch (err) {
       console.error(err.message);

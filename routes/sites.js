@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const pool = require('../config/db');
-const {isAuth, isSiteOwner} = require('../lib/authUtils');
+const {isAuth, isSiteOwner, siteOwnerOnly} = require('../lib/authUtils');
 
 // INDEX SITES
 router.get('/', async (req,res) => {
@@ -45,7 +45,7 @@ router.get('/api/sites/:site', isSiteOwner, async (req,res) => {
 })
 
 //UPDATE SITE
-router.put('/api/sites/:site', async (req,res) => {
+router.put('/api/sites/:site', siteOwnerOnly, async (req,res) => {
     try {
         const {site} = req.params;
         const {siteName, siteDesc} = req.body;
@@ -57,7 +57,7 @@ router.put('/api/sites/:site', async (req,res) => {
 })
 
 //DELETE SITE
-router.delete('/api/sites/:site', async (req,res) => {
+router.delete('/api/sites/:site', siteOwnerOnly, async (req,res) => {
     try {
         const {site} = req.params;
         const response = await pool.query ("DELETE FROM site WHERE site_id = $1", [site]);

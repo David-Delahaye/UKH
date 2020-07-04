@@ -20,13 +20,17 @@ class App extends Component{
     this.handleMessage = this.handleMessage.bind(this);
     this.state = {
       user:'guest',
+      userID:'',
       message:{},
       messageOn:false
     }
   }
 
-  handleUser = (user) => {
+  handleUser = (user, userID) => {
     this.setState({user});
+    this.setState({userID});
+    console.log(this.state.user);
+    console.log(this.state.userID);
   }
 
   handleMessage = (message) => {
@@ -41,7 +45,7 @@ class App extends Component{
         }
         });
     const jsonData = await response.json();
-    this.handleUser(jsonData.username);
+    this.handleUser(jsonData.username, jsonData.userID);
     } catch (err) {
       console.error(err.message);
       
@@ -72,7 +76,7 @@ class App extends Component{
               <Register onMessageChange = {this.handleMessage}/>
             </Route>
             <Route path="/sites/:site">
-              <Site  onMessageChange = {this.handleMessage}/>
+              <Site  onMessageChange = {this.handleMessage} userID = {this.state.userID}/>
             </Route>
           </Switch>
         </Router>

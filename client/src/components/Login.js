@@ -26,7 +26,7 @@ class Login extends Component {
         if (response.status === 200){
           this.setState({redirect:'/index'});
           this.props.onMessageChange(jsonData.message);
-          this.props.onUserChange(jsonData.username);
+          this.props.onUserChange(jsonData.username, jsonData.userID);
 
         }else if (response.status === 401){
           this.props.onMessageChange(jsonData.message);
