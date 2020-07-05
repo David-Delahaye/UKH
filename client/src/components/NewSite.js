@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {newSite} from '../actions/siteActions';
 
 class NewSite extends Component {
     constructor(){
@@ -15,22 +18,11 @@ class NewSite extends Component {
   
     formSubmit = async (e) => {
       e.preventDefault()
-      try {
-          const title = e.target.title.value;
-          const desc = e.target.desc.value;
-          const body = {"siteName":title, "siteDesc":desc}
-          const response = await fetch("/api/sites",{
-            method: "POST",
-            headers: { "Content-Type" : "application/json"},
-            body: JSON.stringify(body)
-          });
-          console.log(response);
-          
-          this.setState({redirect:true})
-      } catch (err) {
-        console.error(err.message);
-      }
-     
+      const title = e.target.title.value;
+      const desc = e.target.desc.value;
+      const body = {"siteName":title, "siteDesc":desc}
+      await this.props.newSite(body);
+      this.setState({redirect:true})
     }
   
     render(){
@@ -39,12 +31,16 @@ class NewSite extends Component {
       }
       return(
         <form onSubmit = {(e) =>{this.formSubmit(e)}}>
-          <input type='text' name ='title' placeholder='add a site'/>
-          <input type='text' name ='desc' placeholder='description'/>
+          <input type='text' name ='title' placeholder='add a site' required/>
+          <input type='text' name ='desc' placeholder='description' required/>
           <button>Add</button>
         </form>
       )
     }
   }
 
-  export default NewSite;
+  NewSite.propTypes = {
+    newSite : PropTypes.func.isRequired
+  }
+  
+  export default connect(null, {newSite})(NewSite);

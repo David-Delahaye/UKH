@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Redirect} from "react-router-dom";
 import Comment from "./Comment"
 import NewComment from "./NewComment"
+import {connect} from 'react-redux';
+import {deleteSite} from '../actions/siteActions'
+import PropTypes from 'prop-types';
 
 class Site extends Component {
   constructor(props) {
@@ -18,7 +21,6 @@ class Site extends Component {
     await this.setState({ id: window.location.pathname.substring(7)});
     await this.getSite(this.state.id);
     await this.getComments(this.state.id);
-
   }
 
   getSite = async (id) => {
@@ -36,14 +38,8 @@ class Site extends Component {
   };
 
   deleteSite = async (id) => {
-    try {
-      const response = await fetch(`/api/sites/${id}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      }).then(this.setState({ redirect: "/index" }));
-    } catch (err) {
-      console.error(err.message);
-    }
+    await this.props.deleteSite(id);
+    this.setState({ redirect: "/index" });
   };
 
 getComments = async (id) => {
@@ -87,4 +83,9 @@ getComments = async (id) => {
   }
 
 
-export default Site;
+Site.propTypes = {
+  deleteSite : PropTypes.func.isRequired
+}
+
+export default connect(null, {deleteSite})(Site);
+

@@ -1,4 +1,4 @@
-import {FETCH_SITES, NEW_SITE} from '../actions/types';
+import {FETCH_SITES, NEW_SITE, DELETE_SITE} from '../actions/types';
 import { bindActionCreators } from 'redux';
 
 const initialState = {
@@ -12,7 +12,18 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 items:action.payload
-            }
+            };
+        case NEW_SITE:
+            return {
+                ...state,
+                items:action.payload
+            };
+        case DELETE_SITE:
+            console.log('at the reducer');
+            return {
+                ...state,
+                items:action.payload
+            };
         default:
             return state;
     }
