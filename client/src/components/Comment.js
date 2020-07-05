@@ -6,6 +6,21 @@ class Comments extends Component{
         super(props);
     }
 
+    deleteComment = async (id) => {
+        try {
+            console.log(this.props.siteID);
+            
+            console.log(id);
+            
+          const response = await fetch(`/api/sites/${this.props.siteID}/${id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+          })
+        } catch (err) {
+          console.error(err.message);
+        }
+      };
+
     render(){
         const e = this.props.comment;
         return(
@@ -15,8 +30,8 @@ class Comments extends Component{
                 <p>{e.comment_description}</p>
                 <p> by - {e.owner_name}</p>
                 {(this.props.userID === e.owner_id
-                ? <div>OWNER</div>
-                : <div>NON-OWNER</div>
+                ? <div><button>Edit</button><button onClick={()=>this.deleteComment(e.comment_id)}>delete</button></div>
+                : ''
                 )}
             </div>
             

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {fetchSites} from '../actions/siteActions'
 
 
 class Sites extends Component {
@@ -7,8 +9,11 @@ class Sites extends Component {
       super();
       this.state = {
         redirect:false,
-        sites:[]
       }
+    }
+
+    componentWillMount(){
+      this.props.fetchSites();
     }
   
     componentDidMount(){
@@ -16,23 +21,6 @@ class Sites extends Component {
     }
   
     getSites = async () => {
-      try {
-        const response = await fetch('/api/sites', {
-          headers:{
-              "accepts":"application/json"
-          }
-      });
-      const jsonData = await response.json();
-      if (response.status === 200) {
-        this.setState({sites:jsonData});
-      }else{
-        console.error(jsonData);
-      }
-
-
-      } catch (err) {
-        console.error(err.message);
-      }
     }
   
     gotoSite = async (e,i) => {
@@ -45,7 +33,7 @@ class Sites extends Component {
         return<Redirect to = {'/sites/'+ id}/>
       }
   
-      let siteFormat = this.state.sites.map ((e,i) => {
+      let siteFormat = this.props.sites.map ((e,i) => {
         return(
           <div key={i}>
           <h3>{e.site_name}</h3>
@@ -64,4 +52,8 @@ class Sites extends Component {
     }
   }
 
-  export default Sites;
+  const mapStateToProps = state => ({
+    sites: state.sites.items
+  })
+
+  export default connect(mapStateToProps, {fetchSites})(Sites);

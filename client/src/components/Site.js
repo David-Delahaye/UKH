@@ -65,7 +65,7 @@ getComments = async (id) => {
 
     let commentFormat = this.state.comments.map ((e,i) => {
       return(
-        <Comment key={i} comment={e} userID={this.props.userID}/>
+        <Comment key={i} siteID ={this.state.id} comment={e} userID={this.props.userID}/>
       )
     })
 
@@ -79,7 +79,7 @@ getComments = async (id) => {
           ? <button onClick={() => this.deleteSite(this.state.id)}>Delete</button>
           : <div/>
           }
-          <NewComment id = {this.state.id} onMessageChange = {this.props.onMessageChange}/>
+          <NewComment siteID = {this.state.id} onMessageChange = {this.props.onMessageChange}/>
           {commentFormat}
         </div>
       );

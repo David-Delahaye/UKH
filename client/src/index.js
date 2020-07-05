@@ -5,6 +5,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import {Provider} from 'react-redux';
+
 
 import Nav from './components/Nav';
 import NewSite from './components/NewSite';
@@ -12,6 +14,7 @@ import Sites from './components/Sites';
 import Site from './components/Site';
 import Login from './components/Login';
 import Register from './components/Register';
+import store from './store'
 
 class App extends Component{
   constructor(props){
@@ -86,7 +89,9 @@ class App extends Component{
 
 
 ReactDOM.render(
-  <App/>,
+  <Provider store={store}>
+    <App/>
+  </Provider>,
   document.getElementById('root')
 );
 
