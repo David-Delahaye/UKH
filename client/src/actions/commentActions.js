@@ -28,19 +28,19 @@ export const newComment = (e, siteID) => async dispatch => {
         body: JSON.stringify(body)
     })
 
-    //UPDATE MESSAGE
-    const jsonMessage = await message.json();
-    dispatch({
-        type: NEW_MESSAGE,
-        payload: jsonMessage.message
-    })
-
     //UPDATE COMMENTS
     const response = await fetch(`/api/sites/${siteID}/comments/`);
     const jsonData = await response.json();
     dispatch({
         type: NEW_COMMENT,
         payload: jsonData
+    })
+
+    //UPDATE MESSAGE
+    const jsonMessage = await message.json();
+    dispatch({
+        type: NEW_MESSAGE,
+        payload: jsonMessage.message
     })
 }
 
@@ -51,19 +51,19 @@ export const deleteComment = (siteID, commentID) => async dispatch => {
     headers: { "Content-Type": "application/json" },
     })
 
-    //UPDATE MESSAGE
-    const jsonMessage = await message.json();
-    dispatch({
-        type: NEW_MESSAGE,
-        payload: jsonMessage.message
-    })
-
     //UPDATE COMMENTS
     const response = await fetch(`/api/sites/${siteID}/comments/`);
     const jsonData = await response.json();
     dispatch({
         type: DELETE_COMMENT,
         payload: jsonData
+    })
+
+    //UPDATE MESSAGE
+    const jsonMessage = await message.json();
+    dispatch({
+        type: NEW_MESSAGE,
+        payload: jsonMessage.message
     })
 }
 

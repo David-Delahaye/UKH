@@ -6,28 +6,17 @@ import PropTypes from 'prop-types';
 
 
 class Sites extends Component {
-    constructor(){
-      super();
-      this.state = {
-        redirect:false,
-      }
-    }
 
     componentDidMount(){
       this.props.fetchSites();
     }
 
     gotoSite = async (e,i) => {
-      this.setState({redirect:e.site_id})
+      this.props.history.push('/sites/'+ e.site_id)
       await this.props.getSite(e);
     }
   
     render(){
-    if (this.state.redirect){
-      const id = this.state.redirect;
-      return<Redirect to = {'/sites/'+ id}/>
-    }
-  
     let siteFormat = this.props.sites.map ((e,i) => {
       return(
         <div key={i}>

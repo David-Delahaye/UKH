@@ -18,6 +18,7 @@ import PropTypes from 'prop-types';
 
 
 class App extends Component{
+  
   componentDidMount(){
     this.props.fetchUser();
   }
@@ -28,21 +29,11 @@ class App extends Component{
           <Nav/>
           <div>{this.props.message.content}</div>
           <Switch>
-            <Route path="/new">
-              <NewSite />
-            </Route>
-            <Route path="/index">
-              <Sites />
-            </Route>
-            <Route path="/login">
-              <Login/>
-            </Route>
-            <Route path="/register">
-              <Register/>
-            </Route>
-            <Route path="/sites/:site">
-              <Site/>
-            </Route>
+            <Route path="/new" component={NewSite}/>
+            <Route path="/index" component={Sites}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register}/>
+            <Route path="/sites/:site" component={Site}/>
           </Switch>
         </Router>
     )

@@ -6,17 +6,8 @@ import {logoutUser} from '../actions/authActions'
 import PropTypes from 'prop-types';
 
 class Nav extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      redirect:false
-    }
-  }
 
 render(){
-  if (this.state.redirect){
-    return <Redirect to ={this.state.redirect}/>
-  }
   if (this.props.user.username !== 'guest'){
     return(
       <nav>
