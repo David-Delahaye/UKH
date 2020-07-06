@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect} from "react-router-dom";
-
+import {connect} from 'react-redux';
+import {loginUser} from '../actions/authActions'
+import PropTypes from 'prop-types';
 
 class Login extends Component {
   constructor(props) {
@@ -12,28 +14,7 @@ class Login extends Component {
 
   formSubmit = async (e) => {
     e.preventDefault()
-    try {
-        const username = e.target.username.value;
-        const password = e.target.password.value;
-        const body = {"username":username, "password":password}
-        const response = await fetch("/api/login",{
-          method: "POST",
-          headers: { "Content-Type" : "application/json"},
-          body: JSON.stringify(body)
-        });
-
-        const jsonData = await response.json();
-        if (response.status === 200){
-          this.setState({redirect:'/index'});
-          this.props.onMessageChange(jsonData.message);
-          this.props.onUserChange(jsonData.username, jsonData.userID);
-
-        }else if (response.status === 401){
-          this.props.onMessageChange(jsonData.message);
-        }
-    } catch (err) {
-      console.error(err.message);
-    }
+    this.props.loginUser(e)
   }
 
   render() {
@@ -54,4 +35,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser : PropTypes.func.isRequired
+}
+
+export default connect(null, {loginUser})(Login);

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {logoutUser} from '../actions/authActions'
+import PropTypes from 'prop-types';
 
 class Logout extends Component{
     constructor(props){
@@ -9,24 +12,9 @@ class Logout extends Component{
         }
     }
 
-
-// boot to homescreen
-// & remove user
 logout = async ()=>{
-    try {
-      const response = await fetch('/api/logout', {
-        headers:{
-            "accepts":"application/json"
-        }
-    });
-      const jsonData = await response.json();
-      this.setState({redirect:'/index'})
-      this.props.onMessageChange(jsonData.message);
-      this.props.onUserChange('guest', '');
-
-    } catch (err) {
-      console.error(err.message);
-    }
+    this.props.logoutUser();
+    this.setState({redirect:'/index'})
   }
 
   render(){
@@ -39,5 +27,9 @@ logout = async ()=>{
   }
 }
   
+Logout.propTypes = {
+  logoutUser : PropTypes.func.isRequired
+}
 
-export default Logout;
+export default connect(null, {logoutUser})(Logout);
+

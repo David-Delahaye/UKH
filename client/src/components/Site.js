@@ -1,91 +1,85 @@
 import React, { Component } from "react";
-import { Redirect} from "react-router-dom";
-import Comment from "./Comment"
-import NewComment from "./NewComment"
-import {connect} from 'react-redux';
-import {deleteSite} from '../actions/siteActions'
-import PropTypes from 'prop-types';
+import { Redirect } from "react-router-dom";
+import Comment from "./Comment";
+import NewComment from "./NewComment";
+import { connect } from "react-redux";
+import { deleteSite, fetchSite} from "../actions/siteActions";
+import { resetComments , fetchComments } from "../actions/commentActions";
+import PropTypes from "prop-types";
 
 class Site extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: "",
-      info: {},
-      comments: [],
-      redirect: false,
-    };
+    this.state ={};
   }
 
   async componentDidMount() {
+    await this.props.resetComments()
     await this.setState({ id: window.location.pathname.substring(7)});
-    await this.getSite(this.state.id);
-    await this.getComments(this.state.id);
+    await this.props.fetchSite(this.state.id)
+    await this.props.fetchComments(this.state.id);
   }
-
-  getSite = async (id) => {
-    try {
-      const response = await fetch(`/api/sites/${id}`, {
-        headers: {
-          accepts: "application/json",
-        },
-      });
-      const jsonData = await response.json();
-      this.setState({ info: jsonData});
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
 
   deleteSite = async (id) => {
     await this.props.deleteSite(id);
     this.setState({ redirect: "/index" });
   };
 
-getComments = async (id) => {
-  try {
-    const response = await fetch(`/api/sites/${id}/comments/`,{
-      headers: { "Content-Type" : "application/json"},
-    })
-    const jsonData = await response.json();
-    this.setState({comments:jsonData})
-  } catch (error) {
-    console.log(error);
-  }
-}
-
   render() {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }
 
-    let commentFormat = this.state.comments.map ((e,i) => {
-      return(
-        <Comment key={i} siteID ={this.state.id} comment={e} userID={this.props.userID}/>
-      )
-    })
-
+    let commentFormat = this.props.comments.map((e, i) => {
+      console.log(i);
+      console.log(this.props.site.site_id);
+      console.log(e);
+      console.log(this.props.userID);
+      
       return (
-        <div>
-          <h4>id: {this.state.info.site_id}</h4>
-          <h4>owner: {this.state.info.owner}</h4>
-          <h1>{this.state.info.site_name} - {this.state.info.average_score}</h1>
-          <p>{this.state.info.description}</p>
-          {this.state.info.isOwner
-          ? <button onClick={() => this.deleteSite(this.state.id)}>Delete</button>
-          : <div/>
-          }
-          <NewComment siteID = {this.state.id} onMessageChange = {this.props.onMessageChange}/>
-          {commentFormat}
-        </div>
+        <Comment
+          key={i}
+          siteID={this.props.site.site_id}
+          comment={e}
+          userID={this.props.user.userID}
+        />
       );
-    }
+    });
+
+    return (
+      <div>
+        <h4>id: {this.props.site.site_id}</h4>
+        <h4>owner: {this.props.site.owner}</h4>
+        <h1>
+          {this.props.site.site_name} - {this.props.site.average_score}
+        </h1>
+        <p>{this.props.site.description}</p>
+        {this.props.site.isOwner ? (
+          <button onClick={() => this.deleteSite(this.props.site.site_id)}>
+            Delete
+          </button>
+        ) : (
+          <div />
+        )}
+        <NewComment
+          siteID={this.props.site.site_id}
+        />
+        {commentFormat}
+      </div>
+    );
   }
-
-
-Site.propTypes = {
-  deleteSite : PropTypes.func.isRequired
 }
 
-export default connect(null, {deleteSite})(Site);
+Site.propTypes = {
+  deleteSite: PropTypes.func.isRequired,
+  fetchSite: PropTypes.func.isRequired,
+  fetchComments : PropTypes.func.isRequired
+};
 
+const mapStateToProps = (state) => ({
+  site: state.sites.item,
+  comments : state.comments.items,
+  user : state.auth.user
+});
+
+export default connect(mapStateToProps, {deleteSite, fetchSite, fetchComments, resetComments})(Site);

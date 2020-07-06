@@ -1,10 +1,30 @@
-import {FETCH_SITES, NEW_SITE, DELETE_SITE, NEW_MESSAGE} from './types'
+import {FETCH_SITES, GET_SITE, FETCH_SITE, NEW_SITE, DELETE_SITE, NEW_MESSAGE} from './types'
 
 export const fetchSites = () => async dispatch => {
     const response = await fetch('/api/sites');
     const jsonData = await response.json();
     dispatch({
         type: FETCH_SITES,
+        payload: jsonData
+    })
+}
+
+export const getSite = (site) => async dispatch => {
+    dispatch({
+        type: GET_SITE,
+        payload: site
+    })
+}
+
+export const fetchSite = (siteID) => async dispatch => {
+    const response = await fetch(`/api/sites/${siteID}`, {
+        headers: {
+        accepts: "application/json",
+        },
+    });
+    const jsonData = await response.json();
+    dispatch({
+        type: FETCH_SITE,
         payload: jsonData
     })
 }
@@ -21,7 +41,7 @@ export const newSite = (siteData) => async dispatch => {
     const jsonMessage = await message.json();
     dispatch({
         type: NEW_MESSAGE,
-        payload: jsonMessage
+        payload: jsonMessage.message
     })
 
     //UPDATE SITES
@@ -42,11 +62,10 @@ export const deleteSite = (siteID) => async dispatch => {
 
     //UPDATE MESSAGE
     const jsonMessage = await message.json();
-    console.log(jsonMessage);
     
     dispatch({
         type: NEW_MESSAGE,
-        payload: jsonMessage
+        payload: jsonMessage.message
     })
 
     //UPDATE SITES
@@ -56,8 +75,4 @@ export const deleteSite = (siteID) => async dispatch => {
         type: DELETE_SITE,
         payload: jsonData
     })
-}
-
-export const getSite = (siteID) => async dispatch => {
-    
 }

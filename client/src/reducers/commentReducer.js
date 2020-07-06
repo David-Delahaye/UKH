@@ -1,35 +1,28 @@
-import {FETCH_SITES, NEW_SITE, DELETE_SITE, FETCH_SITE, GET_SITE} from '../actions/types';
 import { bindActionCreators } from 'redux';
+import {RESET_COMMENTS ,NEW_COMMENT, FETCH_COMMENTS, DELETE_COMMENT} from '../actions/types';
 
 const initialState = {
-    items:[],
-    item:{}
+    items:[]
 }
 
 export default function(state = initialState, action){
     switch(action.type){
-        case FETCH_SITES:
+        case RESET_COMMENTS:
             return {
                 ...state,
                 items:action.payload
             };
-        case FETCH_SITE:
-            return{
-                ...state,
-                item:action.payload
-            }
-        case GET_SITE:
-            return{
-                ...state,
-                item:action.payload
-            }
-        case NEW_SITE:
+        case NEW_COMMENT:
             return {
                 ...state,
                 items:action.payload
             };
-        case DELETE_SITE:
-            console.log('at the reducer');
+        case DELETE_COMMENT:
+            return {
+                ...state,
+                items:action.payload
+            };
+        case FETCH_COMMENTS:
             return {
                 ...state,
                 items:action.payload

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchSites} from '../actions/siteActions'
+import {fetchSites, getSite} from '../actions/siteActions'
 import PropTypes from 'prop-types';
 
 
@@ -13,12 +13,13 @@ class Sites extends Component {
       }
     }
 
-    componentWillMount(){
+    componentDidMount(){
       this.props.fetchSites();
     }
 
     gotoSite = async (e,i) => {
       this.setState({redirect:e.site_id})
+      await this.props.getSite(e);
     }
   
     render(){
@@ -48,11 +49,12 @@ class Sites extends Component {
 
   Sites.propTypes = {
     sites : PropTypes.array.isRequired,
-    fetchSites : PropTypes.func.isRequired
+    fetchSites : PropTypes.func.isRequired,
+    getSite : PropTypes.func.isRequired,
   }
   
   const mapStateToProps = state => ({
     sites: state.sites.items
   })
 
-  export default connect(mapStateToProps, {fetchSites})(Sites);
+  export default connect(mapStateToProps, {fetchSites, getSite})(Sites);

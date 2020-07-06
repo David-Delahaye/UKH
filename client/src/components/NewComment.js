@@ -1,29 +1,12 @@
-import React, { Component, Fragment } from "react";
-import { Redirect} from "react-router-dom";
-
+import React, { Component } from "react";
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {newComment} from '../actions/commentActions';
 class Comments extends Component{
-    constructor(props){
-        super(props);
-    }
 
     postComment = async (e) => {
         e.preventDefault()
-        try {
-          const commentTitle = e.target.commentTitle.value;
-          const commentDesc = e.target.commentDesc.value;
-          const commentScore = e.target.commentScore.value;
-          const body = {commentDesc, commentTitle, commentScore}
-          const id = this.props.id;
-          const response = await fetch(`/api/sites/${id}/comments/`,{
-            method: "POST",
-            headers: { "Content-Type" : "application/json"},
-            body: JSON.stringify(body)
-          })
-          const jsonData = await response.json();
-          this.props.onMessageChange(jsonData.message);
-        } catch (error) {
-          console.log(error);
-        }
+        this.props.newComment(e, this.props.siteID)
     }
 
     render(){
@@ -38,4 +21,8 @@ class Comments extends Component{
     }
 }
 
-export default Comments
+Comments.propTypes = {
+  newComment : PropTypes.func.isRequired
+}
+
+export default connect(null, {newComment})(Comments);

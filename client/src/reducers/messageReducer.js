@@ -3,7 +3,7 @@ import {NEW_MESSAGE} from '../actions/types';
 
 const initialState = {
     items:[],
-    item:{}
+    item:{type: '', content:''}
 }
 
 export default function(state = initialState, action){
