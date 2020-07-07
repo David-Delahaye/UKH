@@ -1,4 +1,4 @@
-import {NEW_COMMENT, FETCH_COMMENTS, NEW_MESSAGE, RESET_COMMENTS, DELETE_COMMENT} from './types'
+import {NEW_COMMENT, FETCH_COMMENTS, NEW_MESSAGE, RESET_COMMENTS, DELETE_COMMENT, UPDATE_COMMENT} from './types'
 
 export const resetComments = () => async dispatch => {
     dispatch({
@@ -56,6 +56,34 @@ export const deleteComment = (siteID, commentID) => async dispatch => {
     const jsonData = await response.json();
     dispatch({
         type: DELETE_COMMENT,
+        payload: jsonData
+    })
+
+    //UPDATE MESSAGE
+    const jsonMessage = await message.json();
+    dispatch({
+        type: NEW_MESSAGE,
+        payload: jsonMessage.message
+    })
+}
+
+export const updateComment = (siteID, commentID, e) => async dispatch => {
+    //UPDATE DB
+    const commentTitle = e.target.commentTitle.value;
+    const commentDesc = e.target.commentDesc.value;
+    const commentScore = e.target.commentScore.value;
+    const body = {commentDesc, commentTitle, commentScore}
+    const message = await fetch(`/api/sites/${siteID}/comments/${commentID}`,{
+        method: "PUT",
+        headers: { "Content-Type" : "application/json"},
+        body: JSON.stringify(body)
+    })
+
+    //UPDATE COMMENTS
+    const response = await fetch(`/api/sites/${siteID}/comments/`);
+    const jsonData = await response.json();
+    dispatch({
+        type: UPDATE_COMMENT,
         payload: jsonData
     })
 
