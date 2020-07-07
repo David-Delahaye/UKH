@@ -1,4 +1,4 @@
-import {FETCH_SITES, GET_SITE, FETCH_SITE, NEW_SITE, DELETE_SITE, NEW_MESSAGE} from './types'
+import {FETCH_SITES, GET_SITE, FETCH_SITE, NEW_SITE, DELETE_SITE, UPDATE_SITE, NEW_MESSAGE} from './types'
 
 export const fetchSites = () => async dispatch => {
     const response = await fetch('/api/sites');
@@ -69,10 +69,37 @@ export const deleteSite = (siteID) => async dispatch => {
     })
 
     //UPDATE SITES
-    const response = await fetch('/api/sites');
+    const response = await fetch(`/api/sites/`);
     const jsonData = await response.json();
     dispatch({
         type: DELETE_SITE,
         payload: jsonData
+    })
+}
+
+export const updateSite = (siteID, e) => async dispatch => {
+    //UPDATE DB
+    const siteName = e.target.siteName.value;
+    const siteDesc = e.target.siteDesc.value;
+    const body = {siteName, siteDesc}
+    const message = await fetch(`/api/sites/${siteID}`,{
+        method: "PUT",
+        headers: { "Content-Type" : "application/json"},
+        body: JSON.stringify(body)
+    });
+
+    //UPDATE SITE
+    const response = await fetch(`/api/sites/${siteID}`);
+    const jsonData = await response.json();
+    dispatch({
+        type: UPDATE_SITE,
+        payload: jsonData
+    })
+
+    //UPDATE MESSAGE
+    const jsonMessage = await message.json();
+    dispatch({
+        type: NEW_MESSAGE,
+        payload: jsonMessage.message
     })
 }

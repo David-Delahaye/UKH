@@ -4,6 +4,7 @@ export const FETCH_SITE = 'FETCH_SITE';
 export const GET_SITE = 'GET_SITE';
 export const NEW_SITE = 'NEW_SITE';
 export const DELETE_SITE = 'DELETE_SITE';
+export const UPDATE_SITE = 'UPDATE_SITE';
 
 //MESSAGE
 export const NEW_MESSAGE = 'NEW_MESSAGE';
