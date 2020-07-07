@@ -65,11 +65,9 @@ class Site extends Component {
       );
     });
 
-    let editDisplay = () => {
-      return(
+    let editDisplay = 
+    (
         <div>
-            <h4>id: {this.props.site.site_id}</h4>
-            <h4>owner: {this.props.site.owner}</h4>
           <form onSubmit = {(e) => this.formSubmit(e)}>
             <input type='text' name='siteName' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteName}/>
             <input type='text' name='siteDesc' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteDesc}/>
@@ -77,36 +75,43 @@ class Site extends Component {
           </form>
           <button onClick={() => this.editCancel()}>Cancel</button>
         </div>
-        )}
+    )
 
-      
-    if(this.state.edit){
-      return editDisplay();
-    }
-    
-    return (
-      <div>
-        <h4>id: {this.props.site.site_id}</h4>
-        <h4>owner: {this.props.site.owner}</h4>
-        <h1>
-          {this.props.site.site_name} - {this.props.site.average_score}
-        </h1>
+    let siteContent = 
+    (
+        <div>
+        <h1>{this.props.site.site_name} - {this.props.site.average_score}</h1>
         <p>{this.props.site.description}</p>
-        {this.props.site.isOwner ? (
-          <div>
+        </div>
+    )
+
+    let ownerBar = 
+    (
+      this.props.site.isOwner ? (
+        <div>
           <button onClick={() => this.editControl()}>
             Edit
           </button>
           <button onClick={() => this.deleteSite(this.props.site.site_id)}>
             Delete
           </button>
-          </div>
-        ) : (
-          <div />
-        )}
-        <NewComment
-          siteID={this.props.site.site_id}
-        />
+        </div>
+      ) : (
+        'tttt'
+      ))
+
+
+    if(this.state.edit){
+      return editDisplay
+    }
+    
+    return (
+      <div>
+        <h4>id: {this.props.site.site_id}</h4>
+        <h4>owner: {this.props.site.owner}</h4>
+        {siteContent}
+        {ownerBar}
+        <NewComment siteID={this.props.site.site_id}/>
         {commentFormat}
       </div>
     );

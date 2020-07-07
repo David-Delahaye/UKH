@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 
 class Sites extends Component {
-
     componentDidMount(){
       this.props.fetchSites();
     }
