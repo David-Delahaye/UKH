@@ -1,0 +1,55 @@
+.header {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  color: white !important;
+  z-index: 1;
+  height: 20rem;
+  max-height: 300px;
+}
+
+.headline {
+  z-index: 1;
+}
+
+.image {
+  z-index: -1;
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  left: 0px;
+  bottom: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.imageOverlay {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: 100%;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(34%, rgba(255, 255, 255, 0)), color-stop(65%, rgba(0, 0, 0, 0.7)));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 34%, rgba(0, 0, 0, 0.7) 65%);
+}
+
+.starsWrapper {
+  position: relative;
+  width: 108px;
+  height: 20px;
+  overflow: hidden;
+}
+/*# sourceMappingURL=site.module.css.map */

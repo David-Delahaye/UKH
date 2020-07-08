@@ -5,22 +5,18 @@ $light-blue: #BCF5E7;
 $dark-orange: #EF9529;
 $light-orange: #F7E044;
 
-header{
+.header{
     position: relative;
     background-color: $dark-green;
     width: 100%;
-    padding-bottom: 8rem !important;
+    padding-bottom: 6rem !important;
 }
-
 
 .headline{
-    display: flex;
-    margin-bottom: 3rem;
-    align-items: flex-end;
-}
-
-h2{
     color: white;
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: flex-end;
 }
 
 .icon{
@@ -33,7 +29,10 @@ h2{
 
 .divider{
     position: absolute;
+    object-position: bottom left;
+    object-fit: cover;
     width: 100%;
+    height: 8rem;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -54,7 +53,6 @@ main{
 
 }
 
-
 .card{
     width: 100%;
     position: relative;
@@ -62,37 +60,41 @@ main{
     background-color: white;
     color: black;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
+    transition: transform 0.5s;
+    &:hover{
+        transform: rotateZ(2deg);
+    }
     .cardImg{
         background-color: rgb(255, 191, 191);
         height: 60%;
     }
     .cardTitle{
+        font-size: 1rem;
         padding-top: 0.5rem;
+        padding-left: 0.5rem;
     }
     .cardDesc{
+        padding-left: 0.5rem;
         font-size: 0.9rem;
     }
     .cardInfoBar{
         display: flex;
-        justify-content: space-around;
+        padding: 0.5rem;
+        justify-content: space-between;
         align-items: baseline;
         height: 2rem;
         width: 100%;
         position: absolute;
         bottom: 0px;
         .cardPrice{
+            font-size: 0.7rem;
             font-weight: 700;
         }
         .cardScoreWrapper{
             position: relative;
-            width: 97.2px;
-            height: 18px;
+            width: 64px;
+            height: 12px;
             overflow: hidden;
-            .cardScore{
-                position: absolute;
-                object-position: left;
-                height: 100%;
-            }
         }
     }
     button{

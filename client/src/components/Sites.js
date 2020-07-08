@@ -5,6 +5,9 @@ import {fetchSites, getSite} from '../actions/siteActions'
 import PropTypes from 'prop-types';
 import form from "../modules/form/form.module.css";
 import sites from "../modules/sites/sites.module.css";
+import stars from "./Stars";
+import Divider from "../images/Divider.png"
+import Fire from "../images/Fire.png"
 
 
 class Sites extends Component {
@@ -14,18 +17,6 @@ class Sites extends Component {
 
     gotoSite = async (e,i) => {
       this.props.history.push('/sites/'+ e.site_id)
-    }
-
-    calcScore = (e) => {
-      const posMove = -20 * (Math.floor((10 - e.average_score)/2));
-      if(e.average_score == null){
-        return ''
-      }
-      if (e.average_score % 2 === 0){
-        return (<img className = {sites.cardScore} style={{left:posMove + '%'}} src='FullStars.png'/>)
-      }else{
-        return (<img className = {sites.cardScore} style={{left:posMove + '%'}} src='HalfStars.png'/>)
-      }
     }
   
     render(){
@@ -37,7 +28,7 @@ class Sites extends Component {
           <p className = {sites.cardDesc}>{e.description}</p>
           <div className = {sites.cardInfoBar}>
             <div className = {sites.cardScoreWrapper}>
-              {this.calcScore(e)}
+              {stars(e.average_score)}
             </div>
             <div className = {sites.cardPrice}>
               £20.50 / Night
@@ -49,10 +40,10 @@ class Sites extends Component {
   
     return(
       <div>
-        <header className='container'>
+        <header className={`container ${sites.header}`}>
           <div className={sites.headline}>
             <h2>Campgrounds</h2>
-            <img className={sites.icon} src='Fire.png'/>
+            <img className={sites.icon} src={Fire}/>
           </div>
           <form className={form.search}>
             <input className ={form.textInput} type='text' placeholder='Search by Name'/>
@@ -61,7 +52,7 @@ class Sites extends Component {
               <button className={form.btnPrimary}>Search</button>
             </div>
           </form>
-          <img className={sites.divider} src='Divider.png'/>
+          <img className={sites.divider} src={Divider}/>
         </header>
         <main className='container'>
           <div className={sites.grid}>

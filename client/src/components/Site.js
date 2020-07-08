@@ -2,12 +2,15 @@ import React, { Component } from "react";
 
 import Comment from "./Comment";
 import NewComment from "./NewComment";
+import Stars from "./Stars"
+import site from "../modules/site/site.module.css";
 
 
 import { connect } from "react-redux";
 import { deleteSite, getSite, fetchSite, updateSite} from "../actions/siteActions";
 import { resetComments , fetchComments } from "../actions/commentActions";
 import PropTypes from "prop-types";
+import stars from "./Stars";
 
 class Site extends Component {
   constructor(props) {
@@ -81,7 +84,17 @@ class Site extends Component {
     let siteContent = 
     (
         <div>
-        <h1>{this.props.site.site_name} - {this.props.site.average_score}</h1>
+        <header className={`container ${site.header}`}>
+          <div className={site.imageOverlay}/>
+          <img className={site.image} src='https://images.unsplash.com/photo-1591461924959-125450884b14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'/>
+          <div className={site.headline}> 
+          <h2>{this.props.site.site_name}</h2>
+          <div className={site.starsWrapper}>
+           {stars(this.props.site.average_score)}
+          </div>
+          </div>
+        </header>
+        <h4>owner: {this.props.site.owner}</h4>
         <p>{this.props.site.description}</p>
         </div>
     )
@@ -108,8 +121,6 @@ class Site extends Component {
     
     return (
       <div>
-        <h4>id: {this.props.site.site_id}</h4>
-        <h4>owner: {this.props.site.owner}</h4>
         {siteContent}
         {ownerBar}
         <NewComment siteID={this.props.site.site_id}/>

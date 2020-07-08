@@ -1,0 +1,49 @@
+$dark-green: #3E8A64;
+$light-green: #3A7859;
+$dark-blue: #299798;
+$light-blue: #BCF5E7;
+$dark-orange: #EF9529;
+$light-orange: #F7E044;
+
+.header{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    color: rgb(255, 255, 255) !important;
+    z-index: 1;
+    height: 20rem;
+    max-height: 300px;
+}
+
+.headline{
+    z-index: 1;
+}
+
+.image{
+    z-index: -1;
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    left: 0px;
+    bottom:0px;
+    height: 100%;
+    width: 100%;
+}
+
+.imageOverlay{
+    position: absolute;
+    left: 0px;
+    bottom:0px;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 34%, rgba(0,0,0,0.7) 65%);
+}
+
+.starsWrapper{
+    position: relative;
+    width: 108px;
+    height: 20px;
+    overflow: hidden;
+}
