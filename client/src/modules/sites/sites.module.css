@@ -5,9 +5,28 @@ header {
   padding-bottom: 8rem !important;
 }
 
+.headline {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 3rem;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
 h2 {
-  margin-bottom: 2rem;
   color: white;
+}
+
+.icon {
+  width: 6rem;
+  height: 6rem;
+  margin-top: -1.5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 100%;
+     object-position: 50% 100%;
 }
 
 .divider {
@@ -38,8 +57,9 @@ main {
 .card {
   width: 100%;
   position: relative;
-  height: 15rem;
+  height: 18rem;
   background-color: white;
+  color: black;
   -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
           box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
 }
@@ -47,6 +67,47 @@ main {
 .card .cardImg {
   background-color: #ffbfbf;
   height: 60%;
+}
+
+.card .cardTitle {
+  padding-top: 0.5rem;
+}
+
+.card .cardDesc {
+  font-size: 0.9rem;
+}
+
+.card .cardInfoBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  height: 2rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+
+.card .cardInfoBar .cardPrice {
+  font-weight: 700;
+}
+
+.card .cardInfoBar .cardScoreWrapper {
+  position: relative;
+  width: 97.2px;
+  height: 18px;
+  overflow: hidden;
+}
+
+.card .cardInfoBar .cardScoreWrapper .cardScore {
+  position: absolute;
+  -o-object-position: left;
+     object-position: left;
+  height: 100%;
 }
 
 .card button {

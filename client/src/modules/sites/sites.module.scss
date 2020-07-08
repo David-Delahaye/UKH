@@ -12,9 +12,23 @@ header{
     padding-bottom: 8rem !important;
 }
 
+
+.headline{
+    display: flex;
+    margin-bottom: 3rem;
+    align-items: flex-end;
+}
+
 h2{
-    margin-bottom: 2rem;
     color: white;
+}
+
+.icon{
+    width: 6rem;
+    height: 6rem;
+    margin-top: -1.5rem;
+    object-fit: cover;
+    object-position: 50% 100%;
 }
 
 .divider{
@@ -44,12 +58,42 @@ main{
 .card{
     width: 100%;
     position: relative;
-    height: 15rem;
+    height: 18rem;
     background-color: white;
+    color: black;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
     .cardImg{
         background-color: rgb(255, 191, 191);
         height: 60%;
+    }
+    .cardTitle{
+        padding-top: 0.5rem;
+    }
+    .cardDesc{
+        font-size: 0.9rem;
+    }
+    .cardInfoBar{
+        display: flex;
+        justify-content: space-around;
+        align-items: baseline;
+        height: 2rem;
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        .cardPrice{
+            font-weight: 700;
+        }
+        .cardScoreWrapper{
+            position: relative;
+            width: 97.2px;
+            height: 18px;
+            overflow: hidden;
+            .cardScore{
+                position: absolute;
+                object-position: left;
+                height: 100%;
+            }
+        }
     }
     button{
         position: absolute;

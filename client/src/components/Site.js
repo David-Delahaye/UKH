@@ -5,7 +5,7 @@ import NewComment from "./NewComment";
 
 
 import { connect } from "react-redux";
-import { deleteSite, fetchSite, updateSite} from "../actions/siteActions";
+import { deleteSite, getSite, fetchSite, updateSite} from "../actions/siteActions";
 import { resetComments , fetchComments } from "../actions/commentActions";
 import PropTypes from "prop-types";
 
@@ -21,6 +21,7 @@ class Site extends Component {
   }
 
   async componentDidMount() {
+    await this.props.getSite(this.state.id);
     await this.props.resetComments()
     await this.props.fetchSite(this.state.id)
     await this.props.fetchComments(this.state.id);
@@ -131,4 +132,4 @@ const mapStateToProps = (state) => ({
   user : state.auth.user
 });
 
-export default connect(mapStateToProps, {deleteSite, updateSite, fetchSite, fetchComments, resetComments})(Site);
+export default connect(mapStateToProps, {deleteSite, getSite, updateSite, fetchSite, fetchComments, resetComments})(Site);
