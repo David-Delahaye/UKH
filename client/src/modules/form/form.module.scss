@@ -1,0 +1,58 @@
+$dark-green: #3E8A64;
+$light-green: #3A7859;
+$dark-blue: #299798;
+$light-blue: #BCF5E7;
+$dark-orange: #EF9529;
+$light-orange: #F7E044;
+
+
+.btnGroup{
+    display: flex;
+    align-items: flex-end;
+    margin-top: 5rem;
+}
+
+.btnPrimary{
+    background-color: $dark-orange;
+    color: black;
+    font-size: 1.25rem;
+    padding: 0.4rem 0.8rem;
+    height: 2.5rem;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 0.5rem;
+}
+
+.btnIcon{
+    height:4rem;
+    margin-right: 1rem;
+}
+
+.textInput{
+    background-color: $light-green;
+    color: white;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    padding-inline-start: 0.5rem;
+    border: none;
+    display: block;
+    &::placeholder{
+        color: white;
+    }
+}
+
+.search{
+    width: 100%;
+    input{
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    div:last-of-type{
+        display: flex;
+        width: 100%;
+        button{
+            margin-left: 1rem;
+            width: 40%;
+        }
+    }
+}

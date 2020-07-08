@@ -50,10 +50,11 @@ router.post("/api/sites/:site/comments", isAuth, async (req, res) => {
 });
 
 //Update a Comment
-router.put("/api/sites/:site/:comment", async (req, res) => {
+router.put("/api/sites/:site/comments/:comment", async (req, res) => {
   try {
     //get username
     const {commentTitle, commentDesc, commentScore} = req.body;
+    const siteID = req.params.site;
     const commentID = req.params.comment;
     const response = await pool.query("UPDATE comments SET comment_title =$2 ,comment_description =$3, comment_score =$4 WHERE comment_id = $1 RETURNING*",
     [commentID,commentTitle,commentDesc,commentScore]);
@@ -67,10 +68,11 @@ router.put("/api/sites/:site/:comment", async (req, res) => {
 });
 
 //Delete a comment
-router.delete('/api/sites/:site/:comment', async (req,res) => {
+router.delete('/api/sites/:site/comments/:comment', async (req,res) => {
   try {
-      const {commentID} = req.params;
+      const commentID = req.params.comment;
       const response = await pool.query ("DELETE FROM comments WHERE comment_id = $1", [commentID]);
+      res.json({ message: {type: 'success', content:'Comment deleted'} });
   } catch (err) {
       console.error(err.message);
       

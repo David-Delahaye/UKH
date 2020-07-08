@@ -1,0 +1,74 @@
+.btnGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-top: 5rem;
+}
+
+.btnPrimary {
+  background-color: #EF9529;
+  color: black;
+  font-size: 1.25rem;
+  padding: 0.4rem 0.8rem;
+  height: 2.5rem;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+.btnIcon {
+  height: 4rem;
+  margin-right: 1rem;
+}
+
+.textInput {
+  background-color: #3A7859;
+  color: white;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+  border: none;
+  display: block;
+}
+
+.textInput::-webkit-input-placeholder {
+  color: white;
+}
+
+.textInput:-ms-input-placeholder {
+  color: white;
+}
+
+.textInput::-ms-input-placeholder {
+  color: white;
+}
+
+.textInput::placeholder {
+  color: white;
+}
+
+.search {
+  width: 100%;
+}
+
+.search input {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.search div:last-of-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.search div:last-of-type button {
+  margin-left: 1rem;
+  width: 40%;
+}
+/*# sourceMappingURL=form.module.css.map */

@@ -7,20 +7,16 @@ import PropTypes from 'prop-types';
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      redirect:false,
-    };
   }
 
   formSubmit = async (e) => {
-    e.preventDefault()
-    this.props.loginUser(e)
+    e.preventDefault();
+    this.props.loginUser(e);
+    
+
   }
 
   render() {
-    if (this.state.redirect){
-      return<Redirect to ={this.state.redirect}/>
-    }
     return (
       <form
         onSubmit={(e) => {

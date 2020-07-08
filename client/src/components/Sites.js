@@ -3,6 +3,8 @@ import { Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchSites, getSite} from '../actions/siteActions'
 import PropTypes from 'prop-types';
+import form from "../modules/form/form.module.css";
+import sites from "../modules/sites/sites.module.css";
 
 
 class Sites extends Component {
@@ -18,18 +20,33 @@ class Sites extends Component {
     render(){
     let siteFormat = this.props.sites.map ((e,i) => {
       return(
-        <div key={i}>
-        <h3>{e.site_name}</h3>
-        <p>{e.description}</p>
-        <button onClick = {() => this.gotoSite(e,i)}>See more</button>
+        <div className = {sites.card} key={i}>
+          <div className = {sites.cardImg}/>
+          <h3>{e.site_name}</h3>
+          <p>{e.description}</p>
+          <button onClick = {() => this.gotoSite(e,i)}>See more</button>
         </div>
       )
     })
   
     return(
       <div>
-      <h1>COMPONENT</h1>
-      {siteFormat}
+        <header className='container'>
+          <h2>Campgrounds</h2>
+          <form className={form.search}>
+            <input className ={form.textInput} type='text' placeholder='Search by Name'/>
+            <div>
+              <input className ={form.textInput} type='text' placeholder='Search by Location'/>
+              <button className={form.btnPrimary}>Search</button>
+            </div>
+          </form>
+          <img className={sites.divider} src='Divider.png'/>
+        </header>
+        <main className='container'>
+          <div className={sites.grid}>
+          {siteFormat}
+          </div>
+        </main>
       </div>
     )
   }

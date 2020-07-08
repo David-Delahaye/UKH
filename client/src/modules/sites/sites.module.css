@@ -1,0 +1,57 @@
+header {
+  position: relative;
+  background-color: #093E31;
+  width: 100%;
+  padding-bottom: 8rem !important;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.divider {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  pointer-events: none;
+}
+
+main {
+  background-color: #BCF5E7;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (50%)[2];
+      grid-template-columns: repeat(2, 50%);
+  row-gap: 1rem;
+  padding: 0.5rem;
+  margin-left: -0.5rem;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+}
+
+.card {
+  width: 100%;
+  position: relative;
+  height: 15rem;
+  background-color: white;
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
+          box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
+}
+
+.card .cardImg {
+  background-color: #ffbfbf;
+  height: 60%;
+}
+
+.card button {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+/*# sourceMappingURL=sites.module.css.map */

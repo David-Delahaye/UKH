@@ -11,6 +11,7 @@ import Sites from './components/Sites';
 import Site from './components/Site';
 import Login from './components/Login';
 import Register from './components/Register';
+import Landing from './components/Landing';
 
 import {connect} from 'react-redux';
 import {fetchUser} from './actions/authActions'
@@ -29,10 +30,11 @@ class App extends Component{
           <Nav/>
           <div>{this.props.message.content}</div>
           <Switch>
-            <Route path="/new" component={NewSite}/>
-            <Route path="/index" component={Sites}/>
+            <Route exact path ="/" component={Landing}/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
+            <Route exact path="/sites" component={Sites}/>
+            <Route exact path="/sites/new" component={NewSite}/>
             <Route path="/sites/:site" component={Site}/>
           </Switch>
         </Router>
