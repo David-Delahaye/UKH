@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteComment , updateComment} from "../actions/commentActions";
 import PropTypes from "prop-types";
+import comment from "../modules/comment/comment.module.css"
+import Stars from "../components/Stars"
 
 class Comment extends Component {
   constructor(props) {
@@ -46,54 +48,31 @@ class Comment extends Component {
       return (
         <div>
         <form onSubmit = {(e) => this.formSubmit(e)}>
-          <input
-            type="text"
-            onChange={(e) => {
-              this.inputChange(e);
-            }}
-            name="commentTitle"
-            value={this.state.commentTitle}
-          />
-          <input
-            type="range"
-            onChange={(e) => {
-              this.inputChange(e);
-            }}
-            min="0"
-            max="10"
-            name="commentScore"
-            value={this.state.commentScore}
-          />
-          <input
-            type="text"
-            onChange={(e) => {
-              this.inputChange(e);
-            }}
-            name="commentDesc"
-            value={this.state.commentDesc}
-          />
-            <button>Confirm Changes</button>
+          <input type="text" onChange={(e) => {this.inputChange(e);}} name="commentTitle" value={this.state.commentTitle}/>
+          <input type="range" onChange={(e) => { this.inputChange(e); }} min="0" max="10" name="commentScore" value={this.state.commentScore}/>
+          <input type="text" onChange={(e) => { this.inputChange(e); }} name="commentDesc" value={this.state.commentDesc}/>
+          <button>Confirm Changes</button>
         </form>
-            <button onClick={()=> this.editCancel()}>Cancel</button>
+        <button onClick={()=> this.editCancel()}>Cancel</button>
         </div>
       );
     } else {
       return (
-        <div>
-          <h3>{this.props.comment.comment_title}</h3>
-          <p>{this.props.comment.comment_score}</p>
-          <p>{this.props.comment.comment_description}</p>
-          <p> by - {this.props.comment.owner_name}</p>
+        <div className={`container-sm ${comment.comment}`}>
+          <div className={comment.header}>
+            <p> by - {this.props.comment.owner_name}</p>
+            <div className={comment.starsWrapper}>
+              <Stars average_score={this.props.comment.comment_score}/>
+            </div>
+          </div>
+          <div className={comment.body}>
+            <h4>{this.props.comment.comment_title}</h4>
+            <p>{this.props.comment.comment_description}</p>
+          </div>
           {this.props.userID === this.props.comment.owner_id ? (
-            <div>
+            <div className={comment.buttons}>
               <button onClick={() => this.editControl()}>Edit</button>
-              <button
-                onClick={() =>
-                  this.props.deleteComment(this.props.siteID, this.props.comment.comment_id)
-                }
-              >
-                delete
-              </button>
+              <button onClick={() => this.props.deleteComment(this.props.siteID, this.props.comment.comment_id)}> delete </button>
             </div>
           ) : (
             ""

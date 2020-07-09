@@ -1,0 +1,49 @@
+.comment {
+  background-color: white;
+  position: relative;
+  margin: 1rem 0;
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.185);
+          box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.185);
+}
+
+.comment .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.comment .header p {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.comment .header .starsWrapper {
+  position: relative;
+  width: 81px;
+  height: 15px;
+  overflow: hidden;
+}
+
+.comment .body {
+  padding: 0.5rem 0;
+}
+
+.comment .body h4 {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.comment .body p {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.comment .buttons {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+/*# sourceMappingURL=comment.module.css.map */

@@ -1,0 +1,43 @@
+$dark-green: #093E31;
+$light-green: #3A7859;
+$dark-blue: #299798;
+$light-blue: #BCF5E7;
+$dark-orange: #EF9529;
+$light-orange: #F7E044;
+
+.comment{
+    background-color: white;
+    position: relative;
+    margin: 1rem 0;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.185);
+    .header{
+        display: flex;
+        justify-content: space-between;
+        p{
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+        .starsWrapper{
+            position: relative;
+            width: 81px;
+            height: 15px;
+            overflow: hidden;
+        }
+    }
+    .body{
+        padding: 0.5rem 0;
+        h4{
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        p{
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+    }
+    .buttons{
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+    }
+}

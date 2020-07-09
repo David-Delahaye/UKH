@@ -5,8 +5,8 @@ import {fetchSites, getSite} from '../actions/siteActions'
 import PropTypes from 'prop-types';
 import form from "../modules/form/form.module.css";
 import sites from "../modules/sites/sites.module.css";
-import stars from "./Stars";
-import Divider from "../images/Divider.png"
+import Stars from "./Stars";
+import Divider from "../images/DividerLight.png"
 import Fire from "../images/Fire.png"
 
 
@@ -28,7 +28,7 @@ class Sites extends Component {
           <p className = {sites.cardDesc}>{e.description}</p>
           <div className = {sites.cardInfoBar}>
             <div className = {sites.cardScoreWrapper}>
-              {stars(e.average_score)}
+            <Stars average_score={e.average_score}/>
             </div>
             <div className = {sites.cardPrice}>
               £20.50 / Night

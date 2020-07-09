@@ -45,7 +45,7 @@ main{
 
 .grid{
     display: grid;
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(1, 100%);
     row-gap: 1rem;
     padding: 0.5rem;
     margin-left: -0.5rem;
@@ -101,5 +101,22 @@ main{
         position: absolute;
         right: 0px;
         bottom: 0px;
+    }
+}
+@media only screen and (min-width: 500px) {
+    .grid{
+        grid-template-columns: repeat(2, 50%);
+    }
+  }
+
+@media only screen and (min-width: 860px) {
+    .grid{
+        grid-template-columns: repeat(3, 33.333333333333%);
+    }
+  }
+
+@media only screen and (min-width: 1080px) {
+    .grid{
+        grid-template-columns: repeat(4, 25%);
     }
 }

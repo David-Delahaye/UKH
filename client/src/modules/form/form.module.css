@@ -9,6 +9,7 @@
 }
 
 .btnPrimary {
+  cursor: pointer;
   background-color: #EF9529;
   color: black;
   font-size: 1.25rem;

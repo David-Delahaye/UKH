@@ -1,26 +1,27 @@
 import React from 'react';
 import FullStars from "../images/FullStars.png"
-import HalfStars from "../images/FullStars.png"
-
-const stars = (score) =>{
+import HalfStars from "../images/HalfStars.png"
+const Stars = (props) =>{
+    const score = props.average_score;
+    console.log(score);
     const calcScore = () => {
-        const posMove = -20 * (Math.floor((10 - score)/2));
+        let posMove = -(100-(10 * score))/2;
         if(score == null){
           return ''
         }
         if (score % 2 === 0){
-          return (<img className ='stars' style={{left:posMove + '%'}} src={FullStars} />)
+          return (<img className ='stars' style={{transform:'translate(' + posMove + '%)'}} src={FullStars} />)
         }else{
-          return (<img className ='stars' style={{left:posMove + '%'}} src={HalfStars}/>)
+          posMove = posMove+5;
+          return (<img className ='stars' style={{transform:'translate(' + posMove + '%)'}} src={HalfStars}/>)
         }
-      }
-
+    }
         return(
-            <div>
-                {calcScore()}
-            </div>
-        )
-}
+          <div>
+              {calcScore()}
+          </div>
+      )
+  }
 
 
-export default stars;
+export default Stars;

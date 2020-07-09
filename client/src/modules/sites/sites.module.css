@@ -47,8 +47,8 @@ main {
 .grid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (50%)[2];
-      grid-template-columns: repeat(2, 50%);
+  -ms-grid-columns: (100%)[1];
+      grid-template-columns: repeat(1, 100%);
   row-gap: 1rem;
   padding: 0.5rem;
   margin-left: -0.5rem;
@@ -124,5 +124,26 @@ main {
   position: absolute;
   right: 0px;
   bottom: 0px;
+}
+
+@media only screen and (min-width: 500px) {
+  .grid {
+    -ms-grid-columns: (50%)[2];
+        grid-template-columns: repeat(2, 50%);
+  }
+}
+
+@media only screen and (min-width: 860px) {
+  .grid {
+    -ms-grid-columns: (33.33333%)[3];
+        grid-template-columns: repeat(3, 33.33333%);
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .grid {
+    -ms-grid-columns: (25%)[4];
+        grid-template-columns: repeat(4, 25%);
+  }
 }
 /*# sourceMappingURL=sites.module.css.map */

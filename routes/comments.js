@@ -70,8 +70,10 @@ router.put("/api/sites/:site/comments/:comment", async (req, res) => {
 //Delete a comment
 router.delete('/api/sites/:site/comments/:comment', async (req,res) => {
   try {
+      const siteID = req.params.site;
       const commentID = req.params.comment;
       const response = await pool.query ("DELETE FROM comments WHERE comment_id = $1", [commentID]);
+      await updateScore(siteID);
       res.json({ message: {type: 'success', content:'Comment deleted'} });
   } catch (err) {
       console.error(err.message);
@@ -88,14 +90,15 @@ const updateScore = async (siteID) => {
   )
 
   let scores = 0;
+  if(scoresResponse.rows){
   for (let i = 0; i < scoresResponse.rows.length; i++) {
     if(scoresResponse.rows[i].comment_score){
     scores += scoresResponse.rows[i].comment_score;
+  }}
   }
-}
 
   //find and update average
-  scores = Math.round(scores/scoresResponse.rows.length);
+  scores === 0? scores=null :scores = Math.round(scores/scoresResponse.rows.length);
   const averageResponse = await pool.query(
     "UPDATE site SET average_score =$2 WHERE site_id = $1 RETURNING*",
     [siteID, scores]

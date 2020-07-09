@@ -2,20 +2,22 @@ import React, { Component } from "react";
 
 import Comment from "./Comment";
 import NewComment from "./NewComment";
-import Stars from "./Stars"
 import site from "../modules/site/site.module.css";
+import form from "../modules/form/form.module.css";
+import DividerLight from "../images/DividerLight.png"
 
 
 import { connect } from "react-redux";
 import { deleteSite, getSite, fetchSite, updateSite} from "../actions/siteActions";
 import { resetComments , fetchComments } from "../actions/commentActions";
 import PropTypes from "prop-types";
-import stars from "./Stars";
+import Stars from "./Stars";
 
 class Site extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loaded:false,
       id:this.props.match.params.site,
       edit:false,
       siteName:'',
@@ -30,6 +32,7 @@ class Site extends Component {
     await this.props.fetchComments(this.state.id);
     this.setState({ siteName: this.props.site.site_name});
     this.setState({ siteDesc: this.props.site.description});
+    this.setState({ loaded:true})
   }
 
   inputChange = (e) => {
@@ -58,6 +61,7 @@ class Site extends Component {
   };
 
   render() {
+    if(this.state.loaded){
     let commentFormat = this.props.comments.map((e, i) => {
       return (
         <Comment
@@ -84,18 +88,44 @@ class Site extends Component {
     let siteContent = 
     (
         <div>
-        <header className={`container ${site.header}`}>
-          <div className={site.imageOverlay}/>
-          <img className={site.image} src='https://images.unsplash.com/photo-1591461924959-125450884b14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'/>
-          <div className={site.headline}> 
-          <h2>{this.props.site.site_name}</h2>
-          <div className={site.starsWrapper}>
-           {stars(this.props.site.average_score)}
+          <header className={`container ${site.header}`}>
+            <div className={site.imageOverlay}/>
+            <img className={site.image} src='https://images.unsplash.com/photo-1591461924959-125450884b14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'/>
+            <div className={site.headline}> 
+              <h2>{this.props.site.site_name}</h2>
+              <div className={site.starsWrapper}>
+                {console.log(this.props.site.average_score)}
+                <Stars average_score={this.props.site.average_score}/>
+              </div>
+            </div>
+            <img className={site.divider} src={DividerLight}/>
+          </header>
+          <main className={`container ${site.main}`}>
+
+            <h3>About Us</h3>
+            <div className={`${site.about} container-sm`}>
+              <p>{this.props.site.description}</p>
+              <ul className={site.list}>
+                <li>Running water</li>
+                <li>Plentiful facilities</li>
+                <li>On site activities</li>
+                <li>Running water</li>
+                <li>Plentiful facilities</li>
+                <li>On site activities</li>
+                <li>Running water</li>
+                <li>Plentiful facilities</li>
+                <li>On site activities</li>
+              </ul>
+              <div className={site.buttons}>
+                <p className= {site.price}>£26.50<br/>/Night</p>
+                <a className= {form.btnPrimary}>Book Now</a>
+              </div>
           </div>
-          </div>
-        </header>
-        <h4>owner: {this.props.site.owner}</h4>
-        <p>{this.props.site.description}</p>
+
+          <h3>Comments</h3>
+          {commentFormat}
+          <NewComment siteID={this.props.site.site_id}/>
+        </main>
         </div>
     )
 
@@ -111,7 +141,7 @@ class Site extends Component {
           </button>
         </div>
       ) : (
-        'tttt'
+        ''
       ))
 
 
@@ -121,14 +151,14 @@ class Site extends Component {
     
     return (
       <div>
-        {siteContent}
         {ownerBar}
-        <NewComment siteID={this.props.site.site_id}/>
-        {commentFormat}
+        {siteContent}
       </div>
     );
-  }
+  }return(<h1>loading</h1>)
 }
+}
+
 
 Site.propTypes = {
   deleteSite: PropTypes.func.isRequired,
