@@ -31,7 +31,7 @@ class Sites extends Component {
             <Stars average_score={e.average_score}/>
             </div>
             <div className = {sites.cardPrice}>
-              £20.50 / Night
+               ~ £20
             </div>
           </div>
         </Link>
@@ -42,8 +42,7 @@ class Sites extends Component {
       <div>
         <header className={`container ${sites.header}`}>
           <div className={sites.headline}>
-            <h2>Campgrounds</h2>
-            <img className={sites.icon} src={Fire}/>
+            <h2>Search Plants </h2>
           </div>
           <form className={form.search}>
             <input className ={form.textInput} type='text' placeholder='Search by Name'/>

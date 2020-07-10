@@ -11,9 +11,9 @@ render(){
   if (this.props.user.username !== 'guest'){
     return(
       <nav>
-        <Link to="/">UKC</Link>
-        <Link to="/sites">All sites</Link>
-        <Link to="/sites/new">Add site</Link>
+        <Link to="/">UKH</Link>
+        <Link to="/sites">All Plants</Link>
+        <Link to="/sites/new">Add Plant</Link>
         <p>{this.props.user.username}</p>
         <Logout/>
       </nav>
@@ -21,8 +21,8 @@ render(){
   }else{
   return(
     <nav>
-      <Link to="/">UKC</Link>
-      <Link to="/sites">All sites</Link>
+      <Link to="/">UKH</Link>
+      <Link to="/sites">All Plant</Link>
       <Link to="/login">Login</Link>
       <Link to="/register">Register</Link>
     </nav>

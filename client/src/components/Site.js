@@ -90,7 +90,7 @@ class Site extends Component {
         <div>
           <header className={`container ${site.header}`}>
             <div className={site.imageOverlay}/>
-            <img className={site.image} src='https://images.unsplash.com/photo-1591461924959-125450884b14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'/>
+            <img className={site.image} src= 'https://images.unsplash.com/photo-1518564747095-d2fbe4b452b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1317&q=80'/>
             <div className={site.headline}> 
               <h2>{this.props.site.site_name}</h2>
               <div className={site.starsWrapper}>
@@ -102,19 +102,19 @@ class Site extends Component {
           </header>
           <main className={`container ${site.main}`}>
 
-            <h3>About Us</h3>
+            <h3>Plant Care</h3>
             <div className={`${site.about} container-sm`}>
               <p>{this.props.site.description}</p>
               <ul className={site.list}>
-                <li>Running water</li>
-                <li>Plentiful facilities</li>
-                <li>On site activities</li>
-                <li>Running water</li>
-                <li>Plentiful facilities</li>
-                <li>On site activities</li>
-                <li>Running water</li>
-                <li>Plentiful facilities</li>
-                <li>On site activities</li>
+                <li>Easy to Grow</li>
+                <li>Nice and green</li>
+                <li>Quite nice</li>
+                <li>Easy to Grow</li>
+                <li>Nice and green</li>
+                <li>Quite nice</li>
+                <li>Easy to Grow</li>
+                <li>Nice and green</li>
+                <li>Quite nice</li>
               </ul>
               <div className={site.buttons}>
                 <p className= {site.price}>£26.50<br/>/Night</p>
