@@ -22,4 +22,13 @@ CREATE TABLE comments(
     site_id VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE site_tags(
+    site_id VARCHAR(50) NOT NULL,
+    tag VARCHAR(50) NOT NULL,
+);
+
+)
+
+)
+
 CREATE TABLE 
