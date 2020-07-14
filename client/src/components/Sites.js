@@ -55,8 +55,7 @@ class Sites extends Component {
             <h2>Search Plants </h2>
           </div>
           <form onSubmit={(e) => {this.formSubmit(e)}} className={form.search}>
-            <Autocomplete/>
-            <input className ={form.textInput} name='name' type='text' placeholder='Search by Name'/>
+            <Autocomplete type='text' placeholder='Search by Name'/>
             <div>
               <input className ={form.textInput} name='tags' type='text' placeholder='Search by Tags'/>
               <button className={form.btnPrimary}>Search</button>

@@ -3,13 +3,32 @@ import { Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchSites, searchSites, getSite} from '../actions/siteActions'
 import PropTypes from 'prop-types';
+import form from '../modules/form/form.module.css'
+import { json } from 'body-parser';
 
 class Autocomplete extends Component{
     constructor(props){
         super(props);
+        this.wrapperRef = React.createRef();
+        this.handleClickOutside = this.handleClickOutside.bind(this);
         this.state = {
             input:'',
-            items:[]
+            items:[],
+            closed:true
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    handleClickOutside(e) {
+        if (this.wrapperRef && !this.wrapperRef.current.contains(e.target)) {
+            this.setState({closed:true})
         }
     }
 
@@ -24,18 +43,17 @@ class Autocomplete extends Component{
     fetchData = async (search) => {
         const response = await fetch(`/api/sites?name=${search}`);
         const jsonData = await response.json();
+        const five = jsonData.slice(0,5)
         if(response.error){
             return[];
         }
-        return(jsonData);
+        return(five);
     }
 
     onInput = async (value) => {
-        console.log('here');
-        console.log(value);
+        this.setState({closed:false})
         if (value){
             const items = await this.fetchData(value);
-            console.log(items);
             this.setState({items})
         } else{
             this.setState({items:[]})
@@ -43,7 +61,6 @@ class Autocomplete extends Component{
     };
 
     debounce = (value) => {
-        console.log(value);
         this.setState({input:value})
         setTimeout(async () => {
           if (this.state.input === value){
@@ -52,31 +69,38 @@ class Autocomplete extends Component{
         }, 400);
       }
 
+    setInput = (value) => {
+        this.setState({input:value});
+        this.setState({closed:true});
+    }
+
 
     render(){
         let renderResults = this.state.items.map ((e,i) => {
             return (
-                <Link to={'/sites/'+ e.site_id} key={i}>
-                    <li>{e.site_name}</li>
-                </Link>
-
+                <li key={i} onClick={() => this.setInput(e.site_name)} className={form.dropdownItem}>
+                    {e.site_name}
+                </li>
             )
-        }) 
+        })
+        if (this.state.items.length !== 0 && this.state.closed === false){
         return(
-            <div>
-                <label>Search</label>
-                <input onInput={(e) => {this.debounce(e.target.value)}} class="input" value={this.state.input}/>
-                <div class="dropdown">
-                    <div class="dropdown-menu">
-                        <div class ="dropdown-content results">
-                            {renderResults}
-                        </div>
+            <div ref={this.wrapperRef} className={form.dropdown}>
+                <input onInput={(e) => {this.debounce(e.target.value)}} className={form.dropdownInput} value={this.state.input} name='name' placeholder='Search by Name' autoComplete='Off' />
+                <div className={form.dropdownWrapper}>
+                    <div className={form.dropdownContent}>
+                        {renderResults}
                     </div>
                 </div>
             </div>
-        )
+        )}else {
+            return(
+                <div ref={this.wrapperRef} className={form.dropdown}>
+                <input onInput={(e) => {this.debounce(e.target.value)}} className={form.textInput} value={this.state.input} name='name' placeholder='Search by Name' autoComplete='Off' />
+                </div>
+            )
+        }
     }
 }
-
 
 export default connect(null, {fetchSites, searchSites, getSite})(Autocomplete);

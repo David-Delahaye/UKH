@@ -14,7 +14,6 @@ router.get('/api/sites', async (req,res) => {
     try{
     if (req.query.name){
         const query = `%${req.query.name}%`
-        console.log(query);
         const response = await pool.query("SELECT * FROM site WHERE LOWER(site_name) LIKE LOWER($1);", [query]);
         res.send(response.rows);
     }else if (req.query.tags){
@@ -26,6 +25,7 @@ router.get('/api/sites', async (req,res) => {
         const response = await pool.query("SELECT * FROM site;");
         res.send(response.rows);
     }
+    
     }catch(err){
         console.error(err.message);
     }

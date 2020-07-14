@@ -52,13 +52,93 @@
   color: white;
 }
 
+.dropdown {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.dropdown .dropdownInput {
+  background-color: #3A7859;
+  color: white;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+  margin: none;
+  border: none;
+  display: block;
+}
+
+.dropdown .dropdownInput::-webkit-input-placeholder {
+  color: white;
+}
+
+.dropdown .dropdownInput:-ms-input-placeholder {
+  color: white;
+}
+
+.dropdown .dropdownInput::-ms-input-placeholder {
+  color: white;
+}
+
+.dropdown .dropdownInput::placeholder {
+  color: white;
+}
+
+.dropdown .dropdownWrapper {
+  position: absolute;
+  margin-top: -0.4rem;
+  z-index: 2;
+  background-color: #3A7859;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.dropdown .dropdownWrapper .dropdownContent {
+  margin-top: 0.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-top: none;
+}
+
+.dropdown .dropdownWrapper .dropdownContent .dropdownItem {
+  padding: 0.75rem;
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+  width: 100%;
+  color: white;
+}
+
+.dropdown .dropdownWrapper .dropdownContent .dropdownItem:hover {
+  -webkit-box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+}
+
+.dropdown .dropdownWrapper .dropdownContent .dropdownItem:focus {
+  -webkit-box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+}
+
+.dropdown .dropdownWrapper .dropdownContent .dropdownItem:last-of-type {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
 .search {
   width: 100%;
 }
 
 .search input {
   width: 100%;
-  margin-bottom: 1rem;
 }
 
 .search div:last-of-type {

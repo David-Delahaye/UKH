@@ -10,9 +10,7 @@ export const fetchSites = () => async dispatch => {
 }
 
 export const searchSites = (queryParams) => async dispatch => {
-    console.log(queryParams);
     const query = `?name=${queryParams.name}&tags=${queryParams.tags}`;
-    console.log(query);
     
     const response = await fetch('/api/sites'+ query);
     const jsonData = await response.json();
