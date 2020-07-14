@@ -3,7 +3,6 @@ import FullStars from "../images/FullStars.png"
 import HalfStars from "../images/HalfStars.png"
 const Stars = (props) =>{
     const score = props.average_score;
-    console.log(score);
     const calcScore = () => {
         let posMove = -(100-(10 * score))/2;
         if(score == null){

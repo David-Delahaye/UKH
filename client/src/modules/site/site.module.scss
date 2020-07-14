@@ -78,7 +78,6 @@ $light-orange: #F7E044;
         box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.199);
         p{
             font-size: 0.8rem;
-            margin-bottom: 1rem;
         }
         .buttons{
             position: absolute;
@@ -87,7 +86,9 @@ $light-orange: #F7E044;
             bottom: 0px;
             color:black;
             display: flex;
+            align-items: center;
             .price{
+                font-size: 1.4rem;
                 margin-right: 0.5rem;
                 font-weight: 800;
             }

@@ -62,6 +62,13 @@ class Site extends Component {
 
   render() {
     if(this.state.loaded){
+    let tagsFormat = this.props.site.tags.map((e, i) => {
+      console.log('here');
+      return (
+      <li key={i}>{e}</li>
+      );
+    });
+
     let commentFormat = this.props.comments.map((e, i) => {
       return (
         <Comment
@@ -94,7 +101,6 @@ class Site extends Component {
             <div className={site.headline}> 
               <h2>{this.props.site.site_name}</h2>
               <div className={site.starsWrapper}>
-                {console.log(this.props.site.average_score)}
                 <Stars average_score={this.props.site.average_score}/>
               </div>
             </div>
@@ -106,19 +112,11 @@ class Site extends Component {
             <div className={`${site.about} container-sm`}>
               <p>{this.props.site.description}</p>
               <ul className={site.list}>
-                <li>Easy to Grow</li>
-                <li>Nice and green</li>
-                <li>Quite nice</li>
-                <li>Easy to Grow</li>
-                <li>Nice and green</li>
-                <li>Quite nice</li>
-                <li>Easy to Grow</li>
-                <li>Nice and green</li>
-                <li>Quite nice</li>
+                {tagsFormat}
               </ul>
               <div className={site.buttons}>
-                <p className= {site.price}>£26.50<br/>/Night</p>
-                <a className= {form.btnPrimary}>Book Now</a>
+                <p className= {site.price}>£19.90</p>
+                <a className= {form.btnPrimary}>Order Now</a>
               </div>
           </div>
 

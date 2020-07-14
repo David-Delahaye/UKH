@@ -92,7 +92,6 @@
 
 .main .about p {
   font-size: 0.8rem;
-  margin-bottom: 1rem;
 }
 
 .main .about .buttons {
@@ -104,9 +103,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main .about .buttons .price {
+  font-size: 1.4rem;
   margin-right: 0.5rem;
   font-weight: 800;
 }
