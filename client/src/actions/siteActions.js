@@ -1,4 +1,4 @@
-import {FETCH_SITES, GET_SITE, FETCH_SITE, NEW_SITE, DELETE_SITE, UPDATE_SITE, NEW_MESSAGE} from './types'
+import {FETCH_SITES, SEARCH_SITES, GET_SITE, FETCH_SITE, NEW_SITE, DELETE_SITE, UPDATE_SITE, NEW_MESSAGE} from './types'
 
 export const fetchSites = () => async dispatch => {
     const response = await fetch('/api/sites');
@@ -8,6 +8,20 @@ export const fetchSites = () => async dispatch => {
         payload: jsonData
     })
 }
+
+export const searchSites = (queryParams) => async dispatch => {
+    console.log(queryParams);
+    const query = `?name=${queryParams.name}&tags=${queryParams.tags}`;
+    console.log(query);
+    
+    const response = await fetch('/api/sites'+ query);
+    const jsonData = await response.json();
+    dispatch({
+        type: SEARCH_SITES,
+        payload: jsonData
+    })
+}
+
 
 export const getSite = (site) => async dispatch => {
     dispatch({

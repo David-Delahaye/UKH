@@ -8,11 +8,19 @@ router.get('/', async (req,res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
 
+
 // INDEX SITES
 router.get('/api/sites', async (req,res) => {
     try{
-    const response = await pool.query("SELECT * FROM site;");
-    res.send(response.rows);
+    if (req.query.name){
+        const query = `%${req.query.name}%`
+        console.log(query);
+        const response = await pool.query("SELECT * FROM site WHERE LOWER(site_name) LIKE LOWER($1);", [query]);
+        res.send(response.rows);
+    }else{
+        const response = await pool.query("SELECT * FROM site;");
+        res.send(response.rows);
+    }
     }catch(err){
         console.error(err.message);
     }

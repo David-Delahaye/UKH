@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchSites, getSite} from '../actions/siteActions'
+import {fetchSites, searchSites, getSite} from '../actions/siteActions'
 import PropTypes from 'prop-types';
 import form from "../modules/form/form.module.css";
 import sites from "../modules/sites/sites.module.css";
@@ -17,6 +17,15 @@ class Sites extends Component {
 
     gotoSite = async (e,i) => {
       this.props.history.push('/sites/'+ e.site_id)
+    }
+
+    formSubmit = async (e) => {
+      e.preventDefault()
+      const queryParams = {
+        name: e.target.name.value,
+        tags: e.target.tags.value
+      }
+      this.props.searchSites(queryParams)
     }
   
     render(){
@@ -37,17 +46,17 @@ class Sites extends Component {
         </Link>
       )
     })
-  
+
     return(
       <div>
         <header className={`container ${sites.header}`}>
           <div className={sites.headline}>
             <h2>Search Plants </h2>
           </div>
-          <form className={form.search}>
-            <input className ={form.textInput} type='text' placeholder='Search by Name'/>
+          <form onSubmit={(e) => {this.formSubmit(e)}} className={form.search}>
+            <input className ={form.textInput} name='name' type='text' placeholder='Search by Name'/>
             <div>
-              <input className ={form.textInput} type='text' placeholder='Search by Location'/>
+              <input className ={form.textInput} name='tags' type='text' placeholder='Search by Tags'/>
               <button className={form.btnPrimary}>Search</button>
             </div>
           </form>
@@ -66,6 +75,7 @@ class Sites extends Component {
   Sites.propTypes = {
     sites : PropTypes.array.isRequired,
     fetchSites : PropTypes.func.isRequired,
+    searchSites : PropTypes.func.isRequired,
     getSite : PropTypes.func.isRequired,
   }
   
@@ -73,4 +83,4 @@ class Sites extends Component {
     sites: state.sites.items
   })
 
-  export default connect(mapStateToProps, {fetchSites, getSite})(Sites);
+  export default connect(mapStateToProps, {fetchSites, searchSites, getSite})(Sites);

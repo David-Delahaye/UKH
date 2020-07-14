@@ -1,5 +1,6 @@
 //SITE
 export const FETCH_SITES = 'FETCH_SITES';
+export const SEARCH_SITES = 'SEARCH_SITES';
 export const FETCH_SITE = 'FETCH_SITE';
 export const GET_SITE = 'GET_SITE';
 export const NEW_SITE = 'NEW_SITE';

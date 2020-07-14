@@ -1,4 +1,4 @@
-import {FETCH_SITES, NEW_SITE, DELETE_SITE, FETCH_SITE, GET_SITE, UPDATE_SITE} from '../actions/types';
+import {FETCH_SITES, SEARCH_SITES, NEW_SITE, DELETE_SITE, FETCH_SITE, GET_SITE, UPDATE_SITE} from '../actions/types';
 import { bindActionCreators } from 'redux';
 
 const initialState = {
@@ -9,6 +9,11 @@ const initialState = {
 export default function(state = initialState, action){
     switch(action.type){
         case FETCH_SITES:
+            return {
+                ...state,
+                items:action.payload
+            };
+        case SEARCH_SITES:
             return {
                 ...state,
                 items:action.payload
