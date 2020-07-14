@@ -63,6 +63,7 @@ class Sites extends Component {
           <img className={sites.divider} src={Divider}/>
         </header>
         <main className='container'>
+          <h5>Displaying {this.props.sites.length} Result(s)</h5>
           <div className={sites.grid}>
           {siteFormat}
           </div>
