@@ -3,11 +3,12 @@ import { Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchSites, searchSites, getSite} from '../actions/siteActions'
 import PropTypes from 'prop-types';
+import Autocomplete from './AutoComplete';
 import form from "../modules/form/form.module.css";
 import sites from "../modules/sites/sites.module.css";
 import Stars from "./Stars";
 import Divider from "../images/DividerLight.png"
-import Fire from "../images/Fire.png"
+
 
 
 class Sites extends Component {
@@ -54,6 +55,7 @@ class Sites extends Component {
             <h2>Search Plants </h2>
           </div>
           <form onSubmit={(e) => {this.formSubmit(e)}} className={form.search}>
+            <Autocomplete/>
             <input className ={form.textInput} name='name' type='text' placeholder='Search by Name'/>
             <div>
               <input className ={form.textInput} name='tags' type='text' placeholder='Search by Tags'/>
