@@ -21,9 +21,9 @@ router.get('/api/sites', async (req,res) => {
 //POST SITE
 router.post('/api/sites', isAuth, async (req,res) => {
     try{
-    const {siteName, siteDesc} = req.body;
+    let {siteName, siteDesc, siteTags} = req.body;
     const owner_id = req.user.user_id;
-    const response = await pool.query("INSERT INTO site (site_name, description, owner_id, created_on) VALUES($1,$2,$3,current_timestamp) RETURNING*;", [siteName, siteDesc, owner_id]);
+    const response = await pool.query("INSERT INTO site (site_name, description, owner_id, tags, created_on) VALUES($1,$2,$3,$4, current_timestamp) RETURNING*;", [siteName, siteDesc, owner_id, siteTags]);
     res.status(200).json({ message: {type: 'success', content:'Successfully created site'} })
     }catch(err){
         console.error(err.message);

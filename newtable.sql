@@ -3,7 +3,8 @@ CREATE TABLE site(
     site_name VARCHAR (50) NOT NULL,
     description VARCHAR (1000) NOT NULL,
     created_on TIMESTAMP NOT NULL,
-    owner_id VARCHAR(50) NOT NULL
+    owner_id VARCHAR(50) NOT NULL,
+    tags text[] NOT NULL DEFAULT '{}'
 );
 
 CREATE TABLE users(
@@ -26,9 +27,3 @@ CREATE TABLE site_tags(
     site_id VARCHAR(50) NOT NULL,
     tag VARCHAR(50) NOT NULL,
 );
-
-)
-
-)
-
-CREATE TABLE 
