@@ -90,6 +90,53 @@ $light-orange: #F7E044;
     }
 }
 
+.tags{
+    margin-bottom: 1rem;
+    position: relative;
+    .tagsList{
+        background-color: $light-green;
+        color: white;
+        height: 2.5rem;
+        border-radius: 0.5rem;
+        padding-inline-start: 0.5rem;
+        margin: none;
+        border: none;
+        display: block;
+        &::placeholder{
+            color: white;
+        }
+    }
+    .tagsWrapper{
+        top: 2.5rem;
+        position: absolute;
+        z-index:2;
+        background-color: $light-green;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        .tagsContent{
+            margin-top: 0.4rem;
+            display: flex;
+            border-top: none;
+            .tagsItem{
+                width: 1rem;
+                padding: 0.75rem;
+                padding-inline-start: 0.5rem;
+                width: 100%;
+                color: white;
+                &:hover{
+                    box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+                }
+                &:focus{
+                    box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+                }
+                &:last-of-type{
+                    border-bottom-left-radius: 0.5rem;
+                    border-bottom-right-radius: 0.5rem;
+                }
+            }
+        }
+    }
+}
 
 .hidden{
     display: none;

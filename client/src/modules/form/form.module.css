@@ -129,6 +129,80 @@
   border-bottom-right-radius: 0.5rem;
 }
 
+.tags {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.tags .tagsList {
+  background-color: #3A7859;
+  color: white;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+  margin: none;
+  border: none;
+  display: block;
+}
+
+.tags .tagsList::-webkit-input-placeholder {
+  color: white;
+}
+
+.tags .tagsList:-ms-input-placeholder {
+  color: white;
+}
+
+.tags .tagsList::-ms-input-placeholder {
+  color: white;
+}
+
+.tags .tagsList::placeholder {
+  color: white;
+}
+
+.tags .tagsWrapper {
+  top: 2.5rem;
+  position: absolute;
+  z-index: 2;
+  background-color: #3A7859;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.tags .tagsWrapper .tagsContent {
+  margin-top: 0.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-top: none;
+}
+
+.tags .tagsWrapper .tagsContent .tagsItem {
+  width: 1rem;
+  padding: 0.75rem;
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+  width: 100%;
+  color: white;
+}
+
+.tags .tagsWrapper .tagsContent .tagsItem:hover {
+  -webkit-box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+}
+
+.tags .tagsWrapper .tagsContent .tagsItem:focus {
+  -webkit-box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
+}
+
+.tags .tagsWrapper .tagsContent .tagsItem:last-of-type {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
 .hidden {
   display: none;
 }

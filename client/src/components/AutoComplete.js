@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {fetchSites, searchSites, getSite} from '../actions/siteActions'
 import PropTypes from 'prop-types';
 import form from '../modules/form/form.module.css'
-import { json } from 'body-parser';
+
 
 class Autocomplete extends Component{
     constructor(props){
@@ -19,6 +19,7 @@ class Autocomplete extends Component{
     }
 
     componentDidMount() {
+        this.setState({input:this.props.onMount})
         document.addEventListener('mousedown', this.handleClickOutside);
     }
 
@@ -86,7 +87,7 @@ class Autocomplete extends Component{
         if (this.state.items.length !== 0 && this.state.closed === false){
         return(
             <div ref={this.wrapperRef} className={form.dropdown}>
-                <input onInput={(e) => {this.debounce(e.target.value)}} className={form.dropdownInput} value={this.state.input} name='name' placeholder='Search by Name' autoComplete='Off' />
+                <input onChange={(e) => {this.debounce(e.target.value)}} className={form.dropdownInput} value={this.state.input} name='name' placeholder='Search by Name' autoComplete='Off' />
                 <div className={form.dropdownWrapper}>
                     <div className={form.dropdownContent}>
                         {renderResults}
@@ -96,7 +97,7 @@ class Autocomplete extends Component{
         )}else {
             return(
                 <div ref={this.wrapperRef} className={form.dropdown}>
-                <input onInput={(e) => {this.debounce(e.target.value)}} className={form.textInput} value={this.state.input} name='name' placeholder='Search by Name' autoComplete='Off' />
+                <input onChange={(e) => {this.debounce(e.target.value)}} className={form.textInput} value={this.state.input} name='name' placeholder='Search by Name' autoComplete='Off' />
                 </div>
             )
         }
