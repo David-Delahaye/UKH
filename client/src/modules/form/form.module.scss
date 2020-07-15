@@ -106,13 +106,14 @@ $light-orange: #F7E044;
         }
     }
     .tagsWrapper{
-        top: 2.5rem;
+        top: 2rem;
         position: absolute;
         z-index:2;
         background-color: $light-green;
         border-bottom-left-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
         .tagsContent{
+            padding-top: 1rem;
             display: flex;
             border-top: none;
             .tagsItem{

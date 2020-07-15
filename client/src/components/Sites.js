@@ -16,8 +16,8 @@ class Sites extends Component {
   constructor(props){
     super(props);
     this.state = {
-      name:'',
-      tags:[]
+      name:this.props.search.name ? this.props.search.name: '',
+      tags:this.props.search.tags ? this.props.search.tags: []
     }
   }
     componentDidMount(){
@@ -38,13 +38,15 @@ class Sites extends Component {
         name: this.state.name,
         tags: this.state.tags
       }
+      console.log(queryParams);
+      
 
       this.props.newSearch(queryParams);
       this.props.searchSites(queryParams);
     }
 
     handleTags = async (e) => {
-      this.setState({tags:e})
+      this.setState({tags:e})   
     }
 
     handleName = async (e) => {

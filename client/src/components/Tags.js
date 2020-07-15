@@ -23,7 +23,6 @@ class Tags extends Component{
         const tags = await this.props.search.tags ? this.props.search.tags : [];
         await this.setState({checked:tags})
         await this.setState({input:tags})
-        console.log(this.state.checked);
         
         document.addEventListener('mousedown', this.handleClickOutside);
         this.setState({loaded:true})
@@ -63,17 +62,17 @@ class Tags extends Component{
             return (
                 <label className={form.tagsItem} key = {i}>
                     {e}
-                <input onClick={(e) =>{this.checkBox(e)}} name={e} type='checkbox' checked={isChecked}/>
+                <input onChange={(e) =>{this.checkBox(e)}} name={e} type='checkbox' checked={isChecked}/>
                 </label>
             )
         })
 
         if(this.state.closed){
-            return <input ref={this.wrapperRef} onClick ={() => {console.log('here'); this.setState({closed:false})}} className ={form.textInput} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags' autoComplete='Off' />
+            return <input ref={this.wrapperRef} onClick ={() => {this.setState({closed:false})}} className ={form.textInput} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags' autoComplete='Off' />
         }
         return(
             <div ref={this.wrapperRef} className={form.tags}>
-                <input className ={form.tagsList} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags'/>
+                <input className ={form.tagsList} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags' autoComplete='Off'/>
                 <div className={form.tagsWrapper}>
                     <div className={form.tagsContent}>
                         {renderResults}

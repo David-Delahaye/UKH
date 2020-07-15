@@ -4,6 +4,7 @@ CREATE TABLE site(
     description VARCHAR (1000) NOT NULL,
     created_on TIMESTAMP NOT NULL,
     owner_id VARCHAR(50) NOT NULL,
+    average_score VARCHAR(50),
     tags text[] NOT NULL DEFAULT '{}'
 );
 
