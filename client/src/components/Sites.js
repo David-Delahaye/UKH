@@ -17,7 +17,9 @@ class Sites extends Component {
     super(props);
     this.state = {
       name:this.props.search.name ? this.props.search.name: '',
-      tags:this.props.search.tags ? this.props.search.tags: []
+      tags:this.props.search.tags ? this.props.search.tags: [],
+      order: this.props.search.order,
+      direction: this.props.search.direction
     }
   }
     componentDidMount(){
@@ -37,8 +39,8 @@ class Sites extends Component {
       const queryParams = {
         name: this.state.name,
         tags: this.state.tags,
-        order: 'average_score',
-        direction: 'ASC'
+        order: this.state.order,
+        direction: this.state.direction,
       }
       console.log(queryParams);
       
@@ -52,6 +54,35 @@ class Sites extends Component {
 
     handleName = async (e) => {
       this.setState({name:e})
+    }
+
+    orderChange = async (e) => {
+      console.log(e.target.value);
+      const splitted = e.target.value.split(" ");
+      let order;
+      let direction;
+      console.log(splitted[0] === 'Rating');
+      if (splitted[0] === 'Rating'){
+        order = 'average_score'
+      }else if (splitted[0] === 'Newest'){
+        order = 'created_on'
+      }else if (splitted[0] === 'Alphabetical'){
+        order = 'site_name'
+      }
+      if (splitted[1] === '(ASC)'){
+        direction = 'ASC'
+      }else if (splitted[1] === '(DESC)'){
+        direction = 'DESC'
+      }
+
+      console.log(order);
+      console.log(direction);
+      
+      
+
+      await this.setState({order:order});
+      await this.setState({direction:direction});
+      this.formSubmit(e);
     }
   
     render(){
@@ -90,13 +121,13 @@ class Sites extends Component {
         </header>
         <main className='container'>
           <h5>Displaying {this.props.sites.length} Result(s)</h5>
-          <select>
-            <option>Rating ^</option>
-            <option>Rating v</option>
-            <option>Newest ^</option>
-            <option>Newest v</option>
-            <option>Alphabetical ^</option>
-            <option>Alphabetical v</option>
+          <select onChange ={(e) => {this.orderChange(e)}}>
+            <option>Rating (ASC)</option>
+            <option>Rating (DESC)</option>
+            <option>Newest (ASC)</option>
+            <option>Newest (DESC)</option>
+            <option>Alphabetical (ASC)</option>
+            <option>Alphabetical (DESC)</option>
           </select>
           <h5>Order By Rating (Asc)</h5>
           <div className={sites.grid}>
