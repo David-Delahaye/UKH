@@ -36,7 +36,9 @@ class Sites extends Component {
       e.preventDefault()
       const queryParams = {
         name: this.state.name,
-        tags: this.state.tags
+        tags: this.state.tags,
+        order: 'average_score',
+        direction: 'ASC'
       }
       console.log(queryParams);
       
@@ -89,6 +91,7 @@ class Sites extends Component {
         </header>
         <main className='container'>
           <h5>Displaying {this.props.sites.length} Result(s)</h5>
+          <h5>Order By Rating (Asc)</h5>
           <div className={sites.grid}>
           {siteFormat}
           </div>

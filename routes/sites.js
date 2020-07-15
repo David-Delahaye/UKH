@@ -11,26 +11,36 @@ router.get('/', async (req,res) => {
 
 // INDEX SITES
 router.get('/api/sites', async (req,res) => {
+    //Get order string
     try{
+    const orderStart = 'ORDER BY '
+    const orderQuery = req.query.order + ' ';
+    const direction = req.query.direction;
+    const order = req.query.order ? orderStart + orderQuery + direction + ';' :';';
+
     //NAME AND TAGS
     if (req.query.name && req.query.tags){
         const nameQuery = `%${req.query.name}%`
         const tagsQuery = `{${req.query.tags}}`
-        const response = await pool.query("SELECT * FROM site WHERE LOWER(site_name) LIKE LOWER($1) AND tags @> $2;", [nameQuery, tagsQuery]);
+        const text = await "SELECT * FROM site WHERE LOWER(site_name) LIKE LOWER($1) AND tags @> $2 " + order;
+        const response = await pool.query(text, [nameQuery, tagsQuery]);
         res.send(response.rows);
     //JUST NAME SEARCH
     }else if (req.query.name){
         const query = `%${req.query.name}%`
-        const response = await pool.query("SELECT * FROM site WHERE LOWER(site_name) LIKE LOWER($1);", [query]);
+        const text = "SELECT * FROM site WHERE LOWER(site_name) LIKE LOWER($1) " + order;
+        const response = await pool.query(text , [query]);
         res.send(response.rows);
     //JUST TAGS
     }else if (req.query.tags){
         const query = `{${req.query.tags}}`
-        const response = await pool.query("SELECT * FROM site WHERE tags @> $1", [query]);
+        const text = "SELECT * FROM site WHERE tags @> $1 " + order;
+        const response = await pool.query(text , [query]);
         res.send(response.rows);
     //NO SEARCH
     }else{
-        const response = await pool.query("SELECT * FROM site;");
+        const text = "SELECT * FROM site " + order;
+        const response = await pool.query(text);
         res.send(response.rows);
     }
     
