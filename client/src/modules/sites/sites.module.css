@@ -50,8 +50,6 @@ main {
   -ms-grid-columns: (100%)[1];
       grid-template-columns: repeat(1, 100%);
   row-gap: 1rem;
-  padding: 0.5rem;
-  margin-left: -0.5rem;
   -webkit-column-gap: 1rem;
           column-gap: 1rem;
 }
@@ -130,6 +128,7 @@ main {
   .grid {
     -ms-grid-columns: (50%)[2];
         grid-template-columns: repeat(2, 50%);
+    margin-right: 1rem;
   }
 }
 
@@ -137,6 +136,7 @@ main {
   .grid {
     -ms-grid-columns: (33.33333%)[3];
         grid-template-columns: repeat(3, 33.33333%);
+    margin-right: 2rem;
   }
 }
 
@@ -144,6 +144,7 @@ main {
   .grid {
     -ms-grid-columns: (25%)[4];
         grid-template-columns: repeat(4, 25%);
+    margin-right: 3rem;
   }
 }
 /*# sourceMappingURL=sites.module.css.map */

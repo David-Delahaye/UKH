@@ -200,6 +200,24 @@
   border-bottom-right-radius: 0.5rem;
 }
 
+.sortBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.sortBar select {
+  width: 10rem;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+}
+
 .hidden {
   display: none;
 }

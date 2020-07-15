@@ -42,8 +42,6 @@ class Sites extends Component {
         order: this.state.order,
         direction: this.state.direction,
       }
-      console.log(queryParams);
-      
       this.props.newSearch(queryParams);
       this.props.searchSites(queryParams);
     }
@@ -57,32 +55,23 @@ class Sites extends Component {
     }
 
     orderChange = async (e) => {
-      console.log(e.target.value);
-      const splitted = e.target.value.split(" ");
-      let order;
-      let direction;
-      console.log(splitted[0] === 'Rating');
-      if (splitted[0] === 'Rating'){
-        order = 'average_score'
-      }else if (splitted[0] === 'Newest'){
-        order = 'created_on'
-      }else if (splitted[0] === 'Alphabetical'){
-        order = 'site_name'
-      }
-      if (splitted[1] === '(ASC)'){
-        direction = 'ASC'
-      }else if (splitted[1] === '(DESC)'){
-        direction = 'DESC'
-      }
+      const value = e.target.value;
+      const split = value.split(' ')
 
-      console.log(order);
-      console.log(direction);
-      
+      let order = split[0];
+      let direction = split[1];
       
 
       await this.setState({order:order});
       await this.setState({direction:direction});
-      this.formSubmit(e);
+      const queryParams = {
+        name: this.state.name,
+        tags: this.state.tags,
+        order: this.state.order,
+        direction: this.state.direction,
+      }
+      this.props.newSearch(queryParams);
+      this.props.searchSites(queryParams);
     }
   
     render(){
@@ -120,16 +109,17 @@ class Sites extends Component {
           <img className={sites.divider} src={Divider}/>
         </header>
         <main className='container'>
-          <h5>Displaying {this.props.sites.length} Result(s)</h5>
-          <select onChange ={(e) => {this.orderChange(e)}}>
-            <option>Rating (ASC)</option>
-            <option>Rating (DESC)</option>
-            <option>Newest (ASC)</option>
-            <option>Newest (DESC)</option>
-            <option>Alphabetical (ASC)</option>
-            <option>Alphabetical (DESC)</option>
-          </select>
-          <h5>Order By Rating (Asc)</h5>
+          <div className={form.sortBar}>
+            <h5>Displaying {this.props.sites.length} Result(s)</h5>
+            <select onChange ={(e) => {this.orderChange(e)}}>
+              <option value='average_score DESC'>Rating, High to low</option>
+              <option value='average_score ASC'>Rating, Low to High</option>
+              <option value='created_on DESC'>Newest First</option>
+              <option value='created_on ASC'>Oldest First</option>
+              <option value='site_name ASC'>Alphabetically, A-Z</option>
+              <option value='site_name DESC'>Alphabetically, Z-A</option>
+            </select>
+          </div>
           <div className={sites.grid}>
           {siteFormat}
           </div>
