@@ -42,7 +42,6 @@ class Sites extends Component {
       }
       console.log(queryParams);
       
-
       this.props.newSearch(queryParams);
       this.props.searchSites(queryParams);
     }
@@ -91,6 +90,14 @@ class Sites extends Component {
         </header>
         <main className='container'>
           <h5>Displaying {this.props.sites.length} Result(s)</h5>
+          <select>
+            <option>Rating ^</option>
+            <option>Rating v</option>
+            <option>Newest ^</option>
+            <option>Newest v</option>
+            <option>Alphabetical ^</option>
+            <option>Alphabetical v</option>
+          </select>
           <h5>Order By Rating (Asc)</h5>
           <div className={sites.grid}>
           {siteFormat}
