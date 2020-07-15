@@ -130,7 +130,6 @@
 }
 
 .tags {
-  margin-bottom: 1rem;
   position: relative;
 }
 
@@ -172,7 +171,6 @@
 }
 
 .tags .tagsWrapper .tagsContent {
-  margin-top: 0.4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -180,11 +178,9 @@
 }
 
 .tags .tagsWrapper .tagsContent .tagsItem {
-  width: 1rem;
-  padding: 0.75rem;
+  width: 100%;
   -webkit-padding-start: 0.5rem;
           padding-inline-start: 0.5rem;
-  width: 100%;
   color: white;
 }
 

@@ -52,6 +52,7 @@ class Autocomplete extends Component{
     }
 
     onInput = async (value) => {
+        this.props.handleChange(value)
         this.setState({closed:false})
         if (value){
             const items = await this.fetchData(value);
@@ -72,6 +73,7 @@ class Autocomplete extends Component{
 
     setInput = (value) => {
         this.setState({input:value});
+        this.props.handleChange(value)
         this.setState({closed:true});
     }
 
@@ -104,4 +106,9 @@ class Autocomplete extends Component{
     }
 }
 
-export default connect(null, {fetchSites, searchSites, getSite})(Autocomplete);
+const mapStateToProps = state => ({
+    sites: state.sites.items,
+    search: state.sites.search
+  })
+
+export default connect(mapStateToProps, {fetchSites, searchSites, getSite})(Autocomplete);

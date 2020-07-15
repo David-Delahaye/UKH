@@ -13,6 +13,13 @@ import Divider from "../images/DividerLight.png"
 
 
 class Sites extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      name:'',
+      tags:[]
+    }
+  }
     componentDidMount(){
       if (Object.keys(this.props.search).length !== 0){
         this.props.searchSites(this.props.search);
@@ -28,12 +35,20 @@ class Sites extends Component {
     formSubmit = async (e) => {
       e.preventDefault()
       const queryParams = {
-        name: e.target.name.value,
-        tags: e.target.tags.value
+        name: this.state.name,
+        tags: this.state.tags
       }
 
       this.props.newSearch(queryParams);
       this.props.searchSites(queryParams);
+    }
+
+    handleTags = async (e) => {
+      this.setState({tags:e})
+    }
+
+    handleName = async (e) => {
+      this.setState({name:e})
     }
   
     render(){
@@ -62,9 +77,9 @@ class Sites extends Component {
             <h2>Search Plants </h2>
           </div>
           <form onSubmit={(e) => {this.formSubmit(e)}} className={form.search}>
-            <Autocomplete onMount={this.props.search.name}/>
+            <Autocomplete  handleChange={this.handleName} onMount={this.props.search.name}/>
             <div>
-              <Tags />
+              <Tags handleChange={this.handleTags} onMount={this.props.search.tags}/>
               <button className={form.btnPrimary}>Search</button>
             </div>
           </form>

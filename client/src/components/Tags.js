@@ -8,29 +8,72 @@ import form from '../modules/form/form.module.css'
 class Tags extends Component{
     constructor(props){
         super(props);
+        this.wrapperRef = React.createRef();
+        this.handleClickOutside = this.handleClickOutside.bind(this);
         this.state = {
+            loaded:false,
             closed:true,
             input:'',
-            tags:['green', 'tall', 'big', 'nice']
+            checked:[],
+            tags:['green', 'tall', 'big', 'nice', 'tag']
         }
+    }
+
+    async componentDidMount() {
+        const tags = await this.props.search.tags ? this.props.search.tags : [];
+        await this.setState({checked:tags})
+        await this.setState({input:tags})
+        console.log(this.state.checked);
+        
+        document.addEventListener('mousedown', this.handleClickOutside);
+        this.setState({loaded:true})
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    handleClickOutside(e) {
+        if (this.wrapperRef && !this.wrapperRef.current.contains(e.target)) {
+            this.setState({closed:true})
+        }
+    }
+
+    checkBox = async (e) => {
+        if(e.target.checked){
+        const prevTags = this.state.checked.slice();
+        prevTags.push(e.target.name);
+        await this.setState({checked:prevTags})
+        }else{
+        let prevTags = this.state.checked.slice();
+        prevTags = prevTags.filter(f => f !== e.target.name);
+        await this.setState({checked:prevTags})
+        }
+        this.updateInput()
+    }
+
+    updateInput = () => {
+        this.setState({input:this.state.checked})
+        this.props.handleChange(this.state.checked)
     }
 
     render(){
         let renderResults = this.state.tags.map ((e,i) => {
+            const isChecked = this.state.checked.includes(e);
             return (
                 <label className={form.tagsItem} key = {i}>
                     {e}
-                <input type='checkbox'/>
+                <input onClick={(e) =>{this.checkBox(e)}} name={e} type='checkbox' checked={isChecked}/>
                 </label>
             )
         })
 
         if(this.state.closed){
-            return <input onClick ={() => this.setState({closed:false})} className ={form.tagsList} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags' disabled='true'/>
+            return <input ref={this.wrapperRef} onClick ={() => {console.log('here'); this.setState({closed:false})}} className ={form.textInput} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags' autoComplete='Off' />
         }
         return(
-            <div className={form.tags}>
-                <input className ={form.tagsList} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags' disabled='true'/>
+            <div ref={this.wrapperRef} className={form.tags}>
+                <input className ={form.tagsList} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags'/>
                 <div className={form.tagsWrapper}>
                     <div className={form.tagsContent}>
                         {renderResults}
@@ -41,4 +84,9 @@ class Tags extends Component{
     }
 }
 
-export default connect(null, {fetchSites, searchSites, getSite})(Tags);
+const mapStateToProps = state => ({
+    sites: state.sites.items,
+    search: state.sites.search
+  })
+
+export default connect(mapStateToProps, {fetchSites, searchSites, getSite})(Tags);
