@@ -1,7 +1,7 @@
 import {FETCH_SITES, NEW_SEARCH, SEARCH_SITES, GET_SITE, FETCH_SITE, NEW_SITE, DELETE_SITE, UPDATE_SITE, NEW_MESSAGE} from './types'
 
-export const fetchSites = () => async dispatch => {
-    const response = await fetch('/api/sites');
+export const fetchSites = (queryParams) => async dispatch => {
+    const response = await fetch(`api/sites?order=${queryParams.order}&direction=${queryParams.direction}`);
     const jsonData = await response.json();
     dispatch({
         type: FETCH_SITES,

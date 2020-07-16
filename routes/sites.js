@@ -11,7 +11,7 @@ router.get('/', async (req,res) => {
 
 // INDEX SITES
 router.get('/api/sites', async (req,res) => {
-    //Get order string
+    //Get order
     try{
     const orderStart = 'ORDER BY '
     const orderQuery = req.query.order + ' ';

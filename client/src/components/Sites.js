@@ -18,15 +18,21 @@ class Sites extends Component {
     this.state = {
       name:this.props.search.name ? this.props.search.name: '',
       tags:this.props.search.tags ? this.props.search.tags: [],
-      order: this.props.search.order,
-      direction: this.props.search.direction
+      order: this.props.search.order ? this.props.search.order: 'average_score',
+      direction: this.props.search.direction ? this.props.search.order: 'DESC' 
     }
   }
     componentDidMount(){
       if (Object.keys(this.props.search).length !== 0){
         this.props.searchSites(this.props.search);
       }else{
-        this.props.fetchSites();
+        const queryParams = {
+          order:this.state.order,
+          direction:this.state.direction
+        }
+        console.log(queryParams);
+        
+        this.props.fetchSites(queryParams);
       }
     }
 
