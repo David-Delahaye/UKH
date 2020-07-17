@@ -1,0 +1,27 @@
+nav {
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0rem 1rem;
+  background-color: #062D23;
+  color: white;
+  width: 100%;
+  height: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+nav .rightNav {
+  margin-left: auto;
+}
+
+nav .rightNav a {
+  padding-left: 1rem;
+}
+/*# sourceMappingURL=nav.module.css.map */

@@ -1,0 +1,26 @@
+$darker-green : #062D23;
+$dark-green: #093E31;
+$light-green: #3A7859;
+$dark-blue: #299798;
+$light-blue: #BCF5E7;
+$dark-orange: #EF9529;
+$light-orange: #F7E044;
+
+nav{
+    font-weight: 400;
+    font-size: 0.9rem;
+    padding: 0rem 1rem;
+    background-color: $darker-green;
+    color: white;
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .rightNav{
+        margin-left: auto;
+        a{
+            padding-left: 1rem;
+        }
+    }
+} 
