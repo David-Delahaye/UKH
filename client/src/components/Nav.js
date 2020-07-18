@@ -11,11 +11,10 @@ class Nav extends Component {
     super(props)
   }
 
-  showmenu = (e) => {
+  showMenu = (e) => {
     console.log('clicked');
     const menu = document.querySelector('#menu');
     console.log(menu);
-    
     menu.classList.toggle(nav.closed) 
   }
 
@@ -24,12 +23,12 @@ render(){
     return(
       <nav>
         <Link to="/">UKH</Link>
-        <div onClick={(e) => {this.showmenu(e)}}>burger</div>
+        <div onClick={(e) => {this.showMenu(e)}}>burger</div>
         <div id='menu' className={nav.rightNav + ' ' + nav.phoneMenu}>
-          <Link to="/sites">All Plants</Link>
-          <Link to="/sites/new">Add Plant</Link>
+          <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plants</Link>
+          <Link onClick={(e) => {this.showMenu(e)}} to="/sites/new">Add Plant</Link>
           <Link>Logged in as {this.props.user.username}</Link>
-          <Logout/>
+          <Logout onClick={(e) => {this.showMenu(e)}}/>
         </div>
       </nav>
     )
