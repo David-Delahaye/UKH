@@ -1,4 +1,5 @@
 nav {
+  position: relative;
   font-weight: 400;
   font-size: 0.9rem;
   padding: 0rem 1rem;
@@ -22,6 +23,29 @@ nav .rightNav {
 }
 
 nav .rightNav a {
-  padding-left: 1rem;
+  padding: 0.5rem;
+}
+
+.phoneMenu {
+  -webkit-transition: 1s;
+  transition: 1s;
+  position: fixed;
+  z-index: 5;
+  top: 2rem;
+  left: 2rem;
+  height: 100vh;
+  width: 100%;
+  background-color: #062D23;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.closed {
+  left: 100%;
 }
 /*# sourceMappingURL=nav.module.css.map */

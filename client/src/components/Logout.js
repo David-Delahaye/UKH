@@ -22,7 +22,7 @@ logout = async ()=>{
           return <Redirect to ={this.state.redirect}/>
       }
       return(
-        <p onClick={() =>{this.logout()}}>Logout</p>
+        <a onClick={() =>{this.logout()}}>Logout</a>
       )
   }
 }

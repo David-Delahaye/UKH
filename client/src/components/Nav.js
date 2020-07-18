@@ -7,17 +7,29 @@ import PropTypes from 'prop-types';
 import nav from "../modules/nav/nav.module.css";
 
 class Nav extends Component {
+  constructor(props){
+    super(props)
+  }
+
+  showmenu = (e) => {
+    console.log('clicked');
+    const menu = document.querySelector('#menu');
+    console.log(menu);
+    
+    menu.classList.toggle(nav.closed) 
+  }
 
 render(){
   if (this.props.user.username !== 'guest'){
     return(
       <nav>
         <Link to="/">UKH</Link>
-        <div className={nav.rightNav}>
-        Logged in as {this.props.user.username}
-        <Link to="/sites">All Plants</Link>
-        <Link to="/sites/new">Add Plant</Link>
-        <Logout/>
+        <div onClick={(e) => {this.showmenu(e)}}>burger</div>
+        <div id='menu' className={nav.rightNav + ' ' + nav.phoneMenu}>
+          <Link to="/sites">All Plants</Link>
+          <Link to="/sites/new">Add Plant</Link>
+          <Link>Logged in as {this.props.user.username}</Link>
+          <Logout/>
         </div>
       </nav>
     )
