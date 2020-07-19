@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {logoutUser} from '../actions/authActions'
 import PropTypes from 'prop-types';
 import nav from "../modules/nav/nav.module.css";
+import { newSearch } from '../actions/siteActions';
 
 class Nav extends Component {
   constructor(props){
@@ -14,7 +15,8 @@ class Nav extends Component {
   showMenu = (e) => {
     console.log('clicked');
     const menu = document.querySelector('#menu');
-    console.log(menu);
+    const burger = document.querySelector('#burger');
+    burger.classList.toggle(nav.closedBurger) 
     menu.classList.toggle(nav.closed) 
   }
 
@@ -23,8 +25,12 @@ render(){
     return(
       <nav>
         <Link to="/">UKH</Link>
-        <div onClick={(e) => {this.showMenu(e)}}>burger</div>
-        <div id='menu' className={nav.rightNav + ' ' + nav.phoneMenu}>
+        <div id='burger' className={nav.burger} onClick={(e) => {this.showMenu(e)}}>
+          <div/>
+          <div/>
+          <div/>
+        </div>
+        <div id='menu' className={nav.rightNav + ' ' + nav.phoneMenu + ' ' + nav.closed}>
           <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plants</Link>
           <Link onClick={(e) => {this.showMenu(e)}} to="/sites/new">Add Plant</Link>
           <Link>Logged in as {this.props.user.username}</Link>

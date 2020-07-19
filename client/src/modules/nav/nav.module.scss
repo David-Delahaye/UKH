@@ -8,8 +8,8 @@ $light-orange: #F7E044;
 
 nav{
     position: relative;
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-weight: 700;
+    font-size: 1.2rem;
     padding: 0rem 1rem;
     background-color: $darker-green;
     color: white;
@@ -27,7 +27,7 @@ nav{
 } 
 
 .phoneMenu{
-    transition: 1s;
+    transition: 0.5s;
     position: fixed;
     z-index: 5;
     top: 2rem;
@@ -41,4 +41,45 @@ nav{
 
 .closed{
     left: 100%;
+}
+
+.burger{
+    height: 20px;
+    width: 2rem;
+    margin: auto 0px;
+    position: relative;
+    div{
+        transition: 0.2s;
+        position: absolute;
+        width: 2rem;
+        height: 4px;
+        right: 0px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 2px;
+        &:nth-of-type(1){
+            top:0px;
+        }
+        &:nth-of-type(2){
+            top:8px;
+        }
+        &:nth-of-type(3){
+            top:16px;
+    }
+}
+}
+
+.closedBurger{
+    div{
+        &:nth-of-type(1){
+            top: 8px;
+            transform: rotate(45deg);
+        }
+        &:nth-of-type(2){
+            width: 0rem;
+        }
+        &:nth-of-type(3){
+            top: 8px;   
+            transform: rotate(-45deg);
+        }
+    }
 }
