@@ -14,13 +14,33 @@ class Nav extends Component {
 
   showMenu = (e) => {
     console.log('clicked');
+    console.log(window.innerWidth)
     const menu = document.querySelector('#menu');
     const burger = document.querySelector('#burger');
+    console.log(menu);
+    
     burger.classList.toggle(nav.closedBurger) 
     menu.classList.toggle(nav.closed) 
   }
 
 render(){
+  const phoneMenu = (
+  <div id='menu' className={nav.rightNav + ' ' + nav.phoneMenu + ' ' + nav.closed}>
+    <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plants</Link>
+    <Link onClick={(e) => {this.showMenu(e)}} to="/sites/new">Add Plant</Link>
+    <Link>Logged in as {this.props.user.username}</Link>
+    <Logout onClick={(e) => {this.showMenu(e)}}/>
+  </div>
+  )
+
+  const phoneMenuGuest = (
+    <div id='menu' className={nav.rightNav + ' ' + nav.phoneMenu + ' ' + nav.closed}>
+      <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plant</Link>
+      <Link onClick={(e) => {this.showMenu(e)}} to="/login">Login</Link>
+      <Link onClick={(e) => {this.showMenu(e)}} to="/register">Register</Link>
+  </div>
+  )
+
   if (this.props.user.username !== 'guest'){
     return(
       <nav>
@@ -30,23 +50,19 @@ render(){
           <div/>
           <div/>
         </div>
-        <div id='menu' className={nav.rightNav + ' ' + nav.phoneMenu + ' ' + nav.closed}>
-          <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plants</Link>
-          <Link onClick={(e) => {this.showMenu(e)}} to="/sites/new">Add Plant</Link>
-          <Link>Logged in as {this.props.user.username}</Link>
-          <Logout onClick={(e) => {this.showMenu(e)}}/>
-        </div>
+        {phoneMenu}
       </nav>
     )
   }else{
   return(
     <nav>
       <Link to="/">UKH</Link>
-      <div className={nav.rightNav}>
-        <Link to="/sites">All Plant</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
-      </div>
+      <div id='burger' className={nav.burger} onClick={(e) => {this.showMenu(e)}}>
+          <div/>
+          <div/>
+          <div/>
+        </div>
+      {phoneMenuGuest}
     </nav>
   )}
 }
