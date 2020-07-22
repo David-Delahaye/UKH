@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect} from "react-router-dom";
+import form from "../modules/form/form.module.css";
 
 class Register extends Component {
   constructor(props) {
@@ -47,14 +48,15 @@ class Register extends Component {
     
     return (
       <form
+        className={form.loginForm}
         onSubmit={(e) => {
           this.formSubmit(e);
         }}
       >
         <h1>Register</h1>
-        <input type="text" name="username" placeholder="username" />
-        <input type="text" name="password" placeholder="password" />
-        <button>Add</button>
+        <input className={form.textInput} type="text" name="username" placeholder="username" />
+        <input className={form.textInput} type="text" name="password" placeholder="password" />
+        <button className={form.btnPrimary} > Register Now</button>
       </form>
     );
   }
