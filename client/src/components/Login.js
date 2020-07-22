@@ -3,6 +3,7 @@ import { Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
 import {loginUser} from '../actions/authActions'
 import PropTypes from 'prop-types';
+import form from "../modules/form/form.module.css";
 
 class Login extends Component {
   constructor(props) {
@@ -19,13 +20,15 @@ class Login extends Component {
   render() {
     return (
       <form
+      className={form.loginForm}
         onSubmit={(e) => {
           this.formSubmit(e);
         }}
       >
-        <input type="text" name="username" placeholder="username" />
-        <input type="text" name="password" placeholder="password" />
-        <button>Add</button>
+        <h1>Login</h1>
+        <input className={form.textInput} type="text" name="username" placeholder="username" />
+        <input className={form.textInput} type="text" name="password" placeholder="password" />
+        <button className={form.btnPrimary}>Login</button>
       </form>
     );
   }
