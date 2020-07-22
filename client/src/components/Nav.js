@@ -60,18 +60,18 @@ render(){
 
   const menu = (
     <div id='menu' className={nav.rightNav}>
-      <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plants</Link>
-      <Link onClick={(e) => {this.showMenu(e)}} to="/sites/new">Add Plant</Link>
+      <Link to="/sites">All Plants</Link>
+      <Link to="/sites/new">Add Plant</Link>
       <Link>Logged in as {this.props.user.username}</Link>
-      <Logout onClick={(e) => {this.showMenu(e)}}/>
+      <Logout />
     </div>
     )
   
     const menuGuest = (
       <div id='menu' className={nav.rightNav}>
-        <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plant</Link>
-        <Link onClick={(e) => {this.showMenu(e)}} to="/login">Login</Link>
-        <Link onClick={(e) => {this.showMenu(e)}} to="/register">Register</Link>
+        <Link to="/sites">All Plant</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/register">Register</Link>
     </div>
     )
 
