@@ -13,11 +13,13 @@ class Login extends Component {
   formSubmit = async (e) => {
     e.preventDefault();
     this.props.loginUser(e);
-    
-
   }
 
   render() {
+    if(this.props.user.username !== 'guest'){
+      this.props.history.push('/sites')
+    }
+
     return (
       <form
       className={form.loginForm}
@@ -38,4 +40,8 @@ Login.propTypes = {
   loginUser : PropTypes.func.isRequired
 }
 
-export default connect(null, {loginUser})(Login);
+const mapStateToProps = state => ({
+  user: state.auth.user
+})
+
+export default connect(mapStateToProps, {loginUser})(Login);
