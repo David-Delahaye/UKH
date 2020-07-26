@@ -12,6 +12,7 @@ import Site from './components/Site';
 import Login from './components/Login';
 import Register from './components/Register';
 import Landing from './components/Landing';
+import Messages from './components/Messages';
 
 import {connect} from 'react-redux';
 import {fetchUser} from './actions/authActions'
@@ -28,7 +29,7 @@ class App extends Component{
     return(
         <Router>
           <Nav/>
-          <div>{this.props.message.content}</div>
+          <Messages/>
           <Switch>
             <Route exact path ="/" component={Landing}/>
             <Route path="/login" component={Login}/>
