@@ -68,11 +68,11 @@ class Tags extends Component{
         })
 
         if(this.state.closed){
-            return <input ref={this.wrapperRef} onClick ={() => {this.setState({closed:false})}} className ={form.textInput} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags' autoComplete='Off' />
+            return <input ref={this.wrapperRef} onClick ={() => {this.setState({closed:false})}} className ={form.textInput} value={this.state.input}  name='tags' type='text' placeholder='Tags' autoComplete='Off' />
         }
         return(
             <div ref={this.wrapperRef} className={form.tags}>
-                <input className ={form.tagsList} value={this.state.input}  name='tags' type='text' placeholder='Search by Tags' autoComplete='Off'/>
+                <input className ={form.tagsList} value={this.state.input}  name='tags' type='text' placeholder='Tags' autoComplete='Off'/>
                 <div className={form.tagsWrapper}>
                     <div className={form.tagsContent}>
                         {renderResults}
