@@ -15,25 +15,19 @@ class Messages extends Component {
       }
     }
 
-
     render(){
-
       //on message change
         if (this.props.message.content !== this.state.currentMessage){
-        console.log('newMessage');
-        this.setState({currentMessage:this.props.message.content})
-        this.setState({messageActive:true})
-        setTimeout(() => {this.setState({messageActive:false})}, 3000);
+          const message = document.querySelector('#message');
+          message.classList.add('active');
+          setTimeout(() => {
+            message.classList.remove('active')
+          }, 3000);
         }
       
       //display message
-        if (this.state.messageActive){
         return(
-        <div className='message'>{this.props.message.content}</div>
-        )
-        }
-        return(
-          ''
+        <div id= 'message' className='message'>{this.props.message.content}</div>
         )
     }
 }

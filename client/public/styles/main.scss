@@ -104,17 +104,24 @@ h4{
 }
 
 .message{
+    transition: 1s;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
     z-index: 3;
-    position: absolute;
+    position: fixed;
     top: 2rem;  
     right: 0rem;
-    background-color: $light-green;
+    transform: translateX(30rem);
+    background-color: $dark-orange;
     color: white;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.active{
+    transform: translateX(0px);
 }
 
 @media only screen and (min-width: 600px) {
