@@ -26,6 +26,10 @@ input {
   font-family: "Dosis", sans-serif;
 }
 
+textarea {
+  font-family: "Dosis", sans-serif;
+}
+
 button {
   text-align: center;
   font-family: "Dosis", sans-serif;

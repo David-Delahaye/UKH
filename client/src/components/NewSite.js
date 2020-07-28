@@ -54,7 +54,7 @@ class NewSite extends Component {
         >
           <h1>Add Plant</h1>
           <input className={form.textInput} type="text" name="title" placeholder="Plant Name" />
-          <input className={form.textInput} type="text" name="desc" placeholder="Plant Description" />
+          <textarea className={form.textBox} type="text" name="desc" placeholder="Plant Description" />
           <Tags handleChange={this.handleTags}/>
           <button className={form.btnPrimary}>Submit</button>
         </form>

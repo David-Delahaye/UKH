@@ -52,6 +52,35 @@
   color: white;
 }
 
+.textBox {
+  background-color: #3A7859;
+  color: white;
+  height: 8rem;
+  resize: none;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+  border: none;
+  display: block;
+}
+
+.textBox::-webkit-input-placeholder {
+  color: white;
+}
+
+.textBox:-ms-input-placeholder {
+  color: white;
+}
+
+.textBox::-ms-input-placeholder {
+  color: white;
+}
+
+.textBox::placeholder {
+  color: white;
+}
+
 .loginForm {
   background-color: #093E31;
   width: 100%;
