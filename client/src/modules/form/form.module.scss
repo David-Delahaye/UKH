@@ -114,6 +114,7 @@ $light-orange: #F7E044;
 .tags{
     position: relative;
     .tagsList{
+        width: 100%;
         background-color: $light-green;
         color: white;
         height: 2.5rem;
@@ -127,6 +128,7 @@ $light-orange: #F7E044;
         }
     }
     .tagsWrapper{
+        width: 100%;
         top: 2rem;
         position: absolute;
         z-index:2;

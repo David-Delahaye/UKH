@@ -163,6 +163,7 @@
 }
 
 .tags .tagsList {
+  width: 100%;
   background-color: #3A7859;
   color: white;
   height: 2.5rem;
@@ -191,6 +192,7 @@
 }
 
 .tags .tagsWrapper {
+  width: 100%;
   top: 2rem;
   position: absolute;
   z-index: 2;
