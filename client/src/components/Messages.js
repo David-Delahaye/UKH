@@ -27,7 +27,11 @@ class Messages extends Component {
       
       //display message
         return(
-        <div id= 'message' className='message'>{this.props.message.content}</div>
+          <div className='messages'>
+            <div className='messageWrapper'>
+              <div id= 'message' className='message'>{this.props.message.content}</div>
+            </div>
+          </div>
         )
     }
 }
