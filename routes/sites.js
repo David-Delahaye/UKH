@@ -44,9 +44,7 @@ router.get('/api/sites', async (req,res) => {
         res.send(response.rows);
     }
     
-    }catch(err){
-        console.log(err);
-        
+    }catch(err){      
         console.error(err.message);
     }
 })

@@ -19,7 +19,7 @@ class Sites extends Component {
       name:this.props.search.name ? this.props.search.name: '',
       tags:this.props.search.tags ? this.props.search.tags: [],
       order: this.props.search.order ? this.props.search.order: 'average_score',
-      direction: this.props.search.direction ? this.props.search.order: 'DESC' 
+      direction: this.props.search.direction ? this.props.search.direction: 'DESC' 
     }
   }
     componentDidMount(){
@@ -62,8 +62,9 @@ class Sites extends Component {
 
     orderChange = async (e) => {
       const value = e.target.value;
-      const split = value.split(' ')
-
+      const split = value.split(' ');
+      console.log(split);
+      
       let order = split[0];
       let direction = split[1];
       
