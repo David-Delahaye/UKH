@@ -31,9 +31,11 @@ class NewSite extends Component {
       e.preventDefault()
       const title = e.target.title.value;
       const desc = e.target.desc.value;
+      const img = e.target.image.value;
       const tags = this.state.tags;
-
-      const body = {"siteName":title, "siteDesc":desc, "siteTags":tags}
+      console.log(img);
+      
+      const body = {"siteName":title, "siteDesc":desc, "siteTags":tags, "siteImage":img}
       await this.props.newSite(body);
       this.props.history.push('/sites')
     }
@@ -55,6 +57,7 @@ class NewSite extends Component {
           <h1>Add Plant</h1>
           <input className={form.textInput} type="text" name="title" placeholder="Plant Name" />
           <textarea className={form.textBox} type="text" name="desc" placeholder="Plant Description" />
+          <input className={form.textInput} type="text" name="image" placeholder="Plant Image Link"/>
           <Tags handleChange={this.handleTags}/>
           <button className={form.btnPrimary}>Submit</button>
         </form>

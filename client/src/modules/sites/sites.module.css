@@ -74,8 +74,12 @@ main {
 }
 
 .card .cardImg {
-  background-color: #ffbfbf;
   height: 60%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 .card .cardTitle {

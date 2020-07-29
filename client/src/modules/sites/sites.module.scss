@@ -63,8 +63,10 @@ main{
         transform: rotateZ(2deg);
     }
     .cardImg{
-        background-color: rgb(255, 191, 191);
         height: 60%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
     }
     .cardTitle{
         font-size: 1rem;

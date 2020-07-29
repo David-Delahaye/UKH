@@ -84,7 +84,7 @@ class Sites extends Component {
     let siteFormat = this.props.sites.map ((e,i) => {
       return(
         <Link to={'/sites/'+ e.site_id} className = {sites.card} key={i}>
-          <div className = {sites.cardImg}/>
+          <img className = {sites.cardImg} src={e.image_link}/>
           <h3 className = {sites.cardTitle}>{e.site_name}</h3>
           <p className = {sites.cardDesc}>{e.description}</p>
           <div className = {sites.cardInfoBar}>
