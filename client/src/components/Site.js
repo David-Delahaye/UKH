@@ -12,6 +12,7 @@ import { deleteSite, getSite, fetchSite, updateSite} from "../actions/siteAction
 import { resetComments , fetchComments } from "../actions/commentActions";
 import PropTypes from "prop-types";
 import Stars from "./Stars";
+import Tags from './Tags';
 
 class Site extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Site extends Component {
       siteName:'',
       siteDesc:'',
       siteImage:'',
+      tags:[],
     };
   }
 
@@ -34,7 +36,11 @@ class Site extends Component {
     this.setState({ siteName: this.props.site.site_name});
     this.setState({ siteDesc: this.props.site.description});
     this.setState({ siteImage: this.props.site.image_link});
+    const tags = await this.props.site.tags ? this.props.site.tags : [];
+    this.setState({tags})
     this.setState({ loaded:true})
+    console.log(this.props.site.tags);
+    
   }
 
   inputChange = (e) => {
@@ -53,7 +59,15 @@ class Site extends Component {
 
   formSubmit = (e) => {
     e.preventDefault()
-    this.props.updateSite(this.props.site.site_id, e);
+    console.log(e.target);
+
+    const title = e.target.siteName.value;
+    const desc = e.target.siteDesc.value;
+    const img = e.target.siteImage.value;
+    const tags = this.state.tags;
+
+    const body = {"siteName":title, "siteDesc":desc, "siteTags":tags, "siteImage":img}
+    this.props.updateSite(this.props.site.site_id, body);
     this.setState({ edit: false });
   }
 
@@ -61,6 +75,10 @@ class Site extends Component {
     await this.props.deleteSite(id);
     this.props.history.push('/sites');
   };
+
+  handleTags = async (e) => {
+    this.setState({tags:e})   
+  }
 
   render() {
     if(this.state.loaded){
@@ -83,13 +101,15 @@ class Site extends Component {
     });
 
     let editDisplay = 
-    (
+    (   
         <div>
-          <form onSubmit = {(e) => this.formSubmit(e)}>
-            <input type='text' name='siteName' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteName}/>
-            <input type='text' name='siteDesc' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteDesc}/>
-            <input type='text' name='siteImage' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteImage}/>
-            <button>Confirm Changes</button>
+          <form className={form.loginForm} onSubmit = {(e) => this.formSubmit(e)}>
+          <h1>Edit {this.state.siteName}</h1>
+            <input className={form.textInput} type='text' name='siteName' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteName}/>
+            <textarea className={form.textBox} type='text' name='siteDesc' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteDesc}/>
+            <input className={form.textInput} type='text' name='siteImage' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteImage}/>
+            <Tags handleChange={this.handleTags} onMount={this.props.site.tags}/>
+            <button className={form.btnPrimary}>Confirm Changes</button>
           </form>
           <button onClick={() => this.editCancel()}>Cancel</button>
         </div>

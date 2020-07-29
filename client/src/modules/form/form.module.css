@@ -30,6 +30,7 @@
   color: white;
   height: 2.5rem;
   border-radius: 0.5rem;
+  font-size: 1.25rem;
   -webkit-padding-start: 0.5rem;
           padding-inline-start: 0.5rem;
   border: none;
@@ -53,6 +54,7 @@
 }
 
 .textBox {
+  font-size: 1.25rem;
   background-color: #3A7859;
   color: white;
   height: 8rem;
@@ -113,6 +115,7 @@
 .dropdown {
   margin-bottom: 1rem;
   position: relative;
+  font-size: 1.25rem;
 }
 
 .dropdown .dropdownInput {
@@ -188,6 +191,7 @@
 }
 
 .tags {
+  font-size: 1.25rem;
   position: relative;
 }
 
@@ -261,6 +265,7 @@
 }
 
 .sortBar {
+  font-size: 1.25rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

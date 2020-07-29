@@ -20,7 +20,7 @@ class Tags extends Component{
     }
 
     async componentDidMount() {
-        const tags = await this.props.search.tags ? this.props.search.tags : [];
+        const tags = await this.props.onMount ? this.props.onMount : [];
         await this.setState({checked:tags})
         await this.setState({input:tags})
         

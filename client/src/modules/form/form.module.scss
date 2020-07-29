@@ -34,6 +34,7 @@ $light-orange: #F7E044;
     color: white;
     height: 2.5rem;
     border-radius: 0.5rem;
+    font-size: 1.25rem;
     padding-inline-start: 0.5rem;
     border: none;
     display: block;
@@ -43,6 +44,7 @@ $light-orange: #F7E044;
 }
 
 .textBox{
+    font-size: 1.25rem;
     background-color: $light-green;
     color: white;
     height: 8rem;
@@ -81,6 +83,7 @@ $light-orange: #F7E044;
 .dropdown{
     margin-bottom: 1rem;
     position: relative;
+    font-size: 1.25rem;
     .dropdownInput{
         background-color: $light-green;
         color: white;
@@ -127,6 +130,7 @@ $light-orange: #F7E044;
 }
 
 .tags{
+    font-size: 1.25rem;
     position: relative;
     .tagsList{
         width: 100%;
@@ -174,6 +178,7 @@ $light-orange: #F7E044;
 }
 
 .sortBar{
+    font-size: 1.25rem;
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
