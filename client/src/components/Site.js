@@ -57,7 +57,7 @@ class Site extends Component {
 
   deleteSite = async (id) => {
     await this.props.deleteSite(id);
-    this.props.history.push('/index');
+    this.props.history.push('/sites');
   };
 
   render() {

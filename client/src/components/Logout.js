@@ -14,7 +14,7 @@ class Logout extends Component{
 
 logout = async ()=>{
     this.props.logoutUser();
-    this.setState({redirect:'/index'})
+    this.setState({redirect:'/sites'})
   }
 
   render(){
