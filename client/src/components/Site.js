@@ -22,6 +22,7 @@ class Site extends Component {
       edit:false,
       siteName:'',
       siteDesc:'',
+      siteImage:'',
     };
   }
 
@@ -32,6 +33,7 @@ class Site extends Component {
     await this.props.fetchComments(this.state.id);
     this.setState({ siteName: this.props.site.site_name});
     this.setState({ siteDesc: this.props.site.description});
+    this.setState({ siteImage: this.props.site.image_link});
     this.setState({ loaded:true})
   }
 
@@ -86,6 +88,7 @@ class Site extends Component {
           <form onSubmit = {(e) => this.formSubmit(e)}>
             <input type='text' name='siteName' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteName}/>
             <input type='text' name='siteDesc' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteDesc}/>
+            <input type='text' name='siteImage' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteImage}/>
             <button>Confirm Changes</button>
           </form>
           <button onClick={() => this.editCancel()}>Cancel</button>

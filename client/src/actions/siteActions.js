@@ -99,7 +99,8 @@ export const updateSite = (siteID, e) => async dispatch => {
     //UPDATE DB
     const siteName = e.target.siteName.value;
     const siteDesc = e.target.siteDesc.value;
-    const body = {siteName, siteDesc}
+    const siteImage = e.target.siteImage.value;
+    const body = {siteName, siteDesc, siteImage}
     const message = await fetch(`/api/sites/${siteID}`,{
         method: "PUT",
         headers: { "Content-Type" : "application/json"},

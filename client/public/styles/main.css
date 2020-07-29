@@ -107,6 +107,7 @@ h4 {
 }
 
 .messages {
+  pointer-events: none;
   position: absolute;
   top: 2rem;
   right: 0rem;
@@ -116,6 +117,7 @@ h4 {
 }
 
 .messages .messageWrapper {
+  pointer-events: none;
   height: 3rem;
   width: 20rem;
   overflow: hidden;
@@ -123,6 +125,7 @@ h4 {
 }
 
 .messages .messageWrapper .message {
+  pointer-events: none;
   position: absolute;
   -webkit-transition: 1s;
   transition: 1s;

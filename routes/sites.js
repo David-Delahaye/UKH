@@ -45,6 +45,8 @@ router.get('/api/sites', async (req,res) => {
     }
     
     }catch(err){
+        console.log(err);
+        
         console.error(err.message);
     }
 })
@@ -80,8 +82,8 @@ router.get('/api/sites/:site', isSiteOwner, async (req,res) => {
 router.put('/api/sites/:site', siteOwnerOnly, async (req,res) => {
     try {
         const {site} = req.params;
-        const {siteName, siteDesc} = req.body;
-        const response = await pool.query("UPDATE site SET site_name =$2 ,description =$3 WHERE site_id = $1 RETURNING*",[site,siteName,siteDesc]);
+        const {siteName, siteDesc, siteImage} = req.body;
+        const response = await pool.query("UPDATE site SET site_name =$2, description =$3, image_link =$4 WHERE site_id = $1 RETURNING*",[site,siteName,siteDesc,siteImage]);
         res.status(200).json({ message: {type: 'success', content:'Successfully edited site'} })
     } catch (err) {
         console.error(err.message);      
