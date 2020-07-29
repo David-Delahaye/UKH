@@ -97,7 +97,7 @@ class Site extends Component {
         <div>
           <header className={`container ${site.header}`}>
             <div className={site.imageOverlay}/>
-            <img className={site.image} src= 'https://images.unsplash.com/photo-1518564747095-d2fbe4b452b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1317&q=80'/>
+            <img className={site.image} src= {this.props.site.image_link}/>
             <div className={site.headline}> 
               <h2>{this.props.site.site_name}</h2>
               <div className={site.starsWrapper}>
