@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import {RESET_COMMENTS ,NEW_COMMENT, FETCH_COMMENTS, DELETE_COMMENT, UPDATE_COMMENT} from '../actions/types';
 
 const initialState = {

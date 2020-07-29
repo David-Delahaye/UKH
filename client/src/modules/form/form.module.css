@@ -121,6 +121,7 @@
 .dropdown .dropdownInput {
   background-color: #3A7859;
   color: white;
+  font-size: 1.25rem;
   height: 2.5rem;
   border-radius: 0.5rem;
   -webkit-padding-start: 0.5rem;
@@ -201,6 +202,7 @@
   color: white;
   height: 2.5rem;
   border-radius: 0.5rem;
+  font-size: 1.25rem;
   -webkit-padding-start: 0.5rem;
           padding-inline-start: 0.5rem;
   margin: none;

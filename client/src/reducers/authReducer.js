@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import {LOGIN_USER, LOGOUT_USER, FETCH_USER} from '../actions/types';
 
 const initialState = {

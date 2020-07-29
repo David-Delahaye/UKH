@@ -9,10 +9,10 @@ const Stars = (props) =>{
           return ''
         }
         if (score % 2 === 0){
-          return (<img className ='stars' style={{transform:'translate(' + posMove + '%)'}} src={FullStars} />)
+          return (<img className ='stars' style={{transform:'translate(' + posMove + '%)'}} src={FullStars} alt={score/2 + 'stars'}/>)
         }else{
           posMove = posMove+5;
-          return (<img className ='stars' style={{transform:'translate(' + posMove + '%)'}} src={HalfStars}/>)
+          return (<img className ='stars' style={{transform:'translate(' + posMove + '%)'}} src={HalfStars} alt={score/2 + 'stars'}/>)
         }
     }
         return(

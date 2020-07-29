@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchSites, searchSites, getSite} from '../actions/siteActions'
-import PropTypes from 'prop-types';
 import form from '../modules/form/form.module.css'
 
 

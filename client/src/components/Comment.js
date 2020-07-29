@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteComment , updateComment} from "../actions/commentActions";
-import PropTypes from "prop-types";
 import comment from "../modules/comment/comment.module.css"
 import Stars from "../components/Stars"
 

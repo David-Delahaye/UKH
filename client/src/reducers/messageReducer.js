@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import {NEW_MESSAGE} from '../actions/types';
 
 const initialState = {

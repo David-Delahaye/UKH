@@ -26,6 +26,11 @@ nav .rightNav a {
   padding: 0.5rem;
 }
 
+nav .rightNav p {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
 .phoneMenu {
   -webkit-transition: 0.5s;
   transition: 0.5s;

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logout from './Logout';
 import {connect} from 'react-redux';
 import {logoutUser} from '../actions/authActions'
 import PropTypes from 'prop-types';
 import nav from "../modules/nav/nav.module.css";
-import { newSearch } from '../actions/siteActions';
 
 class Nav extends Component {
   constructor(props){
@@ -63,7 +62,7 @@ render(){
       <Link to="/sites">All Plants</Link>
       <Link to="/sites/new">Add Plant</Link>
       <Link>Logged in as {this.props.user.username}</Link>
-      <Logout />
+      <Logout/>
     </div>
     )
   

@@ -85,7 +85,7 @@ class Sites extends Component {
     let siteFormat = this.props.sites.map ((e,i) => {
       return(
         <Link to={'/sites/'+ e.site_id} className = {sites.card} key={i}>
-          <img className = {sites.cardImg} src={e.image_link}/>
+          <img className = {sites.cardImg} src={e.image_link} alt={e.site_name}/>
           <h3 className = {sites.cardTitle}>{e.site_name}</h3>
           <p className = {sites.cardDesc}>{e.description}</p>
           <div className = {sites.cardInfoBar}>
@@ -113,7 +113,7 @@ class Sites extends Component {
               <button className={form.btnPrimary}>Search</button>
             </div>
           </form>
-          <img className={sites.divider} src={Divider}/>
+          <img className={sites.divider} src={Divider} alt=''/>
         </header>
         <main className='container'>
           <div className={form.sortBar}>

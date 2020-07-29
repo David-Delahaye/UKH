@@ -120,14 +120,14 @@ class Site extends Component {
         <div>
           <header className={`container ${site.header}`}>
             <div className={site.imageOverlay}/>
-            <img className={site.image} src= {this.props.site.image_link}/>
+            <img className={site.image} src= {this.props.site.image_link} alt={this.props.site.site_name}/>
             <div className={site.headline}> 
               <h2>{this.props.site.site_name}</h2>
               <div className={site.starsWrapper}>
                 <Stars average_score={this.props.site.average_score}/>
               </div>
             </div>
-            <img className={site.divider} src={DividerLight}/>
+            <img className={site.divider} src={DividerLight} alt=''/>
           </header>
           <main className={`container ${site.main}`}>
 
@@ -139,7 +139,7 @@ class Site extends Component {
               </ul>
               <div className={site.buttons}>
                 <p className= {site.price}>£19.90</p>
-                <a className= {form.btnPrimary}>Order Now</a>
+                <a className= {form.btnPrimary} href='www.google.com'>Order Now</a>
               </div>
           </div>
 
