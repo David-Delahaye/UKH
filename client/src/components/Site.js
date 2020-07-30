@@ -115,14 +115,32 @@ class Site extends Component {
         </div>
     )
 
+    let ownerBar = 
+    (
+      this.props.site.isOwner ? (
+        <div>
+          <button className={form.btnSecondary} onClick={() => this.editControl()}>
+            Edit
+          </button>
+          <button className={form.btnSecondary} onClick={() => this.deleteSite(this.props.site.site_id)}>
+            Delete
+          </button>
+        </div>
+      ) : (
+        ''
+      ))
+
     let siteContent = 
     (
         <div>
           <header className={`container ${site.header}`}>
             <div className={site.imageOverlay}/>
             <img className={site.image} src= {this.props.site.image_link} alt={this.props.site.site_name}/>
-            <div className={site.headline}> 
+            <div className={site.headline}>
+              <div>
               <h2>{this.props.site.site_name}</h2>
+              {ownerBar}
+              </div>
               <div className={site.starsWrapper}>
                 <Stars average_score={this.props.site.average_score}/>
               </div>
@@ -139,7 +157,7 @@ class Site extends Component {
               </ul>
               <div className={site.buttons}>
                 <p className= {site.price}>£19.90</p>
-                <a className= {form.btnPrimary} href='www.google.com'>Order Now</a>
+                <a className= {form.btnPrimary} href='https://www.google.com/'>Order Now</a>
               </div>
           </div>
 
@@ -150,29 +168,12 @@ class Site extends Component {
         </div>
     )
 
-    let ownerBar = 
-    (
-      this.props.site.isOwner ? (
-        <div>
-          <button onClick={() => this.editControl()}>
-            Edit
-          </button>
-          <button onClick={() => this.deleteSite(this.props.site.site_id)}>
-            Delete
-          </button>
-        </div>
-      ) : (
-        ''
-      ))
-
-
     if(this.state.edit){
       return editDisplay
     }
     
     return (
       <div>
-        {ownerBar}
         {siteContent}
       </div>
     );

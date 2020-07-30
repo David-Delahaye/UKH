@@ -17,11 +17,16 @@
   z-index: 1;
   height: 20rem;
   max-height: 300px;
-  padding-bottom: 7rem;
+  padding-bottom: 6rem;
 }
 
 .header .headline {
+  padding-top: 2rem;
   z-index: 1;
+}
+
+.header .headline div h2 {
+  margin-right: 1rem;
 }
 
 .header .image {
@@ -43,8 +48,8 @@
   bottom: 0px;
   height: 100%;
   width: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(34%, rgba(255, 255, 255, 0)), color-stop(65%, rgba(0, 0, 0, 0.7)));
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 34%, rgba(0, 0, 0, 0.7) 65%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0.9)));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 5%, rgba(0, 0, 0, 0.9) 100%);
 }
 
 .header .starsWrapper {
