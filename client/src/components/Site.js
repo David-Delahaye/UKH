@@ -139,11 +139,11 @@ class Site extends Component {
             <div className={site.headline}>
               <div>
               <h2>{this.props.site.site_name}</h2>
-              {ownerBar}
-              </div>
               <div className={site.starsWrapper}>
                 <Stars average_score={this.props.site.average_score}/>
               </div>
+              </div>
+              {ownerBar}
             </div>
             <img className={site.divider} src={DividerLight} alt=''/>
           </header>
