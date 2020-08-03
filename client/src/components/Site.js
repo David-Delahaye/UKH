@@ -24,6 +24,8 @@ class Site extends Component {
       siteName:'',
       siteDesc:'',
       siteImage:'',
+      siteLink:'',
+      sitePrice:'',
       tags:[],
     };
   }
@@ -36,6 +38,8 @@ class Site extends Component {
     this.setState({ siteName: this.props.site.site_name});
     this.setState({ siteDesc: this.props.site.description});
     this.setState({ siteImage: this.props.site.image_link});
+    this.setState({ siteLink: this.props.site.shop_link});
+    this.setState({ sitePrice: this.props.site.price});
     const tags = await this.props.site.tags ? this.props.site.tags : [];
     this.setState({tags})
     this.setState({ loaded:true})
@@ -64,9 +68,11 @@ class Site extends Component {
     const title = e.target.siteName.value;
     const desc = e.target.siteDesc.value;
     const img = e.target.siteImage.value;
+    const link = e.target.siteLink.value;
+    const price = e.target.sitePrice.value;
     const tags = this.state.tags;
 
-    const body = {"siteName":title, "siteDesc":desc, "siteTags":tags, "siteImage":img}
+    const body = {"siteName":title, "siteDesc":desc, "siteTags":tags, "siteImage":img, "siteLink":link, "sitePrice":price}
     this.props.updateSite(this.props.site.site_id, body);
     this.setState({ edit: false });
   }
@@ -108,6 +114,8 @@ class Site extends Component {
             <input className={form.textInput} type='text' name='siteName' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteName}/>
             <textarea className={form.textBox} type='text' name='siteDesc' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteDesc}/>
             <input className={form.textInput} type='text' name='siteImage' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteImage}/>
+            <input className={form.textInput} type="text" name="siteLink" onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteLink}/>
+            <input className={form.textInput} type="number" name="sitePrice" onChange = {(e)=>{this.inputChange(e)}} value={this.state.sitePrice}/>
             <Tags handleChange={this.handleTags} onMount={this.props.site.tags}/>
             <button className={form.btnPrimary}>Confirm Changes</button>
           </form>
@@ -118,7 +126,7 @@ class Site extends Component {
     let ownerBar = 
     (
       this.props.site.isOwner ? (
-        <div>
+        <div className={form.btnBar}>
           <button className={form.btnSecondary} onClick={() => this.editControl()}>
             Edit
           </button>
@@ -137,14 +145,12 @@ class Site extends Component {
             <div className={site.imageOverlay}/>
             <img className={site.image} src= {this.props.site.image_link} alt={this.props.site.site_name}/>
             <div className={site.headline}>
-              <div>
               <h2>{this.props.site.site_name}</h2>
-              <div className={site.starsWrapper}>
-                <Stars average_score={this.props.site.average_score}/>
-              </div>
-              </div>
               {ownerBar}
             </div>
+            <div className={site.starsWrapper}>
+                <Stars average_score={this.props.site.average_score}/>
+              </div>
             <img className={site.divider} src={DividerLight} alt=''/>
           </header>
           <main className={`container ${site.main}`}>
@@ -157,7 +163,7 @@ class Site extends Component {
               </ul>
               <div className={site.buttons}>
                 <p className= {site.price}>£19.90</p>
-                <a className= {form.btnPrimary} href='https://www.google.com/'>Order Now</a>
+                <a className= {form.btnPrimary} href={this.props.site.shop_link}>Order Now</a>
               </div>
           </div>
 

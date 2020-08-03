@@ -24,10 +24,11 @@ class NewSite extends Component {
       const title = e.target.title.value;
       const desc = e.target.desc.value;
       const img = e.target.image.value;
+      const link = e.target.link.value;
+      const price = e.target.price.value;
       const tags = this.state.tags;
-      console.log(img);
       
-      const body = {"siteName":title, "siteDesc":desc, "siteTags":tags, "siteImage":img}
+      const body = {"siteName":title, "siteDesc":desc, "siteTags":tags, "siteImage":img, "siteLink":link, "sitePrice":price}
       await this.props.newSite(body);
       this.props.history.push('/sites')
     }
@@ -45,6 +46,8 @@ class NewSite extends Component {
           <input className={form.textInput} type="text" name="title" placeholder="Plant Name" />
           <textarea className={form.textBox} type="text" name="desc" placeholder="Plant Description" />
           <input className={form.textInput} type="text" name="image" placeholder="Plant Image Link"/>
+          <input className={form.textInput} type="text" name="link" placeholder="Plant Purchase Link"/>
+          <input className={form.textInput} type="number" name="price" placeholder="Plant Price"/>
           <Tags handleChange={this.handleTags}/>
           <button className={form.btnPrimary}>Submit</button>
         </form>

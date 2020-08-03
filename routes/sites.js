@@ -52,9 +52,9 @@ router.get('/api/sites', async (req,res) => {
 //POST SITE
 router.post('/api/sites', isAuth, async (req,res) => {
     try{
-    let {siteName, siteDesc, siteTags, siteImage} = req.body;
+    let {siteName, siteDesc, siteTags, siteImage, siteLink, sitePrice} = req.body;
     const owner_id = req.user.user_id;
-    const response = await pool.query("INSERT INTO site (site_name, description, owner_id, tags, image_link, created_on) VALUES($1,$2,$3,$4,$5, current_timestamp) RETURNING*;", [siteName, siteDesc, owner_id, siteTags, siteImage]);
+    const response = await pool.query("INSERT INTO site (site_name, description, owner_id, tags, image_link, shop_link, price, created_on) VALUES($1,$2,$3,$4,$5,$6,$7, current_timestamp) RETURNING*;", [siteName, siteDesc, owner_id, siteTags, siteImage, siteLink, sitePrice]);
     res.status(200).json({ message: {type: 'success', content:'Successfully created site'} })
     }catch(err){
         console.error(err.message);
@@ -80,8 +80,8 @@ router.get('/api/sites/:site', isSiteOwner, async (req,res) => {
 router.put('/api/sites/:site', siteOwnerOnly, async (req,res) => {
     try {
         const {site} = req.params;
-        const {siteName, siteDesc, siteImage, siteTags} = req.body;
-        const response = await pool.query("UPDATE site SET site_name =$2, description =$3, tags =$4, image_link =$5 WHERE site_id = $1 RETURNING*",[site,siteName,siteDesc,siteTags,siteImage]);
+        const {siteName, siteDesc, siteImage, siteTags, siteLink, sitePrice} = req.body;
+        const response = await pool.query("UPDATE site SET site_name =$2, description =$3, tags =$4, image_link =$5, shop_link =$6, price =$7 WHERE site_id = $1 RETURNING*",[site,siteName,siteDesc,siteTags,siteImage, siteLink, sitePrice]);
         res.status(200).json({ message: {type: 'success', content:'Successfully edited site'} })
     } catch (err) {
         console.error(err.message);      

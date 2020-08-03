@@ -93,7 +93,7 @@ class Sites extends Component {
             <Stars average_score={e.average_score}/>
             </div>
             <div className = {sites.cardPrice}>
-               ~ £20
+               £{e.price}
             </div>
           </div>
         </Link>

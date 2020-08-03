@@ -33,7 +33,7 @@ $light-orange: #F7E044;
     object-fit: cover;
     width: 100%;
     height: 8rem;
-    bottom: 0px;
+    bottom: -1px;
     left: 0px;
     right: 0px;
     pointer-events: none;
@@ -59,6 +59,7 @@ main{
     color: black;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
     transition: transform 0.5s;
+    overflow: hidden;
     &:hover{
         transform: rotateZ(2deg);
     }
@@ -69,6 +70,7 @@ main{
         object-position: center;
     }
     .cardTitle{
+        white-space: nowrap;
         font-size: 1rem;
         padding-top: 0.5rem;
         padding-left: 0.5rem;
