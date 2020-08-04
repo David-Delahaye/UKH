@@ -59,13 +59,12 @@ class Comment extends Component {
       return (
         <div className={`container-sm ${comment.comment}`}>
           <div className={comment.header}>
-            <p> by - {this.props.comment.owner_name}</p>
+            <h4>{this.props.comment.comment_title} - {this.props.comment.owner_name}</h4>
             <div className={comment.starsWrapper}>
               <Stars average_score={this.props.comment.comment_score}/>
             </div>
           </div>
           <div className={comment.body}>
-            <h4>{this.props.comment.comment_title}</h4>
             <p>{this.props.comment.comment_description}</p>
           </div>
           {this.props.userID === this.props.comment.owner_id ? (

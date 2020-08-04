@@ -9,13 +9,14 @@ $light-orange: #F7E044;
     background-color: white;
     position: relative;
     margin: 1rem 0;
+    padding-bottom: 2rem;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.185);
     .header{
         display: flex;
         justify-content: space-between;
-        p{
-            font-weight: 500;
-            font-size: 0.8rem;
+        h4{
+            font-weight: 700;
+            font-size: 0.9rem;
         }
         .starsWrapper{
             position: relative;
@@ -37,7 +38,15 @@ $light-orange: #F7E044;
     }
     .buttons{
         position: absolute;
-        right: 0px;
-        bottom: 0px;
+        right: 0.5rem;
+        bottom: 0.5rem;
+        display: flex;
+        justify-content: space-around;
+        width: 5rem;
+        background-color: transparent;
+        button{
+            background-color: transparent;
+            font-weight: 700;
+        }
     }
 }
