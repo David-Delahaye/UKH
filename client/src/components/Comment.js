@@ -45,14 +45,20 @@ class Comment extends Component {
   render() {
     if (this.state.edit) {
       return (
-        <div>
+        <div className={`container-sm ${comment.comment}`}>
         <form onSubmit = {(e) => this.formSubmit(e)}>
+        <div className={comment.header}>
           <input type="text" onChange={(e) => {this.inputChange(e);}} name="commentTitle" value={this.state.commentTitle}/>
           <input type="range" onChange={(e) => { this.inputChange(e); }} min="0" max="10" name="commentScore" value={this.state.commentScore}/>
-          <input type="text" onChange={(e) => { this.inputChange(e); }} name="commentDesc" value={this.state.commentDesc}/>
+        </div>
+        <div className={comment.body}>
+          <textarea onChange={(e) => { this.inputChange(e); }} name="commentDesc" value={this.state.commentDesc}/>
+        </div>
+        <div  className={comment.buttons}>
           <button>Confirm Changes</button>
+          <button onClick={()=> this.editCancel()}>Cancel</button>
+        </div>
         </form>
-        <button onClick={()=> this.editCancel()}>Cancel</button>
         </div>
       );
     } else {
