@@ -326,4 +326,21 @@
   margin-left: 1rem;
   width: 40%;
 }
+
+.newComment {
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+}
+
+.newComment .text {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+.newComment .scale {
+  width: 100%;
+  margin: auto;
+}
 /*# sourceMappingURL=form.module.css.map */

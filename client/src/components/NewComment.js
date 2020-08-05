@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {newComment} from '../actions/commentActions';
+import form from "../modules/form/form.module.css";
+
 class Comments extends Component{
 
     postComment = async (e) => {
@@ -11,11 +13,11 @@ class Comments extends Component{
 
     render(){
         return(
-            <form onSubmit = {(e) =>{this.postComment(e)}}>
-                <input type='text' name ='commentTitle' placeholder='add a comment' required/>
-                <input type='text' name ='commentDesc' placeholder='description' required/>
-                <input type="range" name="commentScore" min="0" max="10" required/>
-                <button>Add</button>
+            <form className={form.newComment} onSubmit = {(e) =>{this.postComment(e)}}>
+                <input className={form.text} type='text' name ='commentTitle' placeholder='Comment Title' required/>
+                <input className={form.text} type='text' name ='commentDesc' placeholder='Comment Description' required/>
+                <input className={form.scale} type="range" name="commentScore" min="0" max="10" required/>
+                <button className={form.btnPrimary}>Add</button>
             </form>
         )
     }
