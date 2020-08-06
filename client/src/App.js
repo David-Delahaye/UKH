@@ -5,6 +5,8 @@ import {
     Route,
   } from "react-router-dom";
 
+  import { HashRouter } from 'react-router-dom'
+
 import Nav from './components/Nav';
 import NewSite from './components/NewSite';
 import Sites from './components/Sites';
@@ -27,7 +29,7 @@ class App extends Component{
 
   render(){
     return(
-        <Router>
+        <HashRouter>
           <Nav/>
           <Messages/>
           <Switch>
@@ -38,7 +40,7 @@ class App extends Component{
             <Route exact path="/sites/new" component={NewSite}/>
             <Route path="/sites/:site" component={Site}/>
           </Switch>
-        </Router>
+        </HashRouter>
     )
   }
 }

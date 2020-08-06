@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 
 
  //Routes ----------------------------------------------------------
-app.get('', async (req,res) => {
+app.get('/', async (req,res) => {
   console.log(path.join(__dirname, 'client/build', 'index.html'));
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
