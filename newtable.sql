@@ -29,10 +29,18 @@ CREATE TABLE comments(
     comment_description VARCHAR (1000) NOT NULL,
     created_on TIMESTAMP NOT NULL,
     owner_id VARCHAR(50) NOT NULL,
+    owner_name VARCHAR(50) NOT NULL,
+    comment_score INT,
     site_id VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE site_tags(
-    site_id VARCHAR(50) NOT NULL,
-    tag VARCHAR(50) NOT NULL,
-);
+CREATE TABLE "session" (
+  "sid" varchar NOT NULL COLLATE "default",
+	"sess" json NOT NULL,
+	"expire" timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+
+ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+CREATE INDEX "IDX_session_expire" ON "session" ("expire");
