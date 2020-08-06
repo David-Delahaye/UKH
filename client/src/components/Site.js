@@ -110,14 +110,16 @@ class Site extends Component {
     (   
         <div>
           <form className={form.loginForm} onSubmit = {(e) => this.formSubmit(e)}>
-          <h1>Edit {this.state.siteName}</h1>
-            <input className={form.textInput} type='text' name='siteName' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteName}/>
-            <textarea className={form.textBox} type='text' name='siteDesc' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteDesc}/>
-            <input className={form.textInput} type='text' name='siteImage' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteImage}/>
-            <input className={form.textInput} type="text" name="siteLink" onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteLink}/>
-            <input className={form.textInput} type="number" name="sitePrice" onChange = {(e)=>{this.inputChange(e)}} value={this.state.sitePrice}/>
-            <Tags handleChange={this.handleTags} onMount={this.props.site.tags}/>
-            <button className={form.btnPrimary}>Confirm Changes</button>
+            <div className={form.innerLoginForm}>
+              <h1>Edit {this.state.siteName}</h1>
+                <input className={form.textInput} type='text' name='siteName' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteName}/>
+                <textarea className={form.textBox} type='text' name='siteDesc' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteDesc}/>
+                <input className={form.textInput} type='text' name='siteImage' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteImage}/>
+                <input className={form.textInput} type="text" name="siteLink" onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteLink}/>
+                <input className={form.textInput} type="number" name="sitePrice" onChange = {(e)=>{this.inputChange(e)}} value={this.state.sitePrice}/>
+                <Tags handleChange={this.handleTags} onMount={this.props.site.tags}/>
+                <button className={form.btnPrimary}>Confirm Changes</button>
+            </div>
           </form>
           <button onClick={() => this.editCancel()}>Cancel</button>
         </div>

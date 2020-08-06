@@ -2,13 +2,6 @@ const router = require('express').Router();
 const pool = require('../config/db');
 const {isAuth, isSiteOwner, siteOwnerOnly} = require('../lib/authUtils');
 
-
-router.get('/', async (req,res) => {
-    console.log(path.join(__dirname, 'client/build', 'index.html'));
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
-})
-
-
 // INDEX SITES
 router.get('/api/sites', async (req,res) => {
     //Get order
