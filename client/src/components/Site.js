@@ -154,22 +154,23 @@ class Site extends Component {
             <img className={site.divider} src={DividerLight} alt=''/>
           </header>
           <main className={`container ${site.main}`}>
+            <div className={site.innerMain}>
+              <h3>Plant Care</h3>
+              <div className={`${site.about} container-sm`}>
+                <p>{this.props.site.description}</p>
+                <ul className={site.list}>
+                  {tagsFormat}
+                </ul>
+                <div className={site.buttons}>
+                  <p className= {site.price}>£19.90</p>
+                  <a className= {form.btnPrimary} href={this.props.site.shop_link}>Order Now</a>
+                </div>
+            </div>
 
-            <h3>Plant Care</h3>
-            <div className={`${site.about} container-sm`}>
-              <p>{this.props.site.description}</p>
-              <ul className={site.list}>
-                {tagsFormat}
-              </ul>
-              <div className={site.buttons}>
-                <p className= {site.price}>£19.90</p>
-                <a className= {form.btnPrimary} href={this.props.site.shop_link}>Order Now</a>
-              </div>
+            <h3>Comments</h3>
+            {commentFormat}
+            <NewComment siteID={this.props.site.site_id}/>
           </div>
-
-          <h3>Comments</h3>
-          {commentFormat}
-          <NewComment siteID={this.props.site.site_id}/>
         </main>
         </div>
     )
