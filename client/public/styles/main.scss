@@ -32,7 +32,6 @@ html {
     height: 100vh;
 }
 
-
 input{
     font-family: $dosis;
 }
@@ -153,6 +152,22 @@ main{
     html{
         font-size: 20px;
     }
+  }
+
+.loader {
+    border: 16px solid $light-blue;
+    border-top: 16px solid $light-green;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    margin-top: 40%;
+    animation: spin 2s linear infinite;
+  }
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
 @media only screen and (min-width: 1280px) {

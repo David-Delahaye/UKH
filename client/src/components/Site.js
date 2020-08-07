@@ -139,7 +139,7 @@ class Site extends Component {
       ) : (
         ''
       ))
-
+    let description = this.props.site.description.replace(/\n/gi, "<br />");
     let siteContent = 
     (
         <div>
@@ -159,12 +159,12 @@ class Site extends Component {
             <div className={site.innerMain}>
               <h3>Plant Care</h3>
               <div className={`${site.about} container-sm`}>
-                <p>{this.props.site.description}</p>
+              <p>{this.props.site.description}</p>
                 <ul className={site.list}>
                   {tagsFormat}
                 </ul>
                 <div className={site.buttons}>
-                  <p className= {site.price}>£19.90</p>
+                  <p className= {site.price}>£{this.props.site.price}.00</p>
                   <a className= {form.btnPrimary} href={this.props.site.shop_link}>Order Now</a>
                 </div>
             </div>
@@ -186,7 +186,7 @@ class Site extends Component {
         {siteContent}
       </div>
     );
-  }return(<h1>loading</h1>)
+  }return(<div class="loader"></div>)
 }
 }
 

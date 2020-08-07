@@ -19,6 +19,8 @@ $light-orange: #F7E044;
     font-size: 1.25rem;
     padding: 0.4rem 0.8rem;
     height: 2.5rem;
+    width: max-content;
+    white-space: nowrap;
     font-weight: 800;
     text-decoration: none;
     border-radius: 0.5rem;
@@ -247,7 +249,7 @@ $light-orange: #F7E044;
         padding: 0.5rem;
     }
     .scale{
-        width: 100%;
+        width:  4rem;
         margin: auto;
     }
 }
