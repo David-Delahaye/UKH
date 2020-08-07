@@ -12,6 +12,7 @@ class Landing extends Component {
             <div className={form.btnGroup}>
                 <Link to='/sites' className={form.btnPrimary}>Best Plants</Link>
             </div>
+            <div className='watermark'>GROW & GROW & GROW & GROW & GROW & GROW & GROW & GROW & GROW & GROW & GROW & GROW</div>
             <img className='back' src ='https://images.unsplash.com/photo-1496753191511-bbb055f5d304?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' alt=''/>
         </div>
     );

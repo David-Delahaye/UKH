@@ -18,6 +18,7 @@
 
 .comment .header h4, .comment .header input {
   font-weight: 700;
+  width: auto;
   font-size: 0.9rem;
 }
 

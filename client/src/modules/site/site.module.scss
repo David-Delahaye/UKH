@@ -121,6 +121,12 @@ $light-orange: #F7E044;
 
 @media only screen and (min-width: 1280px) {
     .innerMain{
-        margin-left: 5%;
+        margin:auto
+        }
+    .header{
+        align-items: center;
+        .headline{
+            width: auto;
         }
     }
+}

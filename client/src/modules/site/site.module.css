@@ -148,7 +148,15 @@
 
 @media only screen and (min-width: 1280px) {
   .innerMain {
-    margin-left: 5%;
+    margin: auto;
+  }
+  .header {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header .headline {
+    width: auto;
   }
 }
 /*# sourceMappingURL=site.module.css.map */

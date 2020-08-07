@@ -47,7 +47,7 @@ button{
     outline: none;
     border: none;
     &:hover{
-        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.13);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.23);
     }
     &:focus{
         outline-color: -webkit-focus-ring-color;
@@ -83,12 +83,39 @@ h4{
 }
 
 .container{
+    overflow: hidden;
     padding: 2rem;
+    z-index: 1;
 }
 
 .container-sm{
     padding: 0.5rem;
+    z-index: 1;
 }
+
+.watermark{
+    word-break: break-all;
+    font-size: 10rem;
+    font-weight: 800;
+    position: fixed;
+    z-index: 0;
+    left: -100px;
+    top: -100px;
+    width: 100rem;
+    height: 100rem;
+    color: rgb(6, 46, 21);
+    opacity: 0.025;
+    user-select: none;
+    pointer-events: none;
+    transform: rotateZ(-5deg);
+    animation: glow 10s infinite;
+}
+
+@keyframes glow {
+    0% { opacity: 0.025; }
+    50% { opacity: 0.05; }
+    100% { opacity: 0.025; }
+  }
 
 main{
     height: 100%;
@@ -148,12 +175,6 @@ main{
    right: 0px !important;
 }
 
-@media only screen and (min-width: 600px) {
-    html{
-        font-size: 20px;
-    }
-  }
-
 .loader {
     border: 16px solid $light-blue;
     border-top: 16px solid $light-green;
@@ -170,8 +191,15 @@ main{
     100% { transform: rotate(360deg); }
   }
 
+@media only screen and (min-width: 600px) {
+    html{
+        font-size: 22px;
+    }
+}
+
+
 @media only screen and (min-width: 1280px) {
 html{
-    font-size: 22px;
+    font-size: 24px;
     }
 }

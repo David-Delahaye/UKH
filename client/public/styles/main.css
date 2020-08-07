@@ -41,8 +41,8 @@ button {
 }
 
 button:hover {
-  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.13);
-          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.23);
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.23);
 }
 
 button:focus {
@@ -81,11 +81,61 @@ h4 {
 }
 
 .container {
+  overflow: hidden;
   padding: 2rem;
+  z-index: 1;
 }
 
 .container-sm {
   padding: 0.5rem;
+  z-index: 1;
+}
+
+.watermark {
+  word-break: break-all;
+  font-size: 10rem;
+  font-weight: 800;
+  position: fixed;
+  z-index: 0;
+  left: -100px;
+  top: -100px;
+  width: 100rem;
+  height: 100rem;
+  color: #062e15;
+  opacity: 0.025;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  pointer-events: none;
+  -webkit-transform: rotateZ(-5deg);
+          transform: rotateZ(-5deg);
+  -webkit-animation: glow 10s infinite;
+          animation: glow 10s infinite;
+}
+
+@-webkit-keyframes glow {
+  0% {
+    opacity: 0.025;
+  }
+  50% {
+    opacity: 0.05;
+  }
+  100% {
+    opacity: 0.025;
+  }
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.025;
+  }
+  50% {
+    opacity: 0.05;
+  }
+  100% {
+    opacity: 0.025;
+  }
 }
 
 main {
@@ -151,12 +201,6 @@ main {
   right: 0px !important;
 }
 
-@media only screen and (min-width: 600px) {
-  html {
-    font-size: 20px;
-  }
-}
-
 .loader {
   border: 16px solid #BCF5E7;
   border-top: 16px solid #3A7859;
@@ -191,9 +235,15 @@ main {
   }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 600px) {
   html {
     font-size: 22px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  html {
+    font-size: 24px;
   }
 }
 /*# sourceMappingURL=main.css.map */
