@@ -243,15 +243,16 @@
 }
 
 .tags {
+  z-index: 6;
   font-size: 1.25rem;
   position: relative;
 }
 
 .tags .tagsList {
+  height: 2.5rem;
   width: 100%;
   background-color: #3A7859;
   color: white;
-  height: 2.5rem;
   border-radius: 0.5rem;
   font-size: 1.25rem;
   -webkit-padding-start: 0.5rem;
@@ -281,7 +282,7 @@
   width: 100%;
   top: 2rem;
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   background-color: #3A7859;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
@@ -292,14 +293,33 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   border-top: none;
 }
 
 .tags .tagsWrapper .tagsContent .tagsItem {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.2rem 0rem;
   -webkit-padding-start: 0.5rem;
           padding-inline-start: 0.5rem;
   color: white;
+}
+
+.tags .tagsWrapper .tagsContent .tagsItem input {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 1rem;
+  margin-left: auto;
+  margin-right: 1rem;
 }
 
 .tags .tagsWrapper .tagsContent .tagsItem:hover {
@@ -315,6 +335,7 @@
 .tags .tagsWrapper .tagsContent .tagsItem:last-of-type {
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  padding-bottom: 0.8rem;
 }
 
 .sortBar {

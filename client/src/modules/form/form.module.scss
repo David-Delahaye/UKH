@@ -167,13 +167,14 @@ $light-orange: #F7E044;
 }
 
 .tags{
+    z-index: 6;
     font-size: 1.25rem;
     position: relative;
     .tagsList{
+        height: 2.5rem;
         width: 100%;
         background-color: $light-green;
         color: white;
-        height: 2.5rem;
         border-radius: 0.5rem;
         font-size: 1.25rem;
         padding-inline-start: 0.5rem;
@@ -188,18 +189,29 @@ $light-orange: #F7E044;
         width: 100%;
         top: 2rem;
         position: absolute;
-        z-index:2;
+        z-index:10;
         background-color: $light-green;
         border-bottom-left-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
         .tagsContent{
             padding-top: 1rem;
             display: flex;
+            flex-direction: column;
             border-top: none;
             .tagsItem{
                 width: 100%;
+                display: flex;
+                align-items: center;
+                padding: 0.2rem 0rem;
                 padding-inline-start: 0.5rem;
                 color: white;
+                input{
+                    margin-top: auto;
+                    margin-bottom: auto;
+                    width: 1rem;
+                    margin-left: auto;
+                    margin-right: 1rem;
+                }
                 &:hover{
                     box-shadow: inset 0px 0px 30rem rgba(0, 0, 0, 0.3);
                 }
@@ -209,6 +221,7 @@ $light-orange: #F7E044;
                 &:last-of-type{
                     border-bottom-left-radius: 0.5rem;
                     border-bottom-right-radius: 0.5rem;
+                    padding-bottom: 0.8rem;
                 }
             }
         }
