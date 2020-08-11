@@ -107,6 +107,10 @@ $light-orange: #F7E044;
         color: white;
         margin-bottom: 2rem;
     }
+    h3{
+        color: white;
+        margin-top: 1rem;
+    }
     input{
         margin-bottom: 1rem;
     }
@@ -266,12 +270,16 @@ $light-orange: #F7E044;
     background-color: white;
     padding: 1rem;
     .text{
-        width: 100%;
+        width: 70%;
         margin-bottom: 0.5rem;
         padding: 0.5rem;
     }
+    .textArea{
+        width: 100%;
+        resize: none;
+        height: 5rem;
+    }
     .scale{
-        width:  4rem;
-        margin: auto;
+        width:  5rem;
     }
 }

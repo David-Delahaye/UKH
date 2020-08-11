@@ -15,8 +15,8 @@ class Comments extends Component{
         return(
             <form className={form.newComment} onSubmit = {(e) =>{this.postComment(e)}}>
                 <input className={form.text} type='text' name ='commentTitle' placeholder='Comment Title' required/>
-                <input className={form.text} type='text' name ='commentDesc' placeholder='Comment Description' required/>
                 <input className={form.scale} type="range" name="commentScore" min="0" max="10" required/>
+                <textarea className={form.textArea} type='text' name ='commentDesc' placeholder='Comment Description' required/>
                 <button className={form.btnPrimary}>Add</button>
             </form>
         )

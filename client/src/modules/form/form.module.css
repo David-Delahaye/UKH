@@ -154,6 +154,11 @@
   margin-bottom: 2rem;
 }
 
+.loginForm h3 {
+  color: white;
+  margin-top: 1rem;
+}
+
 .loginForm input {
   margin-bottom: 1rem;
 }
@@ -388,13 +393,18 @@
 }
 
 .newComment .text {
-  width: 100%;
+  width: 70%;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
 }
 
+.newComment .textArea {
+  width: 100%;
+  resize: none;
+  height: 5rem;
+}
+
 .newComment .scale {
-  width: 4rem;
-  margin: auto;
+  width: 5rem;
 }
 /*# sourceMappingURL=form.module.css.map */

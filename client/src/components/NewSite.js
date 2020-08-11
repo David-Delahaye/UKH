@@ -44,10 +44,13 @@ class NewSite extends Component {
         >
           <div className={form.innerLoginForm}>
           <h1>Add Plant</h1>
+          <h3>Basic Info</h3>
           <input className={form.textInput} type="text" name="title" placeholder="Plant Name" required/>
           <textarea className={form.textBox} type="text" name="desc" placeholder="Plant Description" required/>
+          <h3>Links</h3>
           <input className={form.textInput} type="text" name="image" placeholder="Plant Image Link" required/>
           <input className={form.textInput} type="text" name="link" placeholder="Plant Purchase Link" required/>
+          <h3>Details</h3>
           <input className={form.textInput} type="number" name="price" placeholder="Plant Price" required/>
           <Tags handleChange={this.handleTags}/>
           <button className={form.btnPrimary}>Submit</button>

@@ -112,10 +112,13 @@ class Site extends Component {
           <form className={form.loginForm} onSubmit = {(e) => this.formSubmit(e)}>
             <div className={form.innerLoginForm}>
               <h1>Edit {this.state.siteName}</h1>
+                <h3>Basic Info</h3>
                 <input className={form.textInput} type='text' name='siteName' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteName}/>
                 <textarea className={form.textBox} type='text' name='siteDesc' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteDesc}/>
+                <h3>Links</h3>
                 <input className={form.textInput} type='text' name='siteImage' onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteImage}/>
                 <input className={form.textInput} type="text" name="siteLink" onChange = {(e)=>{this.inputChange(e)}} value={this.state.siteLink}/>
+                <h3>Details</h3>
                 <input className={form.textInput} type="number" name="sitePrice" onChange = {(e)=>{this.inputChange(e)}} value={this.state.sitePrice}/>
                 <Tags handleChange={this.handleTags} onMount={this.props.site.tags}/>
                 <button className={form.btnPrimary}>Confirm Changes</button>
