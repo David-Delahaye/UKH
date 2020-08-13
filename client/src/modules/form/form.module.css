@@ -393,7 +393,7 @@
 }
 
 .newComment .text {
-  width: 70%;
+  width: 100%;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
 }
@@ -404,7 +404,25 @@
   height: 5rem;
 }
 
-.newComment .scale {
-  width: 5rem;
+.newComment .scoreInput {
+  margin-left: auto;
+  width: 108px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.newComment .scoreInput .scale {
+  position: absolute;
+  width: 108px;
+  height: 20px;
+  opacity: 0;
+}
+
+.newComment .scoreInput .starsWrapper {
+  pointer-events: none;
+  position: relative;
+  width: 108px;
+  height: 20px;
+  overflow: hidden;
 }
 /*# sourceMappingURL=form.module.css.map */
