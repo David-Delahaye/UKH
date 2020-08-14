@@ -67,6 +67,8 @@ main {
   transition: transform 0.5s;
   transition: transform 0.5s, -webkit-transform 0.5s;
   overflow: hidden;
+  -webkit-animation: swipeUp forwards 1s;
+          animation: swipeUp forwards 1s;
 }
 
 .card:hover {
@@ -128,6 +130,32 @@ main {
   position: absolute;
   right: 0px;
   bottom: 0px;
+}
+
+@-webkit-keyframes swipeUp {
+  0% {
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes swipeUp {
+  0% {
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
 }
 
 @media only screen and (min-width: 500px) {

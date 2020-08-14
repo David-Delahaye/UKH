@@ -55,7 +55,8 @@ class Site extends Component {
     this.setState({ edit: true });
   };
 
-  editCancel = () => {
+  editCancel = (e) => {
+    e.preventDefault()
     this.setState({ siteName: this.props.site.site_name});
     this.setState({ siteDesc: this.props.site.description});
     this.setState({ edit: false });
@@ -108,8 +109,8 @@ class Site extends Component {
 
     let editDisplay = 
     (   
-        <div>
-          <form className={form.loginForm} onSubmit = {(e) => this.formSubmit(e)}>
+        <div className={form.loginForm} >
+          <form onSubmit = {(e) => this.formSubmit(e)}>
             <div className={form.innerLoginForm}>
               <h1>Edit {this.state.siteName}</h1>
                 <h3>Basic Info</h3>
@@ -122,9 +123,9 @@ class Site extends Component {
                 <input className={form.textInput} type="number" name="sitePrice" onChange = {(e)=>{this.inputChange(e)}} value={this.state.sitePrice}/>
                 <Tags handleChange={this.handleTags} onMount={this.props.site.tags}/>
                 <button className={form.btnPrimary}>Confirm Changes</button>
+                <button className={form.btnSecondary} onClick={(e) => this.editCancel(e)}>Cancel</button>
             </div>
           </form>
-          <button onClick={() => this.editCancel()}>Cancel</button>
         </div>
     )
 

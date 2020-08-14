@@ -169,8 +169,8 @@
 }
 
 .loginForm button {
-  margin-top: 2rem;
-  margin-right: 50%;
+  margin-top: 1rem;
+  width: 15rem;
 }
 
 .dropdown {

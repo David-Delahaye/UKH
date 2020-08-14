@@ -60,6 +60,7 @@ main{
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
     transition: transform 0.5s;
     overflow: hidden;
+    animation: swipeUp forwards 1s;
     &:hover{
         transform: rotateZ(2deg);
     }
@@ -103,6 +104,17 @@ main{
         position: absolute;
         right: 0px;
         bottom: 0px;
+    }
+}
+
+@keyframes swipeUp {
+    0%{
+        transform: translateY(100px);
+        opacity:0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity:1;
     }
 }
 @media only screen and (min-width: 500px) {
