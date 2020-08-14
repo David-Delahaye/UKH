@@ -13,7 +13,7 @@ class Tags extends Component{
             closed:true,
             input:'',
             checked:[],
-            tags:['green', 'tall', 'big', 'nice', 'tag']
+            tags:['Easy To Grow', 'Big & Tall', 'Hanging & Trailing', 'Shade Resistant', 'Small & Proud']
         }
     }
 

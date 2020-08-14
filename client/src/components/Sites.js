@@ -87,7 +87,7 @@ class Sites extends Component {
         <Link to={'/sites/'+ e.site_id} className = {sites.card} key={i}>
           <img className = {sites.cardImg} src={e.image_link} alt={e.site_name}/>
           <h3 className = {sites.cardTitle}>{e.site_name}</h3>
-          <p className = {sites.cardDesc}>{e.description.substring(0,100)}...</p>
+          <p className = {sites.cardDesc}>{e.description.substring(0,80)}...</p>
           <div className = {sites.cardInfoBar}>
             <div className = {sites.cardScoreWrapper}>
             <Stars average_score={e.average_score}/>

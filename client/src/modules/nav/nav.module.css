@@ -38,7 +38,7 @@ nav .rightNav p {
   z-index: 5;
   top: 2rem;
   left: 2rem;
-  height: 100vh;
+  height: 30vh;
   width: 100%;
   background-color: #062D23;
   display: -webkit-box;
@@ -48,6 +48,14 @@ nav .rightNav p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.phoneMenu .user {
+  margin: 1rem;
+  margin-top: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .closed {

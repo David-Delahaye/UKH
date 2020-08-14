@@ -24,6 +24,13 @@ class Nav extends Component {
     menu.classList.toggle(nav.closed) 
   }
 
+  
+  logout = async ()=>{
+    this.showMenu();
+    this.props.logoutUser();
+    this.setState({redirect:'/sites'})
+  }
+
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -44,16 +51,20 @@ render(){
   <div id='menu' className={nav.rightNav + ' ' + nav.phoneMenu + ' ' + nav.closed}>
     <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plants</Link>
     <Link onClick={(e) => {this.showMenu(e)}} to="/sites/new">Add Plant</Link>
-    <Link>Logged in as {this.props.user.username}</Link>
-    <Logout onClick={(e) => {this.showMenu(e)}}/>
+    <div className={nav.user}>
+      <Link>Logged in as {this.props.user.username}</Link>
+      <Link onClick={(e) => {this.logout(e)}} to="/sites">Logout</Link>
+    </div>
   </div>
   )
 
   const phoneMenuGuest = (
     <div id='menu' className={nav.rightNav + ' ' + nav.phoneMenu + ' ' + nav.closed}>
-      <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plant</Link>
-      <Link onClick={(e) => {this.showMenu(e)}} to="/login">Login</Link>
-      <Link onClick={(e) => {this.showMenu(e)}} to="/register">Register</Link>
+      <Link onClick={(e) => {this.showMenu(e)}} to="/sites">All Plants</Link>
+      <div className={nav.user}>
+        <Link onClick={(e) => {this.showMenu(e)}} to="/login">Login</Link>
+        <Link onClick={(e) => {this.showMenu(e)}} to="/register">Register</Link>
+      </div>
   </div>
   )
 

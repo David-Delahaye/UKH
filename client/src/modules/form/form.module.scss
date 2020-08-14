@@ -89,7 +89,7 @@ $light-orange: #F7E044;
 }
 
 .loginForm{
-    height: 100vh;
+    height: 120%;
     background-color:  $dark-green;
     padding: 2rem;
     padding-top: 2rem;
@@ -112,7 +112,11 @@ $light-orange: #F7E044;
         margin-top: 1rem;
     }
     input{
+        min-height: 2rem;
         margin-bottom: 1rem;
+    }
+    textarea{
+        min-height: 200px;
     }
     button{
         margin-top: 2rem;

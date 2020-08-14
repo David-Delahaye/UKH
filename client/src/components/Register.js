@@ -56,7 +56,7 @@ class Register extends Component {
         <div className={form.innerLoginForm}>
         <h1>Register</h1>
         <input className={form.textInput} type="text" name="username" placeholder="username" />
-        <input className={form.textInput} type="text" name="password" placeholder="password" />
+        <input className={form.textInput} type="password" name="password" placeholder="password" />
         <button className={form.btnPrimary} > Register Now</button>
         </div>
       </form>
