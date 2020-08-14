@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {newComment} from '../actions/commentActions';
@@ -24,6 +25,7 @@ class Comments extends Component{
     }
 
     render(){
+        if (this.props.user.username !== 'guest'){
         return(
             <form className={form.newComment} onSubmit = {(e) =>{this.postComment(e)}}>
                 <div className={form.scoreInput}>
@@ -37,11 +39,19 @@ class Comments extends Component{
                 <button className={form.btnPrimary}>Add</button>
             </form>
         )
-    }
+        }
+        return(
+        <Link className={form.btnPrimary} to="/login">Login To Add A Comment</Link>
+        )
+}
 }
 
 Comments.propTypes = {
   newComment : PropTypes.func.isRequired
 }
 
-export default connect(null, {newComment})(Comments);
+const mapStateToProps = state => ({
+    user: state.auth.user
+  })
+
+export default connect(mapStateToProps, {newComment})(Comments);
