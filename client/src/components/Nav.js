@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {logoutUser} from '../actions/authActions'
 import PropTypes from 'prop-types';
 import nav from "../modules/nav/nav.module.css";
+import Logo from "../images/Logo.png"
 
 class Nav extends Component {
   constructor(props){
@@ -88,7 +89,7 @@ render(){
     if (this.state.phone){
     return(
       <nav>
-        <Link to="/">UKH</Link>
+        <Link to="/">UKH <img className='logo'src={Logo}/></Link>
         <div id='burger' className={nav.burger} onClick={(e) => {this.showMenu(e)}}>
           <div/>
           <div/>
@@ -100,7 +101,7 @@ render(){
     }else{
       return(
         <nav>
-        <Link to="/">UKH</Link>
+        <Link to="/">UKH <img className='logo'src={Logo}/></Link>
         {this.props.user.username !== 'guest' ? menu : menuGuest}
       </nav>
       )
