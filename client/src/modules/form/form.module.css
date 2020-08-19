@@ -149,6 +149,13 @@
   margin: auto;
 }
 
+.loginForm .innerLoginForm label {
+  width: 100%;
+  color: white;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
 .loginForm h1 {
   color: white;
   margin-bottom: 2rem;
@@ -160,12 +167,16 @@
 }
 
 .loginForm input {
+  width: 100%;
   min-height: 2rem;
   margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 
 .loginForm textarea {
+  width: 100%;
   min-height: 200px;
+  margin-top: 0.5rem;
 }
 
 .loginForm button {
